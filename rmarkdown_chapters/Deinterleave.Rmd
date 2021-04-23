@@ -1,0 +1,104 @@
+# Juno-deinterleave 
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup_deinterleave, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE,
+                      error = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+```{r}
+# Parameters
+parameters <- list("pipeline_name" = "Deinterleave")
+
+```
+
+## Handbook
+
+### Requirements and preparation
+
+See the [General Instructions for all pipelines](#general-instructions) first.  
+
+### Download the pipeline  
+
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/AleSR13/deinterleave.git).  
+
+### Start the analysis. Basics
+
+1. Open a terminal. (Applications>terminal).   
+2. Enter the folder of the pipeline:  
+
+```{bash}
+
+cd /mnt/scratch_dir/<my_folder>/deinterleave
+
+```
+
+3. Run the deinterleave script  
+
+```{bash}
+
+bash deinterleave.sh -i /mnt/scratch_dir/<my_folder>/<my_interleaved_file>.fastq.gz
+
+```
+
+### Output 
+
+Your two deinterleaved files will be located in the current directory (you can check your current directory by running the command `pwd`) and they will have the same name than the original file, but with the suffix "_R1" for the forward reads and "_R2" for the reverse reads. For example:
+
+- Original file: sampleX.fastq
+- Deinterleaved files:
+    + Forward: sampleX_R1.fastq
+    + Reverse: sampleX_R2.fastq
+
+*Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` (from output) 
+
+```{bash}
+
+bash deinterleave.sh -i /mnt/scratch_dir/<my_folder>/<my_interleaved_file>.fastq.gz -o /mnt/scratch_dir/my_results
+
+```
+
+### Extra options
+
+_Choose name of deinterleaved files_
+
+You can also use the names you want for the output files. For that you can do:
+
+```{bash}
+
+bash deinterleave.sh -i /mnt/scratch_dir/<my_folder>/<my_interleaved_file>.fastq.gz --output_r1 my_deinterleaved_file_R1.fastq --output_r2 my_deinterleaved_file_R2.fastq
+
+```
+
+Note that I did not use paths there. Your output directory should be set with the option `-o`
+
+_Compress output_ 
+
+You may want to have the deinterleaved files compressed. Note that the compression might take a bit long. For that you can do:
+
+```{bash}
+
+bash deinterleave.sh -i /mnt/scratch_dir/<my_folder>/<my_interleaved_file>.fastq.gz --compress
+
+```
+
+That will make sure that your two interleaved files are gzipped (and have the extension .fastq.gz).
+
+_Combine options_
+
+It is possible to combine more than one of this options. For example:
+
+```{bash}
+
+bash deinterleave.sh -i /mnt/scratch_dir/<my_folder>/<my_interleaved_file>.fastq.gz -o /mnt/scratch_dir/my_results --compress
+
+```

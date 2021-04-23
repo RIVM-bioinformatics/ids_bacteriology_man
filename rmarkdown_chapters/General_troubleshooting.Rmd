@@ -1,0 +1,53 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+# General Troubleshooting {#general-troubleshooting}
+
+<style>
+body {
+text-align: justify}
+</style>
+
+## Failure when installing master environment  
+
+Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying `Solving environment...` might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing `Ctrl + C` and/or `Ctrl + Z` (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:  
+
+```{bash}
+conda config --set channel_priority false
+```
+
+Then try to run the pipeline and install the master environment again. 
+
+## Failure to make a sample sheet or to find input directory   
+
+There are few reasons why this could happen:
+
+- Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.  
+
+- You mis-spelled something in your path or gave the wrong path. Especially while working in Linux, it is common to forget a slash ("/") at the beginning of a full path. For instance: `/mnt/scratch_dir/<my_folder>/<my_data>/`.  
+
+- Your files might have the incorrect format and/or extension. Normally for all the files, standard names are accepted (for instance, .fastq.gz or .fastq for raw reads and .fasta for fasta files). Please make sure that your files have the correct and "classical" extensions.   
+
+- Your input directory does nor contain the expected files, but they are instead in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.  
+
+## Failure to find metadata or other expected input  
+
+Finally, you could get an error associated to the metadata:
+
+```
+The provided species file <your_metadata_file.csv> does not exist. Please provide an existing file
+"If you used the option --make-metadata, please check that all the fasta files contain the .fasta extension and that the file names have the right abbreviations for genus/species
+```
+    
+This message means that either you provided the wrong path/name to your metadata file, that this has the wrong extension (not .csv) or that, if you used the option to `--make-metadata`, your input files do not have the right abbreviations. Please check the metadata file provided or the file names and try again.
+
+## Other problems or failing rules  
+
+The Juno pipelines are still in development which means that sometimes things fail. **Before contacting me** for help, please try these steps:  
+
+1. Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analyis is finished or it just doesn't go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.    
+2. Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.
+3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  

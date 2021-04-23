@@ -1,0 +1,110 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Juno-typing {#juno-typing}
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup_juno, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "Juno-typing")
+
+```
+
+The goal of this pipeline is to perform bacterial typing (7-locus MLST and serotyping). It takes 2 types of files per sample as input:  
+
+1. Two '.fastq' files (paired-end sequencing) derived from short-read sequencing. They should be already filtered and trimmed (for instance, with the Juno-pipeline).  
+
+2. An assembly from the same sample in the form of a single '.fasta' file.  
+
+Importantly, the Juno-typing pipeline works directly on output generated from the Juno-assembly pipeline. 
+
+The Juno-typing pipeline will then make the following analyses:  
+
+- 7-locus MLST (using the [MLST tool](https://bitbucket.org/genomicepidemiology/mlst/src/master/) from the CGE group).  
+
+- Serotyping Salmonella samples (using the [SeqSero2](https://aem.asm.org/content/85/23/e01746-19) tool).  
+
+- Serotyping E. coli samples (using the [SerotypeFinder](https://bitbucket.org/genomicepidemiology/serotypefinder/src/master/) tool).  
+
+<span style="color:red;">Disclaimer!!</span> Importantly, the genus and species are automatically detected from the processed reads (using `kmerFinder`) and the schema to use for the 7-locus MLST is chosen accordingly. The results of `kmerfinder` are also included in the output. However, <span style="font-weight:bold;">this pipeline is NOT meant for bacteria identification</span> and it has not been tested for it. Even if similar species would be misidentified, they would probably share the same MLST7 scheme. The correct choice of scheme has been tested, but not the correct species identification.  
+
+## Handbook
+
+### Requirements and preparation
+
+See the [General Instructions for all pipelines](#general-instructions) first.  
+
+- This pipeline needs two fastq file (R1 and R2) and an assembly (.fasta) files per sample. The fastq files should have been trimmed and filtered to remove low quality reads/bases. You could use the [Juno-assembly pipeline](#juno-assembly) for that. Moreover, that pipeline also provides the _de novo assembly_ for your samples and the output folder of the `Juno-assembly` pipeline can be used directly into the `Juno-typing` pipeline. If you, however, prefer to use any other tool for doing your assembly and trimming/filtering, make sure that the fastq files and fasta files have the same name (for instance, sample1_R1_001.fastq.gz, sample1_R1_001.fastq.gz and sample1.fasta). If that is not the case, the files may not be recoginzed as belonging to the same sample. Also, ALL THREE FILES SHOULD BE IN THE SAME FOLDER! If you have multiple samples, they should all be in the same input folder, NOT IN SUBFOLDERS. The only exception is if you use the `Juno-assembly` pipeline to pre-process your data. In that case, the pipeline will recognize the subfolders where the fastq files and the fasta files should be.
+
+
+### Download the pipeline  
+
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/RIVM-bioinformatics/Juno-typing).  
+
+
+### Start the analysis. Basics
+
+1. Open a terminal. (Applications>terminal).  
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+
+cd /mnt/scratch_dir/<my_folder>/Juno-typing
+
+```
+
+3. Run the pipeline  
+
+```{bash}
+bash juno-typing -i /mnt/scratch_dir/<my_folder>/<my_data>/
+```
+
+Please read the section [What to expect while running a Juno pipeline](#what-to-expect)
+
+See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+### Output 
+
+A folder called `out/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (`kmerfinder`, `mlst7` and `serotype`). Please refer to the manuals of every tool to interpret the results. Each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a `serotype/salmonella_serotype_multireport.csv`, `serotype/ecoli_serotype_multireport.csv` and `mlst7/mlst7_multireport.csv`. Even if your samples are not _Salmonella_ or _E. coli_ you will get the multireport file, althought it will be empty.  
+
+*Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
+
+```{bash}
+bash juno-typing -i /mnt/scratch_dir/<my_folder>/<my_data>/ -o /mnt/scratch_dir/<my_folder>/<my_results>/
+```
+
+There are also two important subfolders generated by this pipeline:
+
+- The `out/log/` folder contains information about every step performed for every sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. In the later case, you may want to look at the subfolder `out/log/drmaa/` where you can find logging files of any job performed by the pipeline. Here it is not always easy to find the job you are looking for, but do know that they are there and they can be accessed if necessary.
+
+- The `out/results/` folder contains 4 very important files for traceability of your samples. The `log_conda.txt file` contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The `log_config.txt` file is even more informative. It enlists all the parameters used to run the pipeline. In case months laters you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The `log_git.txt` has information about the repository or the code that was downloaded. It tells you exactly how it was donwloaded so you can reproduce it at a later timepoint. Finally, the `snakemake_report.html` has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went. 
+
+### Troubleshooting for this pipeline
+
+**Please read first the [General Troubleshooting](#general-troubleshooting) section!**
+
+#### Other problems or failing rules  
+
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes things fail. Before contacting me for help, please try these steps:  
+
+1. Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analyis is finished or it just doesn't go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.    
+2. Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.
+3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  

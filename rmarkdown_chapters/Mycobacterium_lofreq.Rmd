@@ -1,0 +1,171 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Low frequency variants in _Mycobacterium_ samples
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup_mycobacterium_lofreq, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+
+```
+
+The main purpose of this pipeline is to call minority variants in _Mycobacterium_ samples. I takes paired-end raw fastq files as input (one should contain R1 and the other R2 on the name). The pipeline performs the following steps:
+
+1. Quality Control of the raw reads using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
+2. Trimming with [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)  
+3. Quality Control of the trimmed reads using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
+4. Alignment to reference genome using [BWA](http://bio-bwa.sourceforge.net/)  
+5. Preparation to load in [LoFreq](https://csb5.github.io/lofreq/)  
+6. Calling SNP and indels using [LoFreq](https://csb5.github.io/lofreq/)  
+7. Annotating the resulting vcf file using [vcf-annotator](https://github.com/rpetit3/vcf-annotator)  
+
+Although the pipeline has been written for _Mycobacterium_, it can easily be extended to other type of bacteria. Please contact me if you want to use the pipeline for other organism.
+
+## Handbook
+
+**Important note:** this handbook is in continuous development, so please keep that in mind and contact [Alejandra Hernandez](alejandra.hernandez.segura@rivm.nl) if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section first). 
+
+### Requirements and preparation
+
+This handbook assumes that you are working at the “bioinformatica” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.  
+
+- Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (`/data/BioGrid/<my_folder>/<my_data>/`) or in the scratch_dir folder (`/mnt/scratch_dir/<my_folder>/<my_data>/`). I strongly advice you to place it in the scratch_dir “partition” and to only copy it to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.  
+
+- Make sure that your folder has the right name: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name should NOT CONTAIN SPACES!!!!  
+
+- Make sure that your files have the right format: they must have a fastq extension (.fastq, .fq, .fastq.gz or .fq.gz) and contain the characters R1 (for forward reads) or R2 (for reverse reads) somewhere on the name. As with the folder name, you should avoid rare characters on your file names. Just use letters, numbers, underscores or dashes. Make sure there are no spaces on the file names.
+
+### Download the pipeline  
+**YOU ONLY NEED TO RUN THIS SECTION THE FIRST TIME THAT YOU USE THE PIPELINE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Before downloading, make sure that you have a GitHub account. You can open one for free if necessary. Also, make sure that you are logged in and that you have access to the pipeline (or the link). If you don't, please contact me. The pipeline should be downloaded in the same partition that your data is (BioGrid or scratch_dir). You can download it in two ways:  
+
+_Website_  
+
+1. Go to the website: https://github.com/AleSR13/Myco_lofreq 
+2. Press the green button “Code” on the page and then click on “Download zip” 
+3. A zip file (Myco_lofreq-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the BioGrid or the scratch_dir partitions, depending on where your data is  
+4. Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file  
+
+
+_Command-line_  
+
+You should have a GitHub account. You can easily open one if necessary.  
+
+1. Open the “terminal” (you could also open “terminator”) by going to the “Applications” menu of the linux environment  
+2. Go to the location where you want to download the pipeline using the command ‘cd’. For instance:  
+
+```{bash}
+cd /mnt/scratch_dir/<my_folder>/
+```
+
+3. Download the pipeline using the `git clone` command  
+
+```{bash}
+git clone https://github.com/AleSR13/Myco_lofreq.git
+```
+
+
+### Start the analysis. Basics
+
+Once you have the pipeline downloaded and placed in the right partition, you can start the analysis. 
+
+1. Open the terminal. You can go to the Linux menu called "Applications" and open the program "terminal" or the "terminator" one. Both should work.  
+2. Enter the folder of the pipeline  
+
+```{bash}
+# If you downloaded it through the website, the folder is likely:
+cd /mnt/scratch_dir/<my_folder>/Myco_lofreq-master
+
+# If you downloaded it through GitHub, the folder is likely:
+cd /mnt/scratch_dir/<my_folder>/Myco_lofreq
+```
+
+3. Run the pipeline  
+
+If all your samples have the same genus, for instance, _Salmonella_, you run it like this:
+
+```{bash}
+bash run_myco_lofreq_pipeline.sh -i /mnt/scratch_dir/<my_folder>/<my_data>/ 
+```
+
+The pipeline should start running by itself and give you instructions. The first time you run the pipeline, the preparation might take longer than expected and it will need more input from you. Most of the text informs of the progress but often you are required to give input. Try to read what is appearing on the screen and if you get asked to give a permission, please do.  
+
+The first thing that may happen is that you may get a message saying that:
+
+```
+The master environment hasn't been installed yet, do you want to install this environment now? [y/n]
+```
+
+You just have to answer with a `y` as prompted. The installation will start by itself. In the next steps, many messages will appear on your screen. For instance, a sample sheet will be generated, enlisting all the fastq files to be processed. Finally, the snakemake workflow (the actual pipeline) will run. Every time you download the pipeline again, many things have to be installed. Be patient! Especially, after snakemake has started, it will need to create many environments and this step might take some time. 
+
+Please check regularly that the pipeline is running. Every time you will get yellow or green messages that tell you what is happening and that indicate that the pipeline is working as expected. You will see that every step or "rule" is being performed and a job is sent to the cluster. Snakemake will try to optimize the time by performing many steps simultaneously and inform you of the success/failure of every step. The failures will appear in red, but the pipeline might keep going to finsih all the steps that are possible. It regularly tells you how far it is (it gives a % of the steps that have been finished). 
+
+Once your pipeline is finished you should see some final messages informing you that 100% of the steps were finished and that a report was created. You will find your results inside a folder called `out/` inside the folder of the pipeline. For instance:  `/mnt/scratch_dir/<my_folder>/Myco_lofreq-master/out`. You can then move the data to any location you prefer. 
+
+See the section Troubleshooting for any problems you may encounter. 
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+### Output 
+
+A folder called `out/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (fastqc, trimmomatic, multiqc, bwa_alignment, lofreq, etc). Please refer to the manuals of every tool to interpret the results. There are two important subfolders generated by this pipeline:
+
+- The `out/log/` folder contains information about every step performed for every sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. In the later case, you may want to look at the subfolder `out/log/drmaa/` where you can find logging files of any job performed by the pipeline. Here it is not always easy to find the job you are looking for, but do know that they are there and they can be accessed if necessary.
+
+- The `out/results/` folder contains 4 very important files for traceability of your samples. The `log_conda.txt file` contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The `log_config.txt` file is even more informative. It enlists all the parameters used to run the pipeline. In case months laters you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The `log_git.txt` has information about the repository or the code that was downloaded. It tells you exactly how it was donwloaded so you can reproduce it at a later timepoint. Finally, the `snakemake_report.html` has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went. 
+
+*Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` (from output) 
+
+```{bash}
+bash run_myco_lofreq_pipeline.sh -i /mnt/scratch_dir/<my_folder>/<my_data>/ -o /mnt/scratch_dir/<my_folder>/<my_results>/
+```
+
+### Troubleshooting 
+
+#### Failure when installing master environment  
+
+Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying `Solving environment...` might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing `Ctrl + C` and/or `Ctrl + Z` and change the necessary settings with this command:  
+
+```{bash}
+conda config --set channel_priority false
+```
+
+The try to run the pipeline and install the master environment again. 
+
+#### Failure to make a sample sheet or to find input directory   
+
+If this step fails and you get a message like:  
+
+```
+The input directory you specified INPUT_DIR exists but is empty or does not contain the expected input files...  
+Please specify a directory with input-data.
+``` 
+
+This message tells you that your folder does not exist. Please check that you put the right path to the folder with your data (`/mnt/scratch_dir/<my_folder>/<my_data>/`) when running the pipeline. Check that there are no typos or that you did not put the wrong name of your input folder. Note that the full path normally starts with a *slash (/)*. 
+
+```
+Couldn't find files in the input directory that ended up being in a .FASTQ, .FQ or .GZ format.  
+Please inspect the input directory (${INPUT_DIR}) and make sure the files are in one of the formats listed below:  
+    .fastq.gz (Zipped Fastq)  
+    .fq.gz (Zipped Fq)  
+    .fastq (Unzipped Fastq)  
+    .fq (unzipped Fq)  
+```
+    
+This message means that your directory exists but the files do not have the name that is expected. Please refer to requirements to make sure that your files and folder have the right name (right extension and right letters on the name).
+
+#### Other problems or failing rules  
+
+Snakemake and especially this pipeline are not perfect. Sometimes things fail. Before contacting me for help, please try to re-run the pipeline again and see if it goes further and the rules or the whole analysis can be completed or at least go further than before. If it does, please repeat that step (re-running the pipeline) until your analyis is finished and just inform me via e-mail so I can try to find the error later. If the pipeline does not go further or you get strange messages, try to DOWNLOAD THE PIPELINE AGAIN (start following this handbook from the beginning) just in case this issue was noted before and already solved in a new version of the pipeline. If nothing helps, please contact me and I will try to help you troubleshooting. 
+
+**BEFORE CONTACTING ME READ THIS:**
+If you need to contact me, please attach to the email a copy of the messages that appeared in your screen and look for the logging file (in the folder `out/log/`) that belongs to the step and the sample that failed (or at least one of them if there were multiple). If you cannot find the file or it is empty, look for the newest files with the extension `.out` or `.err` in the `out/log/drmaa/` folder. These files often contain error messages as well. Send the files to me or at least keep them at hand. Also, do not forget to mention where your code and data are located so I can have a look at them (if I have access).

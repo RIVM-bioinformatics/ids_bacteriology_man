@@ -1,0 +1,17 @@
+rmd_files: ["index.Rmd", 
+  "Section_General_troubleshooting.Rmd", 
+  "General_troubleshooting.Rmd", 
+  "Section_Juno_pipelines.Rmd", 
+  "Juno-assembly.Rmd", 
+  "Juno-typing.Rmd", 
+  "Juno-annotation.Rmd", 
+  "Section_other_pipelines.Rmd", 
+  "Mycobacterium_lofreq.Rmd", 
+  "Deinterleave.Rmd", 
+  "Section_Microbiome.Rmd", 
+  "Triumph_Run_report.Rmd", 
+  "Triumph_Project_report.Rmd"]
+new_session: no
+book_filename: "IDS-bacteriology-pipelines.Rmd"
+delete_merged_file: true
+output_dir: "IDS-bacteriology_pipelines_manual"
