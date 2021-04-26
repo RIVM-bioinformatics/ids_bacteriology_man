@@ -78,6 +78,7 @@ cd /mnt/scratch_dir/<my_folder>/
 git clone <url_to_the_pipeline>.git
 
 ```
+**Note**: notice that I addded ".git" to the URL of the pipeline.  
 
 You will be asked to give your credentials (username + password) and then the (already unzipped) pipeline should have been downloaded in your current folder. 
 
@@ -93,3 +94,15 @@ Once your pipeline is finished you should see some final messages informing you 
 See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
 
 **Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+### General output and log files for every pipeline {#general-output}  
+
+Every pipeline (with few exceptions of the very short ones like the deinterleave one) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).  
+
+- The `log/` subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.
+
+- The `log/drmaa/` subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.  
+
+- The `audit_trail` or `results` subfolders are also located inside the output directory. They contain contain 4 very important files for traceability of your samples. The `log_conda.txt file` contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The `log_config.txt` file is even more informative. It enlists all the parameters used to run the pipeline. In case months laters you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The `log_git.txt` has information about the repository or the code that was downloaded. It tells you exactly how it was donwloaded so you can reproduce it at a later timepoint. Finally, the `snakemake_report.html` has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went. 
+
+Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a porblem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the `audit_trail` has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.  

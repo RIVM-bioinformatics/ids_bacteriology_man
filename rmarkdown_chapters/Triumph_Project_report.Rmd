@@ -8,123 +8,63 @@ text-align: justify}
 ```{r setup_triumph_project_report, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       eval = FALSE)
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
 
 The code here generates a report that collects the results of multiple runs of the Triumph report. Note that in order to use it, all the individual runs should have been analyzed with the ["Triumph: Run pipeline"](#triumph_run)
 
 ## Handbook
 
-**Important note:** this handbook is in very early development, so please keep that in mind and contact [Alejandra Hernandez](alejandra.hernandez.segura@rivm.nl) if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section first). 
-
 ### Requirements and preparation
 
-This handbook assumes that you are working at the “bioinformatica” environment at the RIVM. It is possible to run the pipeline on your laptop but you need other extra steps that will not be enlisted here.  
+See the [General Instructions for all pipelines](#general-instructions) first.  
 
-- Placing of the data: Your demultiplexed fastq files should all be placed in one single folder (no subfolders) in the BioGrid (`/data/BioGrid/<my_folder>/<my_data>/`) or on the scratch_dir folder (`/mnt/scratch_dir/<my_folder>/<my_data>/`). 
-
-- Make sure that your folder has the right name: the folder contains subfolders with the results of multiple runs as produced by the "Triumph dada2 run pipeline". Please, do not rename any of the files produced by the Triumph dada2 run pipeline, otherwise they will not be found and cannot be included in the project report. Neither your folder nor your subfolders can have "rare" characters (only letters, numbers, dashes and underscores accepted). If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name MUST NOT CONTAIN SPACES!!!!  
+- Make sure that your folder has the right name and structure. Your input folder should have one subfolder per different run. Each of this subfolders contains the results of the "Triumph dada2 run pipeline" for that specific run. Please, do not rename any of the files produced by the Triumph dada2 run pipeline, otherwise they will not be found and cannot be included in the project report. Neither your folder nor your subfolders can have "rare" characters (only letters, numbers, dashes and underscores accepted). If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name MUST NOT CONTAIN SPACES!!!!  
 
 ### Download the pipeline   
-**THIS SECTION IS ONLY RUN THE FIRST TIME YOU USE THE PIPELINE OR EVERY TIME YOU HAVE TO UPDATE IT**  
 
-The pipeline should be downloaded in the same partition that your data is (BioGrid or scratch_dir). You can download it in two ways:  
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
 
-_Website_  
-
-1. Go to the website: https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report (Note: for now you need an invitation to be able to see the code. Once the pipeline is a bit more advanced in development, any RIVM member will have access to it).  
-2. Press the small white button with a cloud and a downwards arrow. In the dropdown menu, choose "Download zip".  
-3. A zip file (triumph_project_report-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the BioGrid or the scratch_dir partitions, depending on where your data is.  
-4. Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file.  
-
-
-_Command-line_   
-
-Any member of the RIVM has a (RIVM-specific) GitLab account. You can log in with the same creadentials that you use for accessing your workspaces.    
-
-1. Open the “terminal” (you could also open “terminator”) by going to the “Applications” menu of the linux environment.  
-2. Go to the location where you want to download the pipeline using the command ‘cd’. For instance:  
-
-```{bash}
-cd /mnt/scratch_dir/<my_folder>/
-```
-*Note: mind the slash at the beginning of the path
-
-3. Download the pipeline using the `git clone` command  
-
-```{bash}
-
-git clone https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report.git 
-
-```
- You will be asked to give your credentials and then the (already unzipped) pipeline should have been downloaded in your current folder.
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report).  
 
 ### Start the analysis. Basics
 
-Once you have the pipeline downloaded and placed in the right partition, you can start the analysis.  
+1. Open the terminal.  
 
-1. Open the terminal. You can go to the Linux menu called "Applications" and open the program "terminal" or the "terminator" one. Both should work.  
-2. Enter the folder of the pipeline  
+2. Enter the folder of the pipeline:  
 
 ```{bash}
-
 cd /mnt/scratch_dir/<my_folder>/triumph_project_report-master/
-
 ```
-* Exact name of downloaded folder might be slightly different depending on the version that was downloaded (e.g. -master might be something else).
+* Exact name of downloaded folder might be slightly different depending on the version that was downloaded.
 
 3. Run the pipeline  
 
 ```{bash}
-
-bash create_triumph_report.sh -i /mnt/scratch_dir/<my_folder>/<my_data>/
-
+bash create_triumph_report.sh -i /mnt/scratch_dir/<my_folder>/
 ```
+* The input directory (in this case /mnt/scratch_dir/my_folder) should be a folder containing one subfolder per run you want to include in the project report. These subfolders should contain the results of running the [Triumph run pipeline](#triumph_run) using the `--metadata` option. Refer to the manual of that pipeline to see what that argument means.  
 
-The pipeline should start running by itself and give you instructions. The first time you run the pipeline, the preparation might take longer than expected and it will need more input from you. Please read the instructions and answer when prompted. 
+**Note 1:** If you are updating the project report because you added the analysis of an old run, you should first delete or rename the "old" report. This script might fail otherwise.
 
-The first thing that may happen is that you may get a message saying that:
+**Note 2:** THE PROJECT REPORT PIPELINE ONLY WORKS WHEN EACH RUN WAS EVALUATED USING METADATA!!! 
 
-```
-The master environment hasn't been installed yet, do you want to install this environment now? [y/N]
-```
+### Output 
 
-You just have to answer with a `y` as prompted. The installation will start by itself. If the installation takes very long (let's say around 30 min and it is still in a message saying "Solving environment..."), refer to the Troubleshooting section expecially to the part "Failure installing master environment".  
-
-The report is created in the "head node", which means it is not sent to the cluster queue. It will be generated in a couple of minutes. You will get a message once the report is finished. If the creation of the report failed, you can go to the output directory (./out is the default) and look for the log files for the report, where you can find more info about what went wrong. 
-
-You will find the report inside a folder called `out/` inside your current directory (the folder of the pipeline). For instance:  `/mnt/scratch_dir/<my_folder>/triumph_project_report/out`. You can then move the data to any location you prefer. **Note:** You can also choose another output directory by specifying it when calling the pipeline:
+A folder called `out/`, inside the folder of the pipeline, will be created. If you prefer to store your output in a different folder, you can use the `-o` argument to give another path.  
 
 ```{bash}
-
-# Default out/ folder
-
-bash triumph_run_pipeline.sh -i /mnt/scratch_dir/<my_folder>/<my_data>/
-
-# Custum output folder
-
 bash triumph_run_pipeline.sh -i /mnt/scratch_dir/<my_folder>/<my_data>/ -o /mnt/scratch_dir/<my_folder>/<my_results>/
 
 ```
 
+If you chose another site for the output, then you will find the same results there. 
 
-**Note:** THE PROJECT REPORT PIPELINE ONLY WORKS WHEN EACH RUN WAS EVALUATED USING METADATA!!! 
+In both cases, the output folder will contain the Triumph_Project_report.html file that is the actual report and a Triumph_Project_Report.log that contains messages, warnings and errors from R, where you can find more info if something goes wrong and the report could not be produced. 
 
-### Output 
-
-A folder called `out/`, inside the folder of the pipeline, will be created. If you chose another site for the output, then you will find the same results there. This folder will contain the Triumph_Project_report.html file that is the actual report and a Triumph_Project_Report.log that contains messages, warnings and errors from R, where you can find more info if something goes wrong and the report could not be produced. 
 
 ### Troubleshooting 
 
-#### Failure installing master environment
-
-Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying `Solving environment...` might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing `Ctrl + C` and/or `Ctrl + Z` and change the necessary settings: 
-
-```{bash}
-conda config --set channel_priority false
-```
-
-The try to run the pipeline and install the master environment again.  
+**Please read first the [General Troubleshooting](#general-troubleshooting) section!**
 
 #### Other problems
 
