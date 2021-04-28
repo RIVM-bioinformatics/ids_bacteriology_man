@@ -2,10 +2,11 @@
 title: "Pipelines IDS-BPD Bioinformatics"
 author: "Alejandra Hernandez-Segura"
 date: "`r Sys.Date()`"
-documentclass: book
+output: pdf_document
 biblio-style: apalike
 link-citations: yes
 highlight: tango
+documentclass: book
 ---
 
 ```{r}
@@ -22,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 In this "book" you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). The handbooks are updated regularly but if you would find a mistake or something that is not up-to-date, please communicate with:
 
-- Alejandra Hernandez ( [email](alejandra.hernandez.segura@rivm.nl) )
+- Alejandra Hernandez ( [email](mailto:alejandra.hernandez.segura@rivm.nl) )
 
 .extralarge[**Important note:**]
 This handbook is in continuous development, so please keep that in mind and contact [Alejandra Hernandez](alejandra.hernandez.segura@rivm.nl) if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first). 

@@ -32,14 +32,14 @@ The pipeline has been tailor-made for the microbiome group at the RIVM, especifi
 
 See the [General Instructions for all pipelines](#general-instructions) first.  
 
-- Make sure that your files have the right format: they must have a fastq extension (.fastq, .fq, .fastq.gz or .fq.gz) and have specific names. The names should be only numbers (they can be preceded by 1 letter). The numbers should give information about the run and the sample. For instance, in the file name L002-026_R1.fastq.gz, it means that you are processing the sample 26 of the run # 2 of the "L" project. Moreover, the suffix '_R1' or '_R2' designate forward or reverse reads. The miseq sequencer normally adds an extra suffix _0001 to the names of the fastq files L002-026_R1_0001.fastq.gz. These suffix is no problem for the pipeline to work.  
+- Make sure that your files have the right format: they must have a fastq extension (.fastq, .fq, .fastq.gz or .fq.gz) and have specific names. The names should be only numbers (they can be preceded by 1 letter). The numbers should give information about the run and the sample. For instance, in the file name L002-026_R1.fastq.gz, it means that you are processing the project "L", the run # 2  and the sample "026". Moreover, the suffix '_R1' or '_R2' designate forward or reverse reads. The MiSeq sequencer normally adds an extra suffix _0001 to the names of the fastq files L002-026_R1_0001.fastq.gz. These suffix is no problem for the pipeline to work.  
 
-- This pipeline needs a metadata (Excel file) should have a very specific format. For details about how to make the metadata file and what the codes mean, please consult with the microbiome team at the RIVM, especially Susana Fuentes. For the use of the pipeline, the main features that need to be added in this Excel file are:
-    + It should be an xlsx file (no csv).
+- This pipeline needs a metadata (Excel file) should have a very specific format. For details about how to make the metadata file and what the codes mean, please consult with the microbiome team at the RIVM, especially [Susana Fuentes](mailto:susana.fuentes@rivm.nl). For the use of the pipeline, the main features that need to be added in this Excel file are:
+    + It should have the file extension .xlsx file (no .csv).
     + It should have at least a sheet called "amplicon_assay". The metadata file for the Triumph project includes many other sheets but this is the only one that is necessary. Leaving the sheet unnamed will not work even if the information inside the sheet is correctly formatted.  
-    + It should have at least three columns with the names: assay_sample, sample_indentifier and subject_identifier. 
+    + The amplicon_assay sheet should have at least three columns with the names: assay_sample, sample_indentifier and subject_identifier. 
     + The assay_sample column should contain the "root" of the sample names that are used to name the fastq files (see previous point). For instance, the assay_sample code for the file L002-026_R1_0001.fastq.gz is L002-026.  
-    + The sample_identifier column should contain the identity of the samples. Here specific codes are needed for the control samples. For instance, every non-control sample is named something like S12345678 where "S" denotes that it is a sample belonging to a patient and the numbers are a unique ID for that sample. In contrast, the control samples don't have unique IDs. They are always named the same way. The accepted codes for the control samples can be found in the Table 1.
+    + The sample_identifier column should contain the identity of the samples. Here specific codes are needed for the control samples. For instance, every non-control sample is named something like S12345678 where "S" denotes that it is a sample belonging to a patient and the numbers are a unique ID for that sample. In contrast, the control samples don't have unique IDs. They are always named the same way in every run. The accepted codes for the control samples can be found in the Table 1.
     + The subject_identifier column contains the same code than sample_identifier and it is used as a back-up. When the codes in sample_identifier are not found, they are looked for instead in the subject_identifier column. 
 
 
@@ -73,7 +73,7 @@ knitr::kable(accepted_control_codes_triumph,
 
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://gitl01-int-p.rivm.nl/hernanda/triumph_dada2_run_pipeline.git).  
 
-### Start the analysis. Basics
+### Start the analysis
 
 1. Open the terminal.  
 
@@ -90,15 +90,21 @@ cd /mnt/scratch_dir/<my_folder>/triumph_dada2_run_pipeline-master/
 bash triumph_run_pipeline.sh -i /mnt/scratch_dir/<my_folder>/<my_last_run>/ --metadata /path/to/metadata.xlsx
 ```
 
-### Run the pipeline changing default parameters
+Please read the section [What to expect while running a Juno pipeline](#what-to-expect)
 
-Many of the parameters of the dada2 package can be changed/used directly when calling the pipeline. If you want to do that, please refer to the help of the pipeline by using the command:
+See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+#### Run the pipeline changing default parameters
+
+Many of the parameters of the `dada2` package can be changed/used directly when calling the pipeline. If you want to do that, please refer to the help of the pipeline by using the command:
 
 ```{r}
-bash triumph_run_pipeline.sh -i /mnt/scratch_dir/<my_folder>/<my_last_run> --metadata /path/to/metadata.xlsx
+bash triumph_run_pipeline.sh -h
 ```
 
-It should pring something like this:
+It should print something like this:
 
 ```
 Usage: bash triumph_run_pipeline.sh -i <INPUT_DIR> <parameters>
@@ -230,13 +236,6 @@ alejandra.hernandez.segura@rivm.nl) for more details:
                       dada2 addSpecies). Default is 3.
 ```
 
-
-Please read the section [What to expect while running a Juno pipeline](#what-to-expect)
-
-See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
-
-**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
-
 #### Running when metadata is not available
 
 
@@ -250,7 +249,7 @@ However, the report produced of such a run is not very informative and the code 
 
 ### Output 
 
-A folder called `out/`, inside the folder of the pipeline, will be created. If you chose another site for the output, then you will find the same results there. This folder will contain all the results and logging files of your analysis. There will be one folder with all the `filtered_fastq files`, one with the `plots` and one with the `RDS_files` generated when using the dada2 pipeline and one folder `run_reports` will have the html report with statistics of the run and the Project_SummaryTable.csv with all the statistics in a table format. Please refer to the dada2 documentation to interpret your results.
+A folder called `out/`, inside the folder of the pipeline, will be created. If you chose another site for the output, then you will find the same results there. This folder will contain all the results and logging files of your analysis. There will be one folder with all the `filtered_fastq files`, one with the `plots` and one with the `RDS_files` generated when using the `dada2` package (for instance, seqtab, merged files, etc.). These RDS files can be [loaded into R](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS) where you can explore them and further work with them. The last folder is the `run_reports` which will have the html report with statistics of the run and the "Project_SummaryTable.csv" with all the statistics in a table format. Please refer to the dada2 documentation to interpret your results.
 
 *Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
 
@@ -271,4 +270,4 @@ The `r parameters$pipeline_name` pipeline is still in development which means th
 
 1. Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analyis is finished or it just doesn't go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.    
 2. Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.
-3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  
+3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Triumph: Project report
 
 <style>
@@ -10,6 +15,13 @@ knitr::opts_chunk$set(echo = TRUE,
                       eval = FALSE)
 ```
 
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "triumph_microbiome_project")
+
+```
+
 The code here generates a report that collects the results of multiple runs of the Triumph report. Note that in order to use it, all the individual runs should have been analyzed with the ["Triumph: Run pipeline"](#triumph_run)
 
 ## Handbook
@@ -18,7 +30,7 @@ The code here generates a report that collects the results of multiple runs of t
 
 See the [General Instructions for all pipelines](#general-instructions) first.  
 
-- Make sure that your folder has the right name and structure. Your input folder should have one subfolder per different run. Each of this subfolders contains the results of the "Triumph dada2 run pipeline" for that specific run. Please, do not rename any of the files produced by the Triumph dada2 run pipeline, otherwise they will not be found and cannot be included in the project report. Neither your folder nor your subfolders can have "rare" characters (only letters, numbers, dashes and underscores accepted). If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name MUST NOT CONTAIN SPACES!!!!  
+- Make sure that your folder has the right name and structure. Your input folder should have one subfolder per different run. Each of this subfolders contains the results of the ["Triumph: Run pipeline"](#triumph_run) for that specific run. Please, do not rename any of the files produced by the ["Triumph: Run pipeline"](#triumph_run), otherwise they will not be found and cannot be included in the project report. Neither your folder nor your subfolders can have "rare" characters (only letters, numbers, dashes and underscores accepted). If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name MUST NOT CONTAIN SPACES!!!!  
 
 ### Download the pipeline   
 
@@ -46,7 +58,7 @@ bash create_triumph_report.sh -i /mnt/scratch_dir/<my_folder>/
 
 **Note 1:** If you are updating the project report because you added the analysis of an old run, you should first delete or rename the "old" report. This script might fail otherwise.
 
-**Note 2:** THE PROJECT REPORT PIPELINE ONLY WORKS WHEN EACH RUN WAS EVALUATED USING METADATA!!! 
+**Note 2:** THE PROJECT REPORT PIPELINE ONLY WORKS WHEN ALL RUNS COLLECTED WERE EVALUATED WITH THE ["Triumph: Run pipeline"](#triumph_run) USING A METADATA FILE!!! 
 
 ### Output 
 
