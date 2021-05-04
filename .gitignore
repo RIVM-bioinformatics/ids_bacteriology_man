@@ -2,7 +2,3 @@
 .Rhistory
 .RData
 .Ruserdata
-
-# Book 
-*.html
-rmarkdown_chapters/IDS-bacteriology_pipelines_manual

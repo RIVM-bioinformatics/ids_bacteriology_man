@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Pipelines IDS-BPD Bioinformatics</title>
+  <meta name="description" content="Pipelines IDS-BPD Bioinformatics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Pipelines IDS-BPD Bioinformatics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pipelines IDS-BPD Bioinformatics" />
+  
+  
+  
+
+<meta name="author" content="Alejandra Hernandez-Segura" />
+
+
+<meta name="date" content="2021-05-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="general-troubleshooting.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="custom_style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and General Instructions</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-instructions"><i class="fa fa-check"></i><b>1.1</b> General Instructions for all pipelines</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#requirements-and-preparation"><i class="fa fa-check"></i><b>1.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#downloading-instructions"><i class="fa fa-check"></i><b>1.1.2</b> Downloading pipelines</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1.3</b> What to expect while running a Juno pipeline</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#general-output"><i class="fa fa-check"></i><b>1.1.4</b> General output and log files for every pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I General troubleshooting</b></span></li>
+<li class="chapter" data-level="2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html"><i class="fa fa-check"></i><b>2</b> General Troubleshooting</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.1</b> Failure when installing master environment</a></li>
+<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.2</b> Failure to make a sample sheet or to find input directory</a></li>
+<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.3</b> Other problems or failing rules</a></li>
+</ul></li>
+<li class="part"><span><b>II Juno pipelines</b></span></li>
+<li class="chapter" data-level="3" data-path="juno-assembly.html"><a href="juno-assembly.html"><i class="fa fa-check"></i><b>3</b> Juno-assembly pipeline</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="juno-assembly.html"><a href="juno-assembly.html#handbook"><i class="fa fa-check"></i><b>3.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="juno-assembly.html"><a href="juno-assembly.html#requirements-and-preparation-1"><i class="fa fa-check"></i><b>3.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="3.1.2" data-path="juno-assembly.html"><a href="juno-assembly.html#download-the-pipeline"><i class="fa fa-check"></i><b>3.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="3.1.3" data-path="juno-assembly.html"><a href="juno-assembly.html#start-the-analysis.-basics"><i class="fa fa-check"></i><b>3.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="3.1.4" data-path="juno-assembly.html"><a href="juno-assembly.html#output"><i class="fa fa-check"></i><b>3.1.4</b> Output</a></li>
+<li class="chapter" data-level="3.1.5" data-path="juno-assembly.html"><a href="juno-assembly.html#troubleshooting-for-this-pipeline"><i class="fa fa-check"></i><b>3.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="juno-typing.html"><a href="juno-typing.html"><i class="fa fa-check"></i><b>4</b> Juno-typing</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="juno-typing.html"><a href="juno-typing.html#handbook-1"><i class="fa fa-check"></i><b>4.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="juno-typing.html"><a href="juno-typing.html#requirements-and-preparation-2"><i class="fa fa-check"></i><b>4.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="juno-typing.html"><a href="juno-typing.html#download-the-pipeline-1"><i class="fa fa-check"></i><b>4.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="4.1.3" data-path="juno-typing.html"><a href="juno-typing.html#start-the-analysis.-basics-1"><i class="fa fa-check"></i><b>4.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="4.1.4" data-path="juno-typing.html"><a href="juno-typing.html#output-1"><i class="fa fa-check"></i><b>4.1.4</b> Output</a></li>
+<li class="chapter" data-level="4.1.5" data-path="juno-typing.html"><a href="juno-typing.html#troubleshooting-for-this-pipeline-1"><i class="fa fa-check"></i><b>4.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="juno-annotation.html"><a href="juno-annotation.html"><i class="fa fa-check"></i><b>5</b> Juno-annotation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="juno-annotation.html"><a href="juno-annotation.html#handbook-2"><i class="fa fa-check"></i><b>5.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="juno-annotation.html"><a href="juno-annotation.html#requirements-and-preparation-3"><i class="fa fa-check"></i><b>5.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="juno-annotation.html"><a href="juno-annotation.html#download-the-pipeline-2"><i class="fa fa-check"></i><b>5.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="5.1.3" data-path="juno-annotation.html"><a href="juno-annotation.html#start-the-analysis.-basics-2"><i class="fa fa-check"></i><b>5.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="5.1.4" data-path="juno-annotation.html"><a href="juno-annotation.html#output-2"><i class="fa fa-check"></i><b>5.1.4</b> Output</a></li>
+<li class="chapter" data-level="5.1.5" data-path="juno-annotation.html"><a href="juno-annotation.html#troubleshooting-for-this-pipeline-2"><i class="fa fa-check"></i><b>5.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Other scripts/pipelines</b></span></li>
+<li class="chapter" data-level="6" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html"><i class="fa fa-check"></i><b>6</b> Low frequency variants in <em>Mycobacterium</em> samples</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#handbook-3"><i class="fa fa-check"></i><b>6.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#requirements-and-preparation-4"><i class="fa fa-check"></i><b>6.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#download-the-pipeline-3"><i class="fa fa-check"></i><b>6.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="6.1.3" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#start-the-analysis.-basics-3"><i class="fa fa-check"></i><b>6.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="6.1.4" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#output-3"><i class="fa fa-check"></i><b>6.1.4</b> Output</a></li>
+<li class="chapter" data-level="6.1.5" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#troubleshooting"><i class="fa fa-check"></i><b>6.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html"><i class="fa fa-check"></i><b>7</b> Juno-deinterleave</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#handbook-4"><i class="fa fa-check"></i><b>7.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#requirements-and-preparation-5"><i class="fa fa-check"></i><b>7.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="7.1.2" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#download-the-pipeline-4"><i class="fa fa-check"></i><b>7.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="7.1.3" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#start-the-analysis.-basics-4"><i class="fa fa-check"></i><b>7.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="7.1.4" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#output-4"><i class="fa fa-check"></i><b>7.1.4</b> Output</a></li>
+<li class="chapter" data-level="7.1.5" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#extra-options"><i class="fa fa-check"></i><b>7.1.5</b> Extra options</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Microbiome pipelines</b></span></li>
+<li class="chapter" data-level="8" data-path="triumph-run.html"><a href="triumph-run.html"><i class="fa fa-check"></i><b>8</b> Triumph: Run pipeline</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="triumph-run.html"><a href="triumph-run.html#handbook-5"><i class="fa fa-check"></i><b>8.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="triumph-run.html"><a href="triumph-run.html#requirements-and-preparation-6"><i class="fa fa-check"></i><b>8.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="triumph-run.html"><a href="triumph-run.html#download-the-pipeline-5"><i class="fa fa-check"></i><b>8.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="triumph-run.html"><a href="triumph-run.html#start-the-analysis"><i class="fa fa-check"></i><b>8.1.3</b> Start the analysis</a></li>
+<li class="chapter" data-level="8.1.4" data-path="triumph-run.html"><a href="triumph-run.html#output-5"><i class="fa fa-check"></i><b>8.1.4</b> Output</a></li>
+<li class="chapter" data-level="8.1.5" data-path="triumph-run.html"><a href="triumph-run.html#troubleshooting-1"><i class="fa fa-check"></i><b>8.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="triumph-project-report.html"><a href="triumph-project-report.html"><i class="fa fa-check"></i><b>9</b> Triumph: Project report</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="triumph-project-report.html"><a href="triumph-project-report.html#handbook-6"><i class="fa fa-check"></i><b>9.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="triumph-project-report.html"><a href="triumph-project-report.html#requirements-and-preparation-7"><i class="fa fa-check"></i><b>9.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="9.1.2" data-path="triumph-project-report.html"><a href="triumph-project-report.html#download-the-pipeline-6"><i class="fa fa-check"></i><b>9.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="9.1.3" data-path="triumph-project-report.html"><a href="triumph-project-report.html#start-the-analysis.-basics-5"><i class="fa fa-check"></i><b>9.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="9.1.4" data-path="triumph-project-report.html"><a href="triumph-project-report.html#output-6"><i class="fa fa-check"></i><b>9.1.4</b> Output</a></li>
+<li class="chapter" data-level="9.1.5" data-path="triumph-project-report.html"><a href="triumph-project-report.html#troubleshooting-2"><i class="fa fa-check"></i><b>9.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li>IDS-bioinformatics team - Juno team</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pipelines IDS-BPD Bioinformatics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Pipelines IDS-BPD Bioinformatics</h1>
+<p class="author"><em>Alejandra Hernandez-Segura</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-05-04</em></p>
+</div>
+<div id="introduction-and-general-instructions" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction and General Instructions</h1>
+<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). The handbooks are updated regularly but if you would find a mistake or something that is not up-to-date, please communicate with:</p>
+<ul>
+<li>Alejandra Hernandez ( <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a> )</li>
+</ul>
+<p><strong>Important note:</strong>
+This handbook is in continuous development, so please keep that in mind and contact <a href="alejandra.hernandez.segura@rivm.nl">Alejandra Hernandez</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
+<div id="general-instructions" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> General Instructions for all pipelines</h2>
+<div id="requirements-and-preparation" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Requirements and preparation</h3>
+<p>This handbook assumes that you are working at the “bioinformatica” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.</p>
+<ul>
+<li><p>Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (<code>/data/BioGrid/&lt;my_folder&gt;/&lt;my_data&gt;/</code>) or in the scratch_dir folder (<code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>). I strongly advice you to place it in the <code>scratch_dir</code> folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.</p></li>
+<li><p>Make sure that the folder that you use as input (it contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. <strong>IMPORTANT:</strong> Your folder name and the PATH to it (so all the folders and subfolders that you have to enter to reach your folder) should NOT CONTAIN SPACES!!!!</p></li>
+<li><p>Make sure that your files have the right format: if they are fastq files, they should have the extension (<code>.fastq</code>, <code>.fq</code>, <code>.fastq.gz</code> or <code>.fq.gz</code>). If they are fasta files, they should have the extension <code>.fasta</code>. Any other requirements in the input files will be specified in the section of that specific pipeline.</p></li>
+</ul>
+</div>
+<div id="downloading-instructions" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Downloading pipelines</h3>
+<p>All the bacteriology pipelines created by the IDS-bioinformatics group are stored in either <a href="https://github.com/RIVM-bioinformatics">GitHub</a> or the <a href="https://gitl01-int-p.rivm.nl/">internal GitLab</a> of the RIVM. Only people who belong to the RIVM and that are inside one of our servers/environments can access to the later one with their normal RIVM login details.</p>
+<p>If you are going to download a pipeline, please do so in the same partition that your data is (preferentially <code>scratch_dir</code>). Each pipeline handbook has the instructions on where to find the code (either GitHub or GitLab). You can download every pipeline through the website or through the command line:</p>
+<p><em>GitHub website</em></p>
+<ol style="list-style-type: decimal">
+<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
+</li>
+<li>Press the green button “Code” on the page and then click on “Download zip” (see <a href="#github-fig">Figure</a> for explanation).<br />
+</li>
+<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
+</li>
+<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure</a> for explanation).</li>
+</ol>
+<div class="figure"><span id="fig:github-fig"></span>
+<img src="figures/screenshot_download_github.png" alt="Pipelines can be downloaded directly from their GitHub website."  />
+<p class="caption">
+FIGURE 1.1: Pipelines can be downloaded directly from their GitHub website.
+</p>
+</div>
+<div class="figure"><span id="fig:extract-fig"></span>
+<img src="figures/Screenshot_unzip.png" alt="Unzipping a repository in Linux."  />
+<p class="caption">
+FIGURE 1.2: Unzipping a repository in Linux.
+</p>
+</div>
+<p><em>GitLab website</em></p>
+<ol style="list-style-type: decimal">
+<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
+</li>
+<li>Press the small white button with a cloud and a downwards arrow. In the drop-down menu, choose “Download zip” (see <a href="#gitlab-fig">Figure</a> for explanation).<br />
+</li>
+<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
+</li>
+<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure</a> above for explanation).</li>
+</ol>
+<div class="figure"><span id="fig:gitlab-fig"></span>
+<img src="figures/screenshot_download_gitlab.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
+<p class="caption">
+FIGURE 1.3: Pipelines can be downloaded directly from their GitLab website.
+</p>
+</div>
+<p><em>Command-line</em></p>
+<p>Any member of the RIVM has a (RIVM-specific) GitLab account. You can log in with the same creadentials that you use for accessing your workspaces. In the case of pipelines hosted on GitHub, you may need a free GitHub account.</p>
+<ol style="list-style-type: decimal">
+<li>Open the “terminal” (you could also open “terminator”) by going to the “Applications” menu of the linux environment.</li>
+</ol>
+<div class="figure"><span id="fig:commandline-fig"></span>
+<img src="figures/schreenshot_terminal.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
+<p class="caption">
+FIGURE 1.4: Pipelines can be downloaded directly from their GitLab website.
+</p>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>Go to the location where you want to download the pipeline using the command ‘cd’. For instance:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
+<p><strong>Note:</strong> mind the slash at the beginning of the path</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Download the pipeline using the <code>git clone</code> command</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>url_to_the_pipeline<span class="op">&gt;</span>.git</span></code></pre></div>
+<p><strong>Note</strong>: notice that I addded “.git” to the URL of the pipeline.</p>
+<p>You will be asked to give your credentials (username + password) and then the (already unzipped) pipeline should have been downloaded in your current folder.</p>
+</div>
+<div id="what-to-expect" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> What to expect while running a Juno pipeline</h3>
+<p>Our pipelines normally run by themselves. Sometimes they ask for input from the user to agree on installing software or a database but other than that, they do not require much input from the user.Try to read at least the last lines appearing on the screen and if you get asked to give a permission, please do. The first time you run a new pipeline, the preparation might take longer than expected. This is due to the installation of the basic software needed for it to work. Be patient! The installation may take some time.</p>
+<p>Once the installation is over, the pipeline should start running. Please check regularly that the pipeline is actually running and working. Every time you will get <span style="”color:yellow;”">yellow</span> or <span style="”color:green;”">green</span> messages that tell you what is happening and that indicate that the pipeline is working as expected. Multiple steps are performed simultaneously to optimize the time and resources, especially when using the cluster. If a step fails, you will likely see some <span style="”color:red;”">red</span> text appearing on the screen, but the pipeline might keep going to finsih all the steps that are possible. The messages on the screen regularly tell you how far the pipeline is (it gives a % of the steps that have been finished).</p>
+<p>Once your pipeline is finished you should see some final messages informing you that 100% of the steps were finished and that your output was created.</p>
+<p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
+<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
+</div>
+<div id="general-output" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> General output and log files for every pipeline</h3>
+<p>Every pipeline (with few exceptions of the very short ones like the deinterleave one) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).</p>
+<ul>
+<li><p>The <code>log/</code> subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.</p></li>
+<li><p>The <code>log/drmaa/</code> subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.</p></li>
+<li><p>The <code>audit_trail</code> or <code>results</code> subfolders are also located inside the output directory. They contain contain 4 very important files for traceability of your samples. The <code>log_conda.txt file</code> contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The <code>log_config.txt</code> file is even more informative. It enlists all the parameters used to run the pipeline. In case months laters you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The <code>log_git.txt</code> has information about the repository or the code that was downloaded. It tells you exactly how it was donwloaded so you can reproduce it at a later timepoint. Finally, the <code>snakemake_report.html</code> has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went.</p></li>
+</ul>
+<p>Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a porblem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the <code>audit_trail</code> has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.</p>
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="general-troubleshooting.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true,
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

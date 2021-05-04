@@ -1,0 +1,40 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+/* Font styling */
+
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap");
+
+.book.font-family-0 {
+  font-family: "Merriweather", Georgia, serif;
+}
+.book.font-family-1 {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+
+.large{
+  font-size: 1.5em;
+}
+
+.extralarge{
+  font-size: 2em;
+}
+
+/* Other */
+
+.book .book-body .page-wrapper .page-inner section.normal code {
+  padding: 2px 0;
+}

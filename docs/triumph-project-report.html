@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Triumph: Project report | Pipelines IDS-BPD Bioinformatics</title>
+  <meta name="description" content="Chapter 9 Triumph: Project report | Pipelines IDS-BPD Bioinformatics" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Triumph: Project report | Pipelines IDS-BPD Bioinformatics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Triumph: Project report | Pipelines IDS-BPD Bioinformatics" />
+  
+  
+  
+
+<meta name="author" content="Alejandra Hernandez-Segura" />
+
+
+<meta name="date" content="2021-05-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="triumph-run.html"/>
+
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="custom_style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and General Instructions</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-instructions"><i class="fa fa-check"></i><b>1.1</b> General Instructions for all pipelines</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#requirements-and-preparation"><i class="fa fa-check"></i><b>1.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#downloading-instructions"><i class="fa fa-check"></i><b>1.1.2</b> Downloading pipelines</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1.3</b> What to expect while running a Juno pipeline</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#general-output"><i class="fa fa-check"></i><b>1.1.4</b> General output and log files for every pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I General troubleshooting</b></span></li>
+<li class="chapter" data-level="2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html"><i class="fa fa-check"></i><b>2</b> General Troubleshooting</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.1</b> Failure when installing master environment</a></li>
+<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.2</b> Failure to make a sample sheet or to find input directory</a></li>
+<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.3</b> Other problems or failing rules</a></li>
+</ul></li>
+<li class="part"><span><b>II Juno pipelines</b></span></li>
+<li class="chapter" data-level="3" data-path="juno-assembly.html"><a href="juno-assembly.html"><i class="fa fa-check"></i><b>3</b> Juno-assembly pipeline</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="juno-assembly.html"><a href="juno-assembly.html#handbook"><i class="fa fa-check"></i><b>3.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="juno-assembly.html"><a href="juno-assembly.html#requirements-and-preparation-1"><i class="fa fa-check"></i><b>3.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="3.1.2" data-path="juno-assembly.html"><a href="juno-assembly.html#download-the-pipeline"><i class="fa fa-check"></i><b>3.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="3.1.3" data-path="juno-assembly.html"><a href="juno-assembly.html#start-the-analysis.-basics"><i class="fa fa-check"></i><b>3.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="3.1.4" data-path="juno-assembly.html"><a href="juno-assembly.html#output"><i class="fa fa-check"></i><b>3.1.4</b> Output</a></li>
+<li class="chapter" data-level="3.1.5" data-path="juno-assembly.html"><a href="juno-assembly.html#troubleshooting-for-this-pipeline"><i class="fa fa-check"></i><b>3.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="juno-typing.html"><a href="juno-typing.html"><i class="fa fa-check"></i><b>4</b> Juno-typing</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="juno-typing.html"><a href="juno-typing.html#handbook-1"><i class="fa fa-check"></i><b>4.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="juno-typing.html"><a href="juno-typing.html#requirements-and-preparation-2"><i class="fa fa-check"></i><b>4.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="juno-typing.html"><a href="juno-typing.html#download-the-pipeline-1"><i class="fa fa-check"></i><b>4.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="4.1.3" data-path="juno-typing.html"><a href="juno-typing.html#start-the-analysis.-basics-1"><i class="fa fa-check"></i><b>4.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="4.1.4" data-path="juno-typing.html"><a href="juno-typing.html#output-1"><i class="fa fa-check"></i><b>4.1.4</b> Output</a></li>
+<li class="chapter" data-level="4.1.5" data-path="juno-typing.html"><a href="juno-typing.html#troubleshooting-for-this-pipeline-1"><i class="fa fa-check"></i><b>4.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="juno-annotation.html"><a href="juno-annotation.html"><i class="fa fa-check"></i><b>5</b> Juno-annotation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="juno-annotation.html"><a href="juno-annotation.html#handbook-2"><i class="fa fa-check"></i><b>5.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="juno-annotation.html"><a href="juno-annotation.html#requirements-and-preparation-3"><i class="fa fa-check"></i><b>5.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="juno-annotation.html"><a href="juno-annotation.html#download-the-pipeline-2"><i class="fa fa-check"></i><b>5.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="5.1.3" data-path="juno-annotation.html"><a href="juno-annotation.html#start-the-analysis.-basics-2"><i class="fa fa-check"></i><b>5.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="5.1.4" data-path="juno-annotation.html"><a href="juno-annotation.html#output-2"><i class="fa fa-check"></i><b>5.1.4</b> Output</a></li>
+<li class="chapter" data-level="5.1.5" data-path="juno-annotation.html"><a href="juno-annotation.html#troubleshooting-for-this-pipeline-2"><i class="fa fa-check"></i><b>5.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Other scripts/pipelines</b></span></li>
+<li class="chapter" data-level="6" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html"><i class="fa fa-check"></i><b>6</b> Low frequency variants in <em>Mycobacterium</em> samples</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#handbook-3"><i class="fa fa-check"></i><b>6.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#requirements-and-preparation-4"><i class="fa fa-check"></i><b>6.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#download-the-pipeline-3"><i class="fa fa-check"></i><b>6.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="6.1.3" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#start-the-analysis.-basics-3"><i class="fa fa-check"></i><b>6.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="6.1.4" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#output-3"><i class="fa fa-check"></i><b>6.1.4</b> Output</a></li>
+<li class="chapter" data-level="6.1.5" data-path="low-frequency-variants-in-mycobacterium-samples.html"><a href="low-frequency-variants-in-mycobacterium-samples.html#troubleshooting"><i class="fa fa-check"></i><b>6.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html"><i class="fa fa-check"></i><b>7</b> Juno-deinterleave</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#handbook-4"><i class="fa fa-check"></i><b>7.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#requirements-and-preparation-5"><i class="fa fa-check"></i><b>7.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="7.1.2" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#download-the-pipeline-4"><i class="fa fa-check"></i><b>7.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="7.1.3" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#start-the-analysis.-basics-4"><i class="fa fa-check"></i><b>7.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="7.1.4" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#output-4"><i class="fa fa-check"></i><b>7.1.4</b> Output</a></li>
+<li class="chapter" data-level="7.1.5" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#extra-options"><i class="fa fa-check"></i><b>7.1.5</b> Extra options</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Microbiome pipelines</b></span></li>
+<li class="chapter" data-level="8" data-path="triumph-run.html"><a href="triumph-run.html"><i class="fa fa-check"></i><b>8</b> Triumph: Run pipeline</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="triumph-run.html"><a href="triumph-run.html#handbook-5"><i class="fa fa-check"></i><b>8.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="triumph-run.html"><a href="triumph-run.html#requirements-and-preparation-6"><i class="fa fa-check"></i><b>8.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="triumph-run.html"><a href="triumph-run.html#download-the-pipeline-5"><i class="fa fa-check"></i><b>8.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="triumph-run.html"><a href="triumph-run.html#start-the-analysis"><i class="fa fa-check"></i><b>8.1.3</b> Start the analysis</a></li>
+<li class="chapter" data-level="8.1.4" data-path="triumph-run.html"><a href="triumph-run.html#output-5"><i class="fa fa-check"></i><b>8.1.4</b> Output</a></li>
+<li class="chapter" data-level="8.1.5" data-path="triumph-run.html"><a href="triumph-run.html#troubleshooting-1"><i class="fa fa-check"></i><b>8.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="triumph-project-report.html"><a href="triumph-project-report.html"><i class="fa fa-check"></i><b>9</b> Triumph: Project report</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="triumph-project-report.html"><a href="triumph-project-report.html#handbook-6"><i class="fa fa-check"></i><b>9.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="triumph-project-report.html"><a href="triumph-project-report.html#requirements-and-preparation-7"><i class="fa fa-check"></i><b>9.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="9.1.2" data-path="triumph-project-report.html"><a href="triumph-project-report.html#download-the-pipeline-6"><i class="fa fa-check"></i><b>9.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="9.1.3" data-path="triumph-project-report.html"><a href="triumph-project-report.html#start-the-analysis.-basics-5"><i class="fa fa-check"></i><b>9.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="9.1.4" data-path="triumph-project-report.html"><a href="triumph-project-report.html#output-6"><i class="fa fa-check"></i><b>9.1.4</b> Output</a></li>
+<li class="chapter" data-level="9.1.5" data-path="triumph-project-report.html"><a href="triumph-project-report.html#troubleshooting-2"><i class="fa fa-check"></i><b>9.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li>IDS-bioinformatics team - Juno team</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pipelines IDS-BPD Bioinformatics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="triumph-project-report" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Triumph: Project report</h1>
+<style>
+body {
+text-align: justify}
+</style>
+<p>The code here generates a report that collects the results of multiple runs of the Triumph report. Note that in order to use it, all the individual runs should have been analyzed with the <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a></p>
+<div id="handbook-6" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Handbook</h2>
+<div id="requirements-and-preparation-7" class="section level3" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Requirements and preparation</h3>
+<p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
+<ul>
+<li>Make sure that your folder has the right name and structure. Your input folder should have one subfolder per different run. Each of this subfolders contains the results of the <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a> for that specific run. Please, do not rename any of the files produced by the <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a>, otherwise they will not be found and cannot be included in the project report. Neither your folder nor your subfolders can have “rare” characters (only letters, numbers, dashes and underscores accepted). If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name MUST NOT CONTAIN SPACES!!!!</li>
+</ul>
+</div>
+<div id="download-the-pipeline-6" class="section level3" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Download the pipeline</h3>
+<p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The triumph_microbiome_project pipeline can be found in <a href="https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report">this link</a>.</p>
+</div>
+<div id="start-the-analysis.-basics-5" class="section level3" number="9.1.3">
+<h3><span class="header-section-number">9.1.3</span> Start the analysis. Basics</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open the terminal.</p></li>
+<li><p>Enter the folder of the pipeline:</p></li>
+</ol>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="triumph-project-report.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_project_report-master/</span></code></pre></div>
+<ul>
+<li>Exact name of downloaded folder might be slightly different depending on the version that was downloaded.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the pipeline</li>
+</ol>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="triumph-project-report.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> create_triumph_report.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
+<ul>
+<li>The input directory (in this case /mnt/scratch_dir/my_folder) should be a folder containing one subfolder per run you want to include in the project report. These subfolders should contain the results of running the <a href="triumph-run.html#triumph_run">Triumph run pipeline</a> using the <code>--metadata</code> option. Refer to the manual of that pipeline to see what that argument means.</li>
+</ul>
+<p><strong>Note 1:</strong> If you are updating the project report because you added the analysis of an old run, you should first delete or rename the “old” report. This script might fail otherwise.</p>
+<p><strong>Note 2:</strong> THE PROJECT REPORT PIPELINE ONLY WORKS WHEN ALL RUNS COLLECTED WERE EVALUATED WITH THE <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a> USING A METADATA FILE!!!</p>
+</div>
+<div id="output-6" class="section level3" number="9.1.4">
+<h3><span class="header-section-number">9.1.4</span> Output</h3>
+<p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. If you prefer to store your output in a different folder, you can use the <code>-o</code> argument to give another path.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="triumph-project-report.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<p>If you chose another site for the output, then you will find the same results there.</p>
+<p>In both cases, the output folder will contain the Triumph_Project_report.html file that is the actual report and a Triumph_Project_Report.log that contains messages, warnings and errors from R, where you can find more info if something goes wrong and the report could not be produced.</p>
+</div>
+<div id="troubleshooting-2" class="section level3" number="9.1.5">
+<h3><span class="header-section-number">9.1.5</span> Troubleshooting</h3>
+<p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
+<div id="other-problems" class="section level4" number="9.1.5.1">
+<h4><span class="header-section-number">9.1.5.1</span> Other problems</h4>
+<p>Sometimes things fail. Before contacting me for help, please check the naming of your files, make sure you ran them with the Triumph_dada2_run_pipeline and that you did not change the name of any file. Try to create the report again. If you are sure all the input files are correct and the report does not run, please check the .log file to see if you can find the source of the error and contact me with that information.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="triumph-run.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true,
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

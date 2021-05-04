@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  css: style.css
+  css: [custom_style.css, style.css]
   split_by: chapter
   clean: yes
   config:
@@ -28,7 +28,6 @@ bookdown::gitbook:
       instapaper: no
       vk: no
       whatsapp: no
-      all: ['facebook', 'twitter', 'linkedin', 'weibo', 'instapaper']
     info: yes
 bookdown::pdf_book:
   latex_engine: xelatex
