@@ -1,0 +1,114 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Juno-amr {#juno-amr}
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup_juno, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+```
+
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "Juno-amr")
+
+```
+
+The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate [ResFinder](https://bitbucket.org/genomicepidemiology/resfinder/src/master/) and [PointFinder](https://bitbucket.org/genomicepidemiology/pointfinder/src/master/). The tools that are being used are created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/). These tools identify acquired genes and find chromosal mutations mediating antimicrobial resistance in DNA secuences of bacteria. This can be partial or total sequences. The output of both tools can be used for analysis and is also combined in four summary files for a quick overview of the most important results.  
+
+## Handbook
+
+### Requirements and preparation
+
+See the [General Instructions for all pipelines](#general-instructions) first.
+
+To run this pipeline the type of species and a folder with .fasta or paired .fastq files is required. 
+
+Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.
+
+Besides giving input it is also required to select a species. The `-species` parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running pointfiner.
+
+The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the `-output` parameter.
+
+**Note** all samples in the directory should be the same species and the same file format.
+
+### Download the pipeline  
+
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group.
+
+The `r parameters$pipeline_name` pipeline can be found [here](https://github.com/RIVM-bioinformatics/Juno-amr).
+
+### Start the analysis. Basics
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:
+```{}
+cd /mnt/scratch_dir/<my_folder>/Juno-amr
+```
+
+3. Run the pipeline  
+```{}
+python3 juno-amr.py -s [species] -i [/mnt/scratch_dir/<my_folder>/fastq_or_fasta_file folder]
+```
+
+Please read the section [What to expect while running a Juno pipeline](#what-to-expect)
+
+See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You can add the `-output` parameter to the command in order to place your output somewhere else.
+
+### Output 
+In the output you can find 3 folders:
+
+* **log:** Log with output and error file from the cluster for each snakemake rule/step that is performed.
+
+* **results_per_sample:** Output produced by ResFinder and PointFinder for each sample. CGE's explanation on the output can be found [here](https://cge.cbs.dtu.dk/services/ResFinder/output.php).
+
+* **summary:** Directory with 4 summary files created from each sample within the results_per_sample folder.
+    * **summary_amr_genes.csv:** Shows the samplename resistance gene, identity, aligment length/gene length and coverage per gene hit.
+
+    * **summary_amr_phenotype.csv:** Shows the type of match for each sample on the resistance for each antimicrobial.
+
+    * **summary_amr_pointfinder_predicition.csv:** - Shows the samplename and a 0(no hit) or 1(hit) prediciton for each mutation.
+
+    * **summary_amr_pointfinder_results** Shows the samplename, mutation, nucleotide change, amino acid change, resistance and PMID for each mutation hit
+
+
+**Note:** If you want your output to be stored in a folder with a different name or location, you can use the option `-o` or `-output` 
+
+```{}
+python3 juno-amr.py -i /mnt/scratch_dir/<my_folder>/<my_data>/ -species salmonella -o /mnt/scratch_dir/<my_folder>/<my_results>/
+```
+
+### Troubleshooting for this pipeline
+
+**Please read the [General Troubleshooting](#general-troubleshooting) section first!**
+
+#### Other problems or failing rules  
+
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail.
+
+Before contacting for help, try these two steps:
+
+1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
+
+2. [Download](https://github.com/RIVM-bioinformatics/Juno-amr) the pipeline again and start from the beginning of this [handbook](#downloading-instructions). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:roxanne.wolthuis@rivm.nl) with the following content:
+
+* The log and error files that can be found in the output folder
+* The path to your input directory
+* The path to where the pipeline is installed
+
+**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
