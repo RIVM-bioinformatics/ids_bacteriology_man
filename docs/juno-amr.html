@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Juno-typing | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
-  <meta name="description" content="4 Juno-typing | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <title>5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Juno-typing | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:title" content="5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Juno-typing | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="twitter:title" content="5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="juno-assembly.html"/>
-<link rel="next" href="juno-amr.html"/>
+<link rel="prev" href="juno-typing.html"/>
+<link rel="next" href="juno-annotation.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -267,74 +267,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="juno-typing" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Juno-typing</h1>
+<div id="juno-amr" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Juno-amr</h1>
 <style>
 body {
 text-align: justify}
 </style>
-<p>The goal of this pipeline is to perform bacterial typing (7-locus MLST and serotyping). It takes 2 types of files per sample as input:</p>
-<ol style="list-style-type: decimal">
-<li><p>Two ‘.fastq’ files (paired-end sequencing) derived from short-read sequencing. They should be already filtered and trimmed (for instance, with the Juno-pipeline).</p></li>
-<li><p>An assembly from the same sample in the form of a single ‘.fasta’ file.</p></li>
-</ol>
-<p>Importantly, the Juno-typing pipeline works directly on output generated from the Juno-assembly pipeline.</p>
-<p>The Juno-typing pipeline will then make the following analyses:</p>
-<ul>
-<li><p>7-locus MLST (using the <a href="https://bitbucket.org/genomicepidemiology/mlst/src/master/">MLST tool</a> from the CGE group).</p></li>
-<li><p>Serotyping Salmonella samples (using the <a href="https://aem.asm.org/content/85/23/e01746-19">SeqSero2</a> tool).</p></li>
-<li><p>Serotyping E. coli samples (using the <a href="https://bitbucket.org/genomicepidemiology/serotypefinder/src/master/">SerotypeFinder</a> tool).</p></li>
-</ul>
-<p><span style="color:red;">Disclaimer!!</span> Importantly, the genus and species are automatically detected from the processed reads (using <code>kmerFinder</code>) and the schema to use for the 7-locus MLST is chosen accordingly. The results of <code>kmerfinder</code> are also included in the output. However, <span style="font-weight:bold;">this pipeline is NOT meant for bacteria identification</span> and it has not been tested for it. Even if similar species would be misidentified, they would probably share the same MLST7 scheme. Following that thought, the correct choice of scheme has been tested, but not the correct species identification.</p>
-<div id="handbook-1" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Handbook</h2>
-<div id="requirements-and-preparation-2" class="section level3" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Requirements and preparation</h3>
+<p>The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate <a href="https://bitbucket.org/genomicepidemiology/resfinder/src/master/">ResFinder</a> and <a href="https://bitbucket.org/genomicepidemiology/pointfinder/src/master/">PointFinder</a>. The tools that are being used are created by <a href="https://www.genomicepidemiology.org/">The Center For Genomic Epidemiology</a>. These tools identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. This can be partial or total sequences. The output of both tools can be used for analysis and is also combined in four summary files for a quick overview of the most important results.</p>
+<div id="handbook-2" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Handbook</h2>
+<div id="requirements-and-preparation-3" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Requirements and preparation</h3>
 <p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
-<ul>
-<li>This pipeline needs two fastq file (R1 and R2) and an assembly (.fasta) files per sample. The fastq files should have been trimmed and filtered to remove low quality reads/bases. You could use the <a href="juno-assembly.html#juno-assembly">Juno-assembly pipeline</a> for that. Moreover, that pipeline also provides the <em>de novo assembly</em> for your samples and the output folder of the <code>Juno-assembly</code> pipeline can be used directly into the <code>Juno-typing</code> pipeline. If you, however, prefer to use any other tool for doing your assembly and trimming/filtering, make sure that the fastq files and fasta files have the same name (for instance, sample1_R1_001.fastq.gz, sample1_R1_001.fastq.gz and sample1.fasta). If that is not the case, the files may not be recoginzed as belonging to the same sample. Also, ALL THREE FILES SHOULD BE IN THE SAME FOLDER! If you have multiple samples, they should all be in the same input folder, NOT IN SUBFOLDERS. The only exception is if you use the <code>Juno-assembly</code> pipeline to pre-process your data. In that case, the pipeline will recognize the subfolders where the fastq files and the fasta files should be.</li>
-</ul>
+<p>To run this pipeline the type of species and a folder with .fasta or paired .fastq files is required.</p>
+<p>Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.</p>
+<p>Besides giving input it is also required to select a species. The <code>-species</code> parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFiner.</p>
+<p>The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the <code>--output</code> parameter.</p>
+<p><strong>Note</strong> all samples in the directory should be the same species and the same file format.</p>
 </div>
-<div id="download-the-pipeline-1" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> Download the pipeline</h3>
+<div id="download-the-pipeline-2" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Download the pipeline</h3>
 <p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
-<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The Juno-typing pipeline can be found in <a href="https://github.com/RIVM-bioinformatics/Juno-typing">this link</a>.</p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group.</p>
+<p>The Juno-amr pipeline can be found <a href="https://github.com/RIVM-bioinformatics/Juno-amr">here</a>.</p>
 </div>
-<div id="start-the-analysis.-basics-1" class="section level3" number="4.1.3">
-<h3><span class="header-section-number">4.1.3</span> Start the analysis. Basics</h3>
+<div id="start-the-analysis.-basics-2" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Start the analysis. Basics</h3>
 <ol style="list-style-type: decimal">
 <li><p>Open a terminal. (Applications&gt;terminal).</p></li>
 <li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="juno-typing.html#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="juno-typing.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
+<pre><code>cd /mnt/scratch_dir/&lt;my_folder&gt;/Juno-amr</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Run the pipeline</li>
-</ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="juno-typing.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
-<p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
-<p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
-<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
-</div>
-<div id="output-1" class="section level3" number="4.1.4">
-<h3><span class="header-section-number">4.1.4</span> Output</h3>
-<p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (<code>kmerfinder</code>, <code>mlst7</code> and <code>serotype</code>). Please refer to the manuals of every tool to interpret the results. Each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a <code>serotype/salmonella_serotype_multireport.csv</code>, <code>serotype/ecoli_serotype_multireport.csv</code> and <code>mlst7/mlst7_multireport.csv</code>. Even if your samples are not <em>Salmonella</em> or <em>E. coli</em> you will get the multireport file, althought it will be empty. Although the results of <code>kmerfinder</code> are provided, these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper. If you would use the results of <code>kmerfinder</code> as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.</p>
-<p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="juno-typing.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
-<p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
-</div>
-<div id="troubleshooting-for-this-pipeline-1" class="section level3" number="4.1.5">
-<h3><span class="header-section-number">4.1.5</span> Troubleshooting for this pipeline</h3>
-<p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
-<div id="other-problems-or-failing-rules-2" class="section level4" number="4.1.5.1">
-<h4><span class="header-section-number">4.1.5.1</span> Other problems or failing rules</h4>
-<p>The Juno-typing pipeline is still in development which means that sometimes things fail. Before contacting me for help, please try these steps:</p>
-<ol style="list-style-type: decimal">
-<li>Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analyis is finished or it just doesn’t go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.<br />
+<li>Run the pipeline<br />
 </li>
-<li>Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.</li>
-<li>Collect your logging files and contact me. Please inform me about bugs/errors via <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> <strong>sending also your <code>log</code> files and the path where I can find your input directory and the pipeline</strong>. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.</li>
 </ol>
+<pre><code>python3 juno-amr.py -s [species] -i [/mnt/scratch_dir/&lt;my_folder&gt;/fastq_or_fasta_file folder]</code></pre>
+<p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a>.</p>
+<p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
+<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You can add the <code>--output</code> parameter to the command in order to place your output somewhere else.</p>
+</div>
+<div id="output-2" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Output</h3>
+<p>In the output you can find 3 folders:</p>
+<ul>
+<li><p><strong>log:</strong> Log with output and error file from the cluster for each snakemake rule/step that is performed.</p></li>
+<li><p><strong>results_per_sample:</strong> Output produced by ResFinder and PointFinder for each sample. CGE’s explanation on the output can be found <a href="https://cge.cbs.dtu.dk/services/ResFinder/output.php">here</a>.</p></li>
+<li><p><strong>summary:</strong> Directory with 4 summary files created from each sample within the results_per_sample folder.</p>
+<ul>
+<li><p><strong>summary_amr_genes.csv:</strong> Shows the samplename resistance gene, identity, alignment length/gene length and coverage per gene hit.</p></li>
+<li><p><strong>summary_amr_phenotype.csv:</strong> Shows the type of match for each sample on the resistance for each antimicrobial.</p></li>
+<li><p><strong>summary_amr_pointfinder_predicition.csv:</strong> - Shows the samplename and a 0(no hit) or 1(hit) prediciton for each mutation.</p></li>
+<li><p><strong>summary_amr_pointfinder_results</strong> Shows the samplename, mutation, nucleotide change, amino acid change, resistance and PMID for each mutation hit</p></li>
+</ul></li>
+</ul>
+<p><strong>Note:</strong> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> or <code>--output</code></p>
+<pre><code>python3 juno-amr.py -i /mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/ -species salmonella -o /mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_results&gt;/</code></pre>
+</div>
+<div id="troubleshooting-for-this-pipeline-2" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Troubleshooting for this pipeline</h3>
+<p><strong>Please read the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section first!</strong></p>
+<div id="other-problems-or-failing-rules-3" class="section level4" number="5.1.5.1">
+<h4><span class="header-section-number">5.1.5.1</span> Other problems or failing rules</h4>
+<p>The Juno-amr pipeline is still in development which means that sometimes the process can fail.</p>
+<p>Before contacting for help, try these two steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
+<li><p><a href="https://github.com/RIVM-bioinformatics/Juno-amr">Download</a> the pipeline again and start from the beginning of this <a href="index.html#downloading-instructions">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+</ol>
+<p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:roxanne.wolthuis@rivm.nl">e-mail</a> with the following content:</p>
+<ul>
+<li>The log and error files that can be found in the output folder</li>
+<li>The path to your input directory</li>
+<li>The path to where the pipeline is installed</li>
+</ul>
+<p><strong>Note</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
 
 </div>
 </div>
@@ -345,8 +352,8 @@ text-align: justify}
           </div>
         </div>
       </div>
-<a href="juno-assembly.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="juno-amr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="juno-typing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="juno-annotation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
