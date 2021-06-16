@@ -22,7 +22,14 @@ parameters <- list("pipeline_name" = "Juno-amr")
 
 ```
 
-The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate [ResFinder](https://bitbucket.org/genomicepidemiology/resfinder/src/master/) and [PointFinder](https://bitbucket.org/genomicepidemiology/pointfinder/src/master/). The tools that are being used are created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/). These tools identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. This can be partial or total sequences. The output of both tools can be used for analysis and is also combined in four summary files for a quick overview of the most important results.  
+The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results. 
+
+
+The tools that are being used in this pipeline are listed below:
+
+* **[ResFinder](https://bitbucket.org/genomicepidemiology/resfinder/src/master/)** is a tool that identifies acquired antimicrobial resistance genes based on databases. The tool is created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/).
+
+* **[PointFinder](https://bitbucket.org/genomicepidemiology/pointfinder/src/master/)** is a tool that searches for chromosomal point mutations that mediate resistance to select antimicrobial agents for some bacterial species. The tool is created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/).
 
 ## Handbook
 
@@ -34,7 +41,7 @@ To run this pipeline the type of species and a folder with .fasta or paired .fas
 
 Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.  
 
-Besides giving input it is also required to select a species. The `-species` parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFiner.  
+Besides giving input it is also required to select a species. The `--species` parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFinder.  
 
 The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the `--output` parameter.  
 

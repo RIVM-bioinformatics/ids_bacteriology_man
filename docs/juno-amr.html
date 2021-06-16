@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-06-15" />
+<meta name="date" content="2021-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,7 +273,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 body {
 text-align: justify}
 </style>
-<p>The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate <a href="https://bitbucket.org/genomicepidemiology/resfinder/src/master/">ResFinder</a> and <a href="https://bitbucket.org/genomicepidemiology/pointfinder/src/master/">PointFinder</a>. The tools that are being used are created by <a href="https://www.genomicepidemiology.org/">The Center For Genomic Epidemiology</a>. These tools identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. This can be partial or total sequences. The output of both tools can be used for analysis and is also combined in four summary files for a quick overview of the most important results.</p>
+<p>The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results.</p>
+<p>The tools that are being used in this pipeline are listed below:</p>
+<ul>
+<li><p><strong><a href="https://bitbucket.org/genomicepidemiology/resfinder/src/master/">ResFinder</a></strong> is a tool that identifies acquired antimicrobial resistance genes based on databases. The tool is created by <a href="https://www.genomicepidemiology.org/">The Center For Genomic Epidemiology</a>.</p></li>
+<li><p><strong><a href="https://bitbucket.org/genomicepidemiology/pointfinder/src/master/">PointFinder</a></strong> is a tool that searches for chromosomal point mutations that mediate resistance to select antimicrobial agents for some bacterial species. The tool is created by <a href="https://www.genomicepidemiology.org/">The Center For Genomic Epidemiology</a>.</p></li>
+</ul>
 <div id="handbook-2" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Handbook</h2>
 <div id="requirements-and-preparation-3" class="section level3" number="5.1.1">
@@ -281,7 +286,7 @@ text-align: justify}
 <p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
 <p>To run this pipeline the type of species and a folder with .fasta or paired .fastq files is required.</p>
 <p>Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.</p>
-<p>Besides giving input it is also required to select a species. The <code>-species</code> parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFiner.</p>
+<p>Besides giving input it is also required to select a species. The <code>--species</code> parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFinder.</p>
 <p>The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the <code>--output</code> parameter.</p>
 <p><strong>Note</strong> all samples in the directory should be the same species and the same file format.</p>
 </div>
