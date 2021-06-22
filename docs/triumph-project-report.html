@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-06-16" />
+<meta name="date" content="2021-06-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -318,9 +318,20 @@ text-align: justify}
 <div id="troubleshooting-2" class="section level3" number="10.1.5">
 <h3><span class="header-section-number">10.1.5</span> Troubleshooting</h3>
 <p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
-<div id="other-problems" class="section level4" number="10.1.5.1">
-<h4><span class="header-section-number">10.1.5.1</span> Other problems</h4>
-<p>Sometimes things fail. Before contacting me for help, please check the naming of your files, make sure you ran them with the Triumph_dada2_run_pipeline and that you did not change the name of any file. Try to create the report again. If you are sure all the input files are correct and the report does not run, please check the .log file to see if you can find the source of the error and contact me with that information.</p>
+<div id="other-problems-or-failing-rules-7" class="section level4" number="10.1.5.1">
+<h4><span class="header-section-number">10.1.5.1</span> Other problems or failing rules</h4>
+<p>The triumph_microbiome_project pipeline is still in development which means that sometimes the process can fail. Make sure you ran the pipeline with the Triumph_dada2_run_pipeline and that you did not change the name of any file. Try to create the report again. If you are sure all the input files are correct and the report does not run try the two steps below before contacting for help:</p>
+<ol style="list-style-type: decimal">
+<li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
+<li><p><a href="https://github.com/RIVM-bioinformatics">Download</a> the pipeline again and start from the beginning of this <a href="index.html#downloading-instructions">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+</ol>
+<p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> with the following content:</p>
+<ul>
+<li>The log and error files that can be found in the output folder</li>
+<li>The path to your input directory</li>
+<li>The path to where the pipeline is installed</li>
+</ul>
+<p><strong>Note</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
 
 </div>
 </div>

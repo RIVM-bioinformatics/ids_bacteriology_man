@@ -79,4 +79,4 @@ download-the-pipeline-7
 start-the-analysis.-basics-6
 output-7
 troubleshooting-2
-other-problems
+other-problems-or-failing-rules-7
