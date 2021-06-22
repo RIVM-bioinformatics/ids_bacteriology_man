@@ -272,7 +272,7 @@ Before contacting for help, try these two steps:
 
 1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
 
-2. [Download](https://github.com/RIVM-bioinformatics) the pipeline again and start from the beginning of this [handbook](#downloading-instructions). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+2. [Download](https://gitl01-int-p.rivm.nl/hernanda/triumph_dada2_run_pipeline) the pipeline again and start from the beginning of this [handbook](#triumph_run). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
 
 If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) with the following content:
 

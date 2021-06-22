@@ -2,7 +2,7 @@ fig:github-fig
 fig:extract-fig
 fig:gitlab-fig
 fig:commandline-fig
-tab:unnamed-chunk-38
+tab:unnamed-chunk-39
 introduction-and-general-instructions
 general-instructions
 requirements-and-preparation
@@ -47,7 +47,7 @@ output-3
 troubleshooting-for-this-pipeline-3
 failure-to-find-metadata-file
 other-problems-or-failing-rules-4
-low-frequency-variants-in-mycobacterium-samples
+Myco-lofreq
 handbook-4
 requirements-and-preparation-5
 download-the-pipeline-4
@@ -72,7 +72,7 @@ running-when-metadata-is-not-available
 output-6
 troubleshooting-1
 other-problems-or-failing-rules-6
-triumph-project-report
+triumph_project
 handbook-7
 requirements-and-preparation-8
 download-the-pipeline-7

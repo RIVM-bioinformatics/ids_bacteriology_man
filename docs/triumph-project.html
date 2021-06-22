@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
-  <meta name="description" content="2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <title>10 Triumph: Project report | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="10 Triumph: Project report | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:title" content="10 Triumph: Project report | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="twitter:title" content="10 Triumph: Project report | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="juno-assembly.html"/>
+<link rel="prev" href="triumph-run.html"/>
+
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -267,51 +267,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="general-troubleshooting" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> General Troubleshooting</h1>
+<div id="triumph_project" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Triumph: Project report</h1>
 <style>
 body {
 text-align: justify}
 </style>
-<div id="failure-when-installing-master-environment" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Failure when installing master environment</h2>
-<p>Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying <code>Solving environment...</code> might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing <code>Ctrl + C</code> and/or <code>Ctrl + Z</code> (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="general-troubleshooting.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority false</span></code></pre></div>
-<p>Then try to run the pipeline and install the master environment again.</p>
-</div>
-<div id="failure-to-make-a-sample-sheet-or-to-find-input-directory" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Failure to make a sample sheet or to find input directory</h2>
-<p>There are few reasons why this could happen:</p>
+<p>The code here generates a report that collects the results of multiple runs of the Triumph report. Note that in order to use it, all the individual runs should have been analyzed with the <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a></p>
+<div id="handbook-7" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Handbook</h2>
+<div id="requirements-and-preparation-8" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Requirements and preparation</h3>
+<p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
 <ul>
-<li><p>Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.</p></li>
-<li><p>You mis-spelled something in your path or gave the wrong path. Especially while working in Linux, it is common to forget a slash (“/”) at the beginning of a full path. For instance: <code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>.</p></li>
-<li><p>Your files might have the incorrect format and/or extension. Normally for all the files, standard names are accepted (for instance, .fastq.gz or .fastq for raw reads and .fasta for fasta files). Please make sure that your files have the correct and “classical” extensions.</p></li>
-<li><p>Your input directory does nor contain the expected files, but they are instead in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.</p></li>
+<li>Make sure that your folder has the right name and structure. Your input folder should have one subfolder per different run. Each of this subfolders contains the results of the <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a> for that specific run. Please, do not rename any of the files produced by the <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a>, otherwise they will not be found and cannot be included in the project report. Neither your folder nor your subfolders can have “rare” characters (only letters, numbers, dashes and underscores accepted). If your folder name contains different characters, it may not be recognized by the pipeline. IMPORTANT: Your folder name MUST NOT CONTAIN SPACES!!!!</li>
 </ul>
 </div>
-<div id="other-problems-or-failing-rules" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Other problems or failing rules</h2>
-<p>The Juno pipelines are still in development which means that sometimes things fail. <strong>Before contacting me</strong> for help, please try these steps:</p>
+<div id="download-the-pipeline-7" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Download the pipeline</h3>
+<p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The triumph_microbiome_project pipeline can be found in <a href="https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report">this link</a>.</p>
+</div>
+<div id="start-the-analysis.-basics-6" class="section level3" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Start the analysis. Basics</h3>
 <ol style="list-style-type: decimal">
-<li>Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analysis is finished or it just doesn’t go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.<br />
-</li>
-<li>Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.</li>
-<li>Collect your logging files and contact me. Please inform me about bugs/errors via <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> <strong>sending also your <code>log</code> files and the path where I can find your input directory and the pipeline</strong>. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.</li>
+<li><p>Open the terminal.</p></li>
+<li><p>Enter the folder of the pipeline:</p></li>
 </ol>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="triumph-project.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_project_report-master/</span></code></pre></div>
+<ul>
+<li>Exact name of downloaded folder might be slightly different depending on the version that was downloaded.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the pipeline</li>
+</ol>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="triumph-project.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> create_triumph_report.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
+<ul>
+<li>The input directory (in this case /mnt/scratch_dir/my_folder) should be a folder containing one subfolder per run you want to include in the project report. These subfolders should contain the results of running the <a href="triumph-run.html#triumph_run">Triumph run pipeline</a> using the <code>--metadata</code> option. Refer to the manual of that pipeline to see what that argument means.</li>
+</ul>
+<p><strong>Note 1:</strong> If you are updating the project report because you added the analysis of an old run, you should first delete or rename the “old” report. This script might fail otherwise.</p>
+<p><strong>Note 2:</strong> THE PROJECT REPORT PIPELINE ONLY WORKS WHEN ALL RUNS COLLECTED WERE EVALUATED WITH THE <a href="triumph-run.html#triumph_run">“Triumph: Run pipeline”</a> USING A METADATA FILE!!!</p>
+</div>
+<div id="output-7" class="section level3" number="10.1.4">
+<h3><span class="header-section-number">10.1.4</span> Output</h3>
+<p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. If you prefer to store your output in a different folder, you can use the <code>-o</code> argument to give another path.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="triumph-project.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<p>If you chose another site for the output, then you will find the same results there.</p>
+<p>In both cases, the output folder will contain the Triumph_Project_report.html file that is the actual report and a Triumph_Project_Report.log that contains messages, warnings and errors from R, where you can find more info if something goes wrong and the report could not be produced.</p>
+</div>
+<div id="troubleshooting-2" class="section level3" number="10.1.5">
+<h3><span class="header-section-number">10.1.5</span> Troubleshooting</h3>
+<p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
+<div id="other-problems-or-failing-rules-7" class="section level4" number="10.1.5.1">
+<h4><span class="header-section-number">10.1.5.1</span> Other problems or failing rules</h4>
+<p>The triumph_microbiome_project pipeline is still in development which means that sometimes the process can fail. Make sure you ran the pipeline with the Triumph_dada2_run_pipeline and that you did not change the name of any file. Try to create the report again. If you are sure all the input files are correct and the report does not run try the two steps below before contacting for help:</p>
+<ol style="list-style-type: decimal">
+<li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
+<li><p><a href="https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report">Download</a> the pipeline again and start from the beginning of this <a href="triumph-project.html#triumph_project">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+</ol>
+<p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> with the following content:</p>
+<ul>
+<li>The log and error files that can be found in the output folder</li>
+<li>The path to your input directory</li>
+<li>The path to where the pipeline is installed</li>
+</ul>
+<p><strong>Note</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
 
 </div>
 </div>
-
-
-
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="juno-assembly.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="triumph-run.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
