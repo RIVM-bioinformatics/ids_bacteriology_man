@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
-  <meta name="description" content="2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <title>5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:title" content="5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 General Troubleshooting | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="twitter:title" content="5 Juno-amr | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="juno-assembly.html"/>
+<link rel="prev" href="juno-typing.html"/>
+<link rel="next" href="juno-annotation.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -267,51 +267,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="general-troubleshooting" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> General Troubleshooting</h1>
+<div id="juno-amr" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Juno-amr</h1>
 <style>
 body {
 text-align: justify}
 </style>
-<div id="failure-when-installing-master-environment" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Failure when installing master environment</h2>
-<p>Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying <code>Solving environment...</code> might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing <code>Ctrl + C</code> and/or <code>Ctrl + Z</code> (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="general-troubleshooting.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority false</span></code></pre></div>
-<p>Then try to run the pipeline and install the master environment again.</p>
-</div>
-<div id="failure-to-make-a-sample-sheet-or-to-find-input-directory" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Failure to make a sample sheet or to find input directory</h2>
-<p>There are few reasons why this could happen:</p>
+<p>The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results.</p>
+<p>The tools that are being used in this pipeline are listed below:</p>
 <ul>
-<li><p>Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.</p></li>
-<li><p>You mis-spelled something in your path or gave the wrong path. Especially while working in Linux, it is common to forget a slash (“/”) at the beginning of a full path. For instance: <code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>.</p></li>
-<li><p>Your files might have the incorrect format and/or extension. Normally for all the files, standard names are accepted (for instance, .fastq.gz or .fastq for raw reads and .fasta for fasta files). Please make sure that your files have the correct and “classical” extensions.</p></li>
-<li><p>Your input directory does nor contain the expected files, but they are instead in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.</p></li>
+<li><p><strong><a href="https://bitbucket.org/genomicepidemiology/resfinder/src/master/">ResFinder</a></strong> is a tool that identifies acquired antimicrobial resistance genes based on databases. The tool is created by <a href="https://www.genomicepidemiology.org/">The Center For Genomic Epidemiology</a>.</p></li>
+<li><p><strong><a href="https://bitbucket.org/genomicepidemiology/pointfinder/src/master/">PointFinder</a></strong> is a tool that searches for chromosomal point mutations that mediate resistance to select antimicrobial agents for some bacterial species. The tool is created by <a href="https://www.genomicepidemiology.org/">The Center For Genomic Epidemiology</a>.</p></li>
 </ul>
+<div id="handbook-2" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Handbook</h2>
+<div id="requirements-and-preparation-3" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Requirements and preparation</h3>
+<p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
+<p>To run this pipeline the type of species and a folder with .fasta or paired .fastq files is required.</p>
+<p>Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.</p>
+<p>Besides giving input it is also required to select a species. The <code>--species</code> parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFinder.</p>
+<p>The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the <code>--output</code> parameter.</p>
+<p><strong>Note</strong> all samples in the directory should be the same species and the same file format.</p>
 </div>
-<div id="other-problems-or-failing-rules" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Other problems or failing rules</h2>
-<p>The Juno pipelines are still in development which means that sometimes things fail. <strong>Before contacting me</strong> for help, please try these steps:</p>
+<div id="download-the-pipeline-2" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Download the pipeline</h3>
+<p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group.</p>
+<p>The Juno-amr pipeline can be found <a href="https://github.com/RIVM-bioinformatics/Juno-amr">here</a>.</p>
+</div>
+<div id="start-the-analysis.-basics-2" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Start the analysis. Basics</h3>
 <ol style="list-style-type: decimal">
-<li>Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analysis is finished or it just doesn’t go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.<br />
-</li>
-<li>Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.</li>
-<li>Collect your logging files and contact me. Please inform me about bugs/errors via <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> <strong>sending also your <code>log</code> files and the path where I can find your input directory and the pipeline</strong>. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.</li>
+<li><p>Open a terminal. (Applications&gt;terminal).</p></li>
+<li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
+<pre><code>cd /mnt/scratch_dir/&lt;my_folder&gt;/Juno-amr</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the pipeline<br />
+</li>
+</ol>
+<pre><code>python3 juno-amr.py -s [species] -i [/mnt/scratch_dir/&lt;my_folder&gt;/fastq_or_fasta_file folder]</code></pre>
+<p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a>.</p>
+<p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
+<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You can add the <code>--output</code> parameter to the command in order to place your output somewhere else.</p>
+</div>
+<div id="output-2" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Output</h3>
+<p>In the output you can find 3 folders:</p>
+<ul>
+<li><p><strong>log:</strong> Log with output and error file from the cluster for each snakemake rule/step that is performed.</p></li>
+<li><p><strong>results_per_sample:</strong> Output produced by ResFinder and PointFinder for each sample. CGE’s explanation on the output can be found <a href="https://cge.cbs.dtu.dk/services/ResFinder/output.php">here</a>.</p></li>
+<li><p><strong>summary:</strong> Directory with 4 summary files created from each sample within the results_per_sample folder.</p>
+<ul>
+<li><p><strong>summary_amr_genes.csv:</strong> Shows the samplename resistance gene, identity, alignment length/gene length and coverage per gene hit.</p></li>
+<li><p><strong>summary_amr_phenotype.csv:</strong> Shows the type of match for each sample on the resistance for each antimicrobial.</p></li>
+<li><p><strong>summary_amr_pointfinder_predicition.csv:</strong> - Shows the samplename and a 0(no hit) or 1(hit) prediciton for each mutation.</p></li>
+<li><p><strong>summary_amr_pointfinder_results</strong> Shows the samplename, mutation, nucleotide change, amino acid change, resistance and PMID for each mutation hit</p></li>
+</ul></li>
+</ul>
+<p><strong>Note:</strong> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> or <code>--output</code></p>
+<pre><code>python3 juno-amr.py -i /mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/ -species salmonella -o /mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_results&gt;/</code></pre>
+</div>
+<div id="troubleshooting-for-this-pipeline-2" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Troubleshooting for this pipeline</h3>
+<p><strong>Please read the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section first!</strong></p>
+<div id="other-problems-or-failing-rules-3" class="section level4" number="5.1.5.1">
+<h4><span class="header-section-number">5.1.5.1</span> Other problems or failing rules</h4>
+<p>The Juno-amr pipeline is still in development which means that sometimes the process can fail.</p>
+<p>Before contacting for help, try these two steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
+<li><p><a href="https://github.com/RIVM-bioinformatics/Juno-amr">Download</a> the pipeline again and start from the beginning of this <a href="juno-amr.html#juno-amr">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+</ol>
+<p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:roxanne.wolthuis@rivm.nl">e-mail</a> with the following content:</p>
+<ul>
+<li>The log and error files that can be found in the output folder</li>
+<li>The path to your input directory</li>
+<li>The path to where the pipeline is installed</li>
+</ul>
+<p><strong>Note</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
 
 </div>
 </div>
-
-
-
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="juno-assembly.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="juno-typing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="juno-annotation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

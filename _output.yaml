@@ -7,7 +7,8 @@ bookdown::gitbook:
       collapse: subsection
       scroll_highlight: yes
       before:  |
-        <li><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a></li>
+        <li><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a></li>  |
+        <li class="toc-logo"><a href="./"><img src="figures/juno-logo.png" width="100%"></a></li>
       after: |
         <li>IDS-bioinformatics team - Juno team</li>
     toolbar:

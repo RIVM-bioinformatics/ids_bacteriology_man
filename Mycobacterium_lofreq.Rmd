@@ -3,7 +3,7 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Low frequency variants in _Mycobacterium_ samples
+# Low frequency variants in _Mycobacterium_ samples {#Myco-lofreq}
 
 <style>
 body {
@@ -14,6 +14,13 @@ text-align: justify}
 knitr::opts_chunk$set(echo = TRUE, 
                       eval = FALSE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+
+```
+
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "Myco-lofreq")
 
 ```
 
@@ -92,8 +99,18 @@ Another very important output from the pipeline are the logging files and audit 
 
 #### Other problems or failing rules  
 
-The `r parameters$pipeline_name` pipeline is still in development which means that sometimes things fail. Before contacting me for help, please try these steps:  
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail.
 
-1. Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analyis is finished or it just doesn't go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.    
-2. Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.
-3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  
+Before contacting for help, try these two steps:
+
+1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
+
+2. [Download](https://github.com/AleSR13/Myco_lofreq) the pipeline again and start from the beginning of this [handbook](#Myco-lofreq). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) with the following content:
+
+* The log and error files that can be found in the output folder
+* The path to your input directory
+* The path to where the pipeline is installed
+
+**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem. 
