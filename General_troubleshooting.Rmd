@@ -11,6 +11,8 @@ body {
 text-align: justify}
 </style>
 
+<span style="color:red;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible. 
+
 ## Failure when installing master environment  
 
 Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying `Solving environment...` might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing `Ctrl + C` and/or `Ctrl + Z` (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:  
