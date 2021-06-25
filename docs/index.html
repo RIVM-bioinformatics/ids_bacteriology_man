@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,16 +270,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
 <p class="author"><em>Alejandra Hernandez-Segura</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-06-22</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-06-25</em></p>
 </div>
 <div id="introduction-and-general-instructions" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction and General Instructions</h1>
-<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). The handbooks are updated regularly but if you would find a mistake or something that is not up-to-date, please communicate with:</p>
-<ul>
-<li>Alejandra Hernandez ( <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a> )</li>
-</ul>
-<p><strong>Important note:</strong>
-This handbook is in continuous development, so please keep that in mind and contact <a href="alejandra.hernandez.segura@rivm.nl">Alejandra Hernandez</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
+<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact <a href="alejandra.hernandez.segura@rivm.nl">Alejandra Hernandez</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
+<p><span style="color:red;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
 <div id="general-instructions" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> General Instructions for all pipelines</h2>
 <div id="requirements-and-preparation" class="section level3" number="1.1.1">
@@ -373,7 +369,7 @@ FIGURE 1.4: Pipelines can be downloaded directly from their GitLab website.
 <li><p>The <code>log/drmaa/</code> subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.</p></li>
 <li><p>The <code>audit_trail</code> or <code>results</code> subfolders are also located inside the output directory. They contain contain 4 very important files for trace-ability of your samples. The <code>log_conda.txt file</code> contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The <code>log_config.txt</code> file is even more informative. It enlists all the parameters used to run the pipeline. In case months later you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The <code>log_git.txt</code> has information about the repository or the code that was downloaded. It tells you exactly how it was downloaded so you can reproduce it at a later time point. Finally, the <code>snakemake_report.html</code> has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went.</p></li>
 </ul>
-<p>Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a porblem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the <code>audit_trail</code> has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.</p>
+<p>Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a problem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the <code>audit_trail</code> has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.</p>
 
 </div>
 </div>
