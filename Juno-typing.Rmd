@@ -67,6 +67,35 @@ See the [General Instructions for all pipelines](#general-instructions) first.
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/RIVM-bioinformatics/Juno-typing).  
 
 
+### Install conda environment
+
+**YOU NEED TO REINSTALL THE MASTER ENVIRONMENT EVERY TIME YOU UPDATE THE PIPELINE (everytime you download the code)**
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+cd /mnt/scratch_dir/<my_folder>/Juno-typing
+```
+
+3. If you already had a juno_blast environment before you need to delete the old one by using the command:
+
+```{bash}
+conda env remove -n juno_typing
+```
+
+If you had never created a juno_blast environment, you can skip this step and go to step 4 instead.
+
+4. Create a new environment for running Juno_blast by using the command:
+
+```{bash}
+conda env create -f envs/master_env.yaml
+```
+
+This step will take some time (few minutes).
+
+
 ### Start the analysis. Basics
 
 1. Open a terminal. (Applications>terminal).  
@@ -74,17 +103,21 @@ Please follow the [instructions to download pipelines](#downloading-instructions
 2. Enter the folder of the pipeline using:  
 
 ```{bash}
-
 cd /mnt/scratch_dir/<my_folder>/Juno-typing
-
 ```
 
-3. Run the pipeline  
+3. Activate juno_typing environment
+
+```{bash}
+conda activate juno_typing
+```
+
+4. Run the pipeline  
 
 This can be done in two ways. The first one is just providing an input directory:  
 
 ```{bash}
-bash juno-typing -i /mnt/scratch_dir/<my_folder>/<my_data>/
+python juno-typing -i /mnt/scratch_dir/<my_folder>/<my_data>/
 ```
 
 The second one is providing as well a metadata (csv) file. This file should contain at least one column with the 'Sample' name (name of the file but removing [_S##]_R1.fastq.gz), a column called 'Genus' and a column called 'Species'. If a genus + species is provided for a sample, it will overwrite the species identification performed by this pipeline when choosing the scheme for MLST and the serotyper. Example metadata file:
@@ -104,7 +137,7 @@ See the section [General Troubleshooting](#general-troubleshooting) for any prob
 
 ### Output 
 
-A folder called `out/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (`identify_species`, `mlst7` and `serotype`). Please refer to the manuals of every tool to interpret the results. Each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a `serotype/salmonella_serotype_multireport.csv`, `serotype/ecoli_serotype_multireport.csv` and `mlst7/mlst7_multireport.csv`. Although the results of `kmerfinder` are provided (in the subfolder `identify_species`), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of `kmerfinder` as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.  
+A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (`identify_species`, `mlst7` and `serotype`). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a `serotype/salmonella_serotype_multireport.csv`, `serotype/ecoli_serotype_multireport.csv` and `mlst7/mlst7_multireport.csv`. Although the results of `kmerfinder` are provided (in the subfolder `identify_species`), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of `kmerfinder` as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.  
 
 *Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
 
@@ -112,7 +145,7 @@ A folder called `out/`, inside the folder of the pipeline, will be created. This
 bash juno-typing -i /mnt/scratch_dir/<my_folder>/<my_data>/ -o /mnt/scratch_dir/<my_folder>/<my_results>/
 ```
 
-Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files [here](#general-output). 
+Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files [here](#general-output). 
 
 ### Troubleshooting for this pipeline
 

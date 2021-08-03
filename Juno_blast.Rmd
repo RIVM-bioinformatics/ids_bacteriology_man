@@ -1,0 +1,134 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Juno_blast {#juno_blast}
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+```
+
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "Juno_blast")
+
+```
+
+The goal of this pipeline is to perform [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) in the input file(s) contained in the input directory. The input file should be a (multi) fasta file.  
+
+## Handbook
+
+### Requirements and preparation
+
+See the [General Instructions for all pipelines](#general-instructions) first.  
+
+- This pipeline requires one .fasta file per sample. Note that the input files MUST have the extension `.fasta`. An output file will be created inside the output directory with the sample name as prefix. That file should have your results for BLAST. Note that if your fasta file has more than one sequence, the output of all of them will be included in the result file.
+
+
+### Download the pipeline  
+
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/RIVM-bioinformatics/Juno_blast).  
+
+### Install conda environment
+
+**YOU NEED TO REINSTALL THE MASTER ENVIRONMENT EVERY TIME YOU UPDATE THE PIPELINE (everytime you download the code)**
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+
+cd /mnt/scratch_dir/<my_folder>/Juno_blast
+
+```
+
+3. If you already had a juno_blast environment before you need to delete the old one by using the command:
+
+```{bash}
+conda env remove -n juno_blast
+```
+
+If you had never created a juno_blast environment, you can skip this step and go to step 4 instead.
+
+4. Create a new environment for running Juno_blast by using the command:
+
+```{bash}
+conda env create -f envs/master_env.yaml
+```
+
+This step will take some time (few minutes).
+
+### Start the analysis. Basics
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+
+cd /mnt/scratch_dir/<my_folder>/Juno_blast
+
+```
+
+3. Activate juno_blast environment
+
+```{bash}
+conda activate juno_blast
+```
+
+4. Run the pipeline by providing an input directory:  
+
+```{bash}
+python juno_blast -i /mnt/scratch_dir/<my_folder>/<my_data>/
+```
+
+Please read the section [What to expect while running a Juno pipeline](#what-to-expect).
+
+See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+### Output 
+
+A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis.  
+
+*Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
+
+```{bash}
+python juno_blast -i /mnt/scratch_dir/<my_folder>/<my_data>/ -o /mnt/scratch_dir/<my_folder>/<my_results>/
+```
+
+Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files [here](#general-output). 
+
+### Troubleshooting for this pipeline
+
+**Please read first the [General Troubleshooting](#general-troubleshooting) section!**
+
+#### Other problems or failing rules  
+
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail.
+
+Before contacting for help, try these two steps:
+
+1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
+
+2. [Download](https://github.com/RIVM-bioinformatics/Juno_blast) the pipeline again and start from the beginning of this [handbook](#juno_blast). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) with the following content:
+
+* The log and error files that can be found in the output folder
+* The path to your input directory
+* The path to where the pipeline is installed
+
+**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
