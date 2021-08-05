@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 In this "book" you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact [Alejandra Hernandez](alejandra.hernandez.segura@rivm.nl) if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first). 
 
-<span style="color:red;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.  
+<span style="color:#d64541;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.  
 
 ## General Instructions for all pipelines {#general-instructions}
 
@@ -103,15 +103,27 @@ You will be asked to give your credentials (username + password) and then the (a
 
 ### What to expect while running a Juno pipeline {#what-to-expect}  
 
-Our pipelines normally run by themselves. Sometimes they ask for input from the user to agree on installing software or a database but other than that, they do not require much input from the user. Try to read at least the last lines appearing on the screen and if you get asked to give a permission, please do. The first time you run a new pipeline, the preparation might take longer than expected. This is due to the installation of the basic software needed for it to work. Be patient! The installation may take some time.  
+The Juno pipelines usually run automated. Minimum input of the user is required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database ([Figure 1.5](#installation-fig) step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter ([Figure 1.5](#installation-fig) step 2).
 
-Once the installation is over, the pipeline should start running. Please check regularly that the pipeline is actually running and working. Every time you will get <span style=”color:yellow;”>yellow</span> or <span style=”color:green;”>green</span> messages that tell you what is happening and that indicate that the pipeline is working as expected. Multiple steps are performed simultaneously to optimize the time and resources, especially when using the cluster. If a step fails, you will likely see some <span style=”color:red;”>red</span> text appearing on the screen, but the pipeline might keep going to finish all the steps that are possible. The messages on the screen regularly tell you how far the pipeline is (it gives a % of the steps that have been finished). 
+The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box ([Figure 1.5](#installation-fig) step 3) or when it keeps printing lines inside the terminal.
 
-Once your pipeline is finished you should see some final messages informing you that 100% of the steps were finished and that your output was created. 
+```{r installation-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3)."}
+knitr::include_graphics("figures/show_installation.png")
+```
 
-See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
+After installation the Juno pipeline will start running. Now the terminal shows <span style="color:#f4d03f;">yellow</span> and/or <span style="color:#00b16a;">green</span> messages. These messages indicate that the pipeline is being executed ([Figure 1.6](#snakemake-complete-run-fig)). At the start of the yellow messages the number of steps is shown ([Figure 1.6](#snakemake-complete-run-fig) step 1).  The amount of steps indicate how much time it will take for the pipeline to finish. Once the pipeline is finished there will be a message printed that all the steps are performed ([Figure 1.6](#snakemake-complete-run-fig) step 2).
 
-**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+```{r snakemake-complete-run-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno AMR pipeline in the terminal. The pipeline is executing all required jobs to create the requested results. The terminal shows a list of all the jobs that will be executed(step 1). Furthermore there is green and yellow text that shows the steps of the pipeline. At the bottom of the terminal there is a line that shows the pipeline is finished(step 2)."}
+knitr::include_graphics("figures/snakemake_complete_run.png")
+```
+
+If a step fails, you will likely see <span style="color:#d64541;">red</span> text appearing on the screen ([Figure 1.7](#snakemake-complete-run-fig)). The pipeline might proceed the other steps. If the pipeline fails check the section [General Troubleshooting](#general-troubleshooting) for more help or any other problems you may encounter.
+
+```{r snakemake-error-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message(step 1)."}
+knitr::include_graphics("figures/screenshot_snakemake_error.png")
+```
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max. With sequencing data, the storage space can get full quite fast.
 
 ### General output and log files for every pipeline {#general-output}  
 
