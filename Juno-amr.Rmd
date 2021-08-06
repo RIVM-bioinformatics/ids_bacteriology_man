@@ -45,7 +45,7 @@ Besides giving input it is also required to select a species. The `--species` pa
 
 The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the `--output` parameter.  
 
-**Note** all samples in the directory should be the same species and the same file format.  
+**Note:** all samples in the directory should be the same species and the same file format.  
 
 ### Download the pipeline  
 
@@ -120,4 +120,4 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The path to your input directory
 * The path to where the pipeline is installed
 
-**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
+**Note:** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.

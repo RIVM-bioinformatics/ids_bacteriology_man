@@ -105,21 +105,21 @@ You will be asked to give your credentials (username + password) and then the (a
 
 The Juno pipelines usually run automated. Minimum input of the user is required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database ([Figure 1.5](#installation-fig) step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter ([Figure 1.5](#installation-fig) step 2).
 
-The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box ([Figure 1.5](#installation-fig) step 3) or when it keeps printing lines inside the terminal.
+The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box ([Figure 1.5](#installation-fig) step 3) or when it keeps printing lines inside the terminal. If the installation takes longer than 1 hour check the section [General Troubleshooting](#general-troubleshooting).
 
 ```{r installation-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3)."}
 knitr::include_graphics("figures/show_installation.png")
 ```
 
-After installation the Juno pipeline will start running. Now the terminal shows <span style="color:#f4d03f;">yellow</span> and/or <span style="color:#00b16a;">green</span> messages. These messages indicate that the pipeline is being executed ([Figure 1.6](#snakemake-complete-run-fig)). At the start of the yellow messages the number of steps is shown ([Figure 1.6](#snakemake-complete-run-fig) step 1).  The amount of steps indicate how much time it will take for the pipeline to finish. Once the pipeline is finished there will be a message printed that all the steps are performed ([Figure 1.6](#snakemake-complete-run-fig) step 2).
+After installation the Juno pipeline will start running. Now the terminal shows <span style="color:#f4d03f;background:#2e3131;padding:5px">yellow</span> and/or <span style="color:#00b16a;background:#2e3131;padding:5px">green</span> messages. These messages indicate that the pipeline is being executed ([Figure 1.6](#snakemake-complete-run-fig)). At the start of the yellow messages the number of steps is shown ([Figure 1.6](#snakemake-complete-run-fig) step 1).  The amount of steps indicate the progress of the pipeline in %. Once the pipeline is finished there will be a message printed that all the steps are performed ([Figure 1.6](#snakemake-complete-run-fig) step 2).
 
 ```{r snakemake-complete-run-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno AMR pipeline in the terminal. The pipeline is executing all required jobs to create the requested results. The terminal shows a list of all the jobs that will be executed(step 1). Furthermore there is green and yellow text that shows the steps of the pipeline. At the bottom of the terminal there is a line that shows the pipeline is finished(step 2)."}
 knitr::include_graphics("figures/snakemake_complete_run.png")
 ```
 
-If a step fails, you will likely see <span style="color:#d64541;">red</span> text appearing on the screen ([Figure 1.7](#snakemake-complete-run-fig)). The pipeline might proceed the other steps. If the pipeline fails check the section [General Troubleshooting](#general-troubleshooting) for more help or any other problems you may encounter.
+If a step fails, you will likely see <span style="color:#d64541;background:#2e3131;padding:5px">red</span> text appearing on the screen ([Figure 1.7](#snakemake-complete-run-fig)). The pipeline might proceed the other steps. If the pipeline fails check the section [General Troubleshooting](#general-troubleshooting) for more help or any other problems you may encounter.
 
-```{r snakemake-error-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message(step 1)."}
+```{r snakemake-error-fig, echo = FALSE, eval = TRUE, fig.cap = "Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message."}
 knitr::include_graphics("figures/screenshot_snakemake_error.png")
 ```
 
