@@ -136,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a></li>  |
-<li class="toc-logo"><a href="./"><img src="figures/juno-logo.png" width="100%"></a></li>
+<li class="toc-logo"><a href="./"><img src="figures/juno_logo/juno_light/juno_bgp_lightbg.png" width="100%"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and General Instructions</a>
@@ -286,6 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 body {
 text-align: justify}
 </style>
+<p><img src="figures/juno_logo/juno_light/juno_antimicrobial_lightbg.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results.</p>
 <p>The tools that are being used in this pipeline are listed below:</p>
 <ul>
@@ -301,7 +302,7 @@ text-align: justify}
 <p>Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.</p>
 <p>Besides giving input it is also required to select a species. The <code>--species</code> parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFinder.</p>
 <p>The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the <code>--output</code> parameter.</p>
-<p><strong>Note</strong> all samples in the directory should be the same species and the same file format.</p>
+<p><strong>Note:</strong> all samples in the directory should be the same species and the same file format.</p>
 </div>
 <div id="download-the-pipeline-2" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Download the pipeline</h3>
@@ -359,7 +360,7 @@ text-align: justify}
 <li>The path to your input directory</li>
 <li>The path to where the pipeline is installed</li>
 </ul>
-<p><strong>Note</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
+<p><strong>Note:</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
 
 </div>
 </div>

@@ -113,4 +113,4 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The path to your input directory
 * The path to where the pipeline is installed
 
-**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem. 
+**Note:** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem. 
