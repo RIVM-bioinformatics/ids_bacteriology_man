@@ -21,6 +21,10 @@ parameters <- list("pipeline_name" = "Juno-assembly")
 
 ```
 
+```{r juno-assembly-logo, out.width="70%", fig.align = 'center', echo = FALSE, eval = TRUE}
+knitr::include_graphics("figures/juno_logo/juno_light/juno_assembly_lightbg.png")
+```
+
 The goal of this pipeline is to generate assemblies from raw fastq files. The input of the pipeline is raw Illumina paired-end data in the form of two fastq files (with extension .fastq, .fastq.gz, .fq or .fq.gz), containing the forward and the reversed reads ('R1' and 'R2' must be part of the file name, respectively). On the basis of the generated genome assemblies, low quality and contaminated samples can be excluded for downstream analysis. __Note:__ The pipeline has been tested only in gastroenteric bacteria ( _Salmonella_, _Shigella_, _Listeria_ and STEC) but it could theoretically be used in other genera/species.
 
 The pipeline uses the following tools:  
@@ -145,4 +149,4 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The path to your input directory
 * The path to where the pipeline is installed
 
-**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
+**Note: ** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.

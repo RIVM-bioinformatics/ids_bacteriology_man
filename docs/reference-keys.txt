@@ -2,6 +2,9 @@ fig:github-fig
 fig:extract-fig
 fig:gitlab-fig
 fig:commandline-fig
+fig:installation-fig
+fig:snakemake-complete-run-fig
+fig:snakemake-error-fig
 tab:unnamed-chunk-53
 introduction-and-general-instructions
 general-instructions
