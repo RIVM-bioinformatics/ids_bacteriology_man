@@ -63,7 +63,7 @@ cd /mnt/scratch_dir/<my_folder>/Juno_blast
 conda env remove -n juno_blast
 ```
 
-If you had never created a juno_blast environment, you can skip this step and go to step 4 instead.
+If you had never created a juno_blast environment before, you can skip this step and go to step 4 instead.
 
 4. Create a new environment for running Juno_blast by using the command:
 
@@ -71,7 +71,9 @@ If you had never created a juno_blast environment, you can skip this step and go
 conda env create -f envs/master_env.yaml
 ```
 
-This step will take some time (few minutes).
+This step will take some time (few minutes).  
+
+**Note:** If this step would take more than 1 hour, please kill the process (using `Ctrl + C` or `Ctrl + Z`) and refer to the section [General Troubleshooting](#general-troubleshooting). The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by [email](mailto:alejandra.hernandez.segura@rivm.nl).  
 
 ### Start the analysis. Basics
 
