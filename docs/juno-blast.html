@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-08-05" />
+<meta name="date" content="2021-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,12 +314,13 @@ text-align: justify}
 <li>If you already had a juno_blast environment before you need to delete the old one by using the command:</li>
 </ol>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="juno-blast.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_blast</span></code></pre></div>
-<p>If you had never created a juno_blast environment, you can skip this step and go to step 4 instead.</p>
+<p>If you had never created a juno_blast environment before, you can skip this step and go to step 4 instead.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a new environment for running Juno_blast by using the command:</li>
 </ol>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="juno-blast.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
 <p>This step will take some time (few minutes).</p>
+<p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a>.</p>
 </div>
 <div id="start-the-analysis.-basics-4" class="section level3" number="7.1.4">
 <h3><span class="header-section-number">7.1.4</span> Start the analysis. Basics</h3>
