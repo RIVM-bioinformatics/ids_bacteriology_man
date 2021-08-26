@@ -21,10 +21,10 @@
   
   
 
-<meta name="author" content="Alejandra Hernandez-Segura" />
+<meta name="author" content="Alejandra Hernandez-Segura, Roxanne Wolthuis" />
 
 
-<meta name="date" content="2021-08-12" />
+<meta name="date" content="2021-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,6 +303,7 @@ text-align: justify}
 <li><em>Salmonella</em> serotyper by using the <a href="https://journals.asm.org/doi/10.1128/aem.01746-19?permanently=true&amp;">SeqSero2</a> tool and an <em>in silico</em> adaptation of the PCR suggested by <a href="https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0000621">Tennant et al. 2010</a> to differentiate monophasic from biphasic <em>S. typhimurium</em>.</li>
 <li><em>E. coli</em> serotyper by using the <a href="https://bitbucket.org/genomicepidemiology/serotypefinder/src/master/">SerotypeFinder</a> tool.</li>
 <li><em>S. pneumoniae</em> serotyper by using the <a href="https://github.com/sanger-pathogens/seroba">Seroba</a> tool.</li>
+<li><em>Shigella</em> serotyper by using the <a href="https://github.com/CFSAN-Biostatistics/shigatyper">ShigaTyper</a> tool.</li>
 </ul></li>
 </ol>
 <p><img src="figures/Juno_typing_DAG.svg" style="display: block; margin: auto;" /></p>
@@ -381,7 +382,7 @@ text-align: justify}
 </div>
 <div id="output-1" class="section level3" number="4.1.5">
 <h3><span class="header-section-number">4.1.5</span> Output</h3>
-<p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (<code>identify_species</code>, <code>mlst7</code> and <code>serotype</code>). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a <code>serotype/salmonella_serotype_multireport.csv</code>, <code>serotype/ecoli_serotype_multireport.csv</code> and <code>mlst7/mlst7_multireport.csv</code>. Although the results of <code>kmerfinder</code> are provided (in the subfolder <code>identify_species</code>), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of <code>kmerfinder</code> as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.</p>
+<p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (<code>identify_species</code>, <code>mlst7</code> and <code>serotype</code>). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a .csv file collecting the results of all the samples together (<code>serotype/serotype_multireport.csv</code>, <code>serotype/serotype_multireport1.csv</code>, <code>serotype/serotype_multireport2.csv</code>, <code>serotype/serotype_multireport3.csv</code>, <code>mlst7/mlst7_multireport.csv</code>). Although the results of <code>kmerfinder</code> are provided (in the subfolder <code>identify_species</code>), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of <code>kmerfinder</code> as a species identification tool, you do it at your own risk and you should be able to interpret the results correctly.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="juno-typing.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
@@ -403,6 +404,7 @@ text-align: justify}
 <li>The path to your input directory</li>
 <li>The path to where the pipeline is installed</li>
 </ul>
+<p>If the problem is related to Shigella or Shigatyper, please send an <a href="mailto:roxanne.wolthuis@rivm.nl">e-mail</a> to Roxanne Wolthuis.</p>
 <p><strong>Note:</strong> I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.</p>
 
 </div>

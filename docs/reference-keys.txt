@@ -5,6 +5,7 @@ fig:commandline-fig
 fig:installation-fig
 fig:snakemake-complete-run-fig
 fig:snakemake-error-fig
+fig:snakemake-folder
 tab:unnamed-chunk-53
 introduction-and-general-instructions
 general-instructions

@@ -21,10 +21,10 @@
   
   
 
-<meta name="author" content="Alejandra Hernandez-Segura" />
+<meta name="author" content="Alejandra Hernandez-Segura, Roxanne Wolthuis" />
 
 
-<meta name="date" content="2021-08-12" />
+<meta name="date" content="2021-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -282,13 +282,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
-<p class="author"><em>Alejandra Hernandez-Segura</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-08-12</em></p>
+<p class="author"><em>Alejandra Hernandez-Segura, Roxanne Wolthuis</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-08-26</em></p>
 </div>
 <div id="introduction-and-general-instructions" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction and General Instructions</h1>
-<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact <a href="alejandra.hernandez.segura@rivm.nl">Alejandra Hernandez</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
-<p><span style="color:#d64541;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
+<p>In this guide you will find the manuals of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This guide is in continuous development, For additions and adjustments to this guide contact <a href="roxanne.wolthuis@rivm.nl">Roxanne Wolthuis</a>.</p>
+<p><strong>Note:</strong> This guide was written exclusively for users working at the RIVM, in specific the IDS department. If you are an external user it is necessary to adjust the parameters or scripts from the pipelines. Detailed information about the pipelines and parameters can be found in the repositories of each pipeline. All developed pipelines are available at the RIVM <a href="https://github.com/RIVM-bioinformatics">Github</a>. Please keep in mind that the main goal for our pipelines is to automate processes for the RIVM. This means we cannot give the personalized and fast-responding help that we give to users from the RIVM. If you have a question or need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
 <div id="general-instructions" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> General Instructions for all pipelines</h2>
 <div id="requirements-and-preparation" class="section level3" number="1.1.1">
@@ -394,13 +394,29 @@ FIGURE 1.7: Screenshot of the Juno AMR pipeline in the terminal. The pipeline fa
 </div>
 <div id="general-output" class="section level3" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> General output and log files for every pipeline</h3>
-<p>Every pipeline (with few exceptions of the very short ones like the deinterleave one) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).</p>
+<p>The output of the Juno pipelines is divided over multiple folders inside the output folder. For each pipeline, there is an audit_trail folder, log folder, and result folder for each step or tool. The folders with results are probably the most interesting and contain most of the information you would use for analysis. The audit_trail folder contains information about the software, parameters, samples, and more. This kind of information can be useful for reproducibility or publications. The log folder contains information that is required for debugging and/or troubleshooting. For the developers, it is essential to have access to these files when an error occurs.</p>
+<p>All the output will be shortly discussed below. An example of an output folder is shown in <a href="#snakemake-folder">Figure 1.8</a>.</p>
 <ul>
-<li><p>The <code>log/</code> subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.</p></li>
-<li><p>The <code>log/cluster/</code> or <code>log/drmaa/</code> subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.</p></li>
-<li><p>The <code>audit_trail</code> or <code>results</code> subfolders are also located inside the output directory. They contain contain 4 very important files for trace-ability of your samples. The <code>log_conda.txt file</code> contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The <code>log_config.txt</code> file is even more informative. It enlists all the parameters used to run the pipeline. In case months later you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The <code>log_git.txt</code> has information about the repository or the code that was downloaded. It tells you exactly how it was downloaded so you can reproduce it at a later time point. Finally, the <code>snakemake_report.html</code> has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went.</p></li>
+<li><p>result folder(s)<br />
+The <code>output</code> folder contains one result folder for each step that is performed by the pipeline. Inside the folder, there are results for each of the samples. The result output is different for each pipeline, you can check the pipeline’s page or the tool that is used for more information about the output.</p></li>
+<li><p>audit_trail folder<br />
+The information in the <code>audit_trail</code> folder can be useful for the reproducibility of the pipeline and analysis.</p>
+<ul>
+<li>The <code>log_conda.txt</code> file contains information about the software that was used to run the pipeline.</li>
+<li>The <code>log_config.txt</code> enlists all parameters that were used to run the pipeline.</li>
+<li>The <code>log_git.txt</code> contains information about repositories or the code that was downloaded.</li>
+<li>The <code>snakemake_report.html</code> contains an overview of all the steps that were performed with the samples in the input folder. It shows when the steps were performed, what output was produced, what software was used as well as some statistics about the run.</li>
+</ul></li>
+<li><p>log folder<br />
+The <code>log/cluster/</code> or <code>log/drmaa/</code> folder contains .error and .out(log) files. For each step in the pipeline, there is one .error and one .out file. These files are useful to debug system/memory errors. If a step fails to perform and an error occurs, the .error file will show information about the error. The .out file contains information that is normally shown on the command line. This information can be originating from the tools that are used or from the pipeline itself. Sometimes these files can be empty, this happens if there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You will need this output if you want to contact a developer when you run into problems. You can send the files or the location(example: <code>mnt/scratch-dir/mydirectory/output/log</code>) of the files when you contact the developer.</p></li>
 </ul>
-<p>Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a problem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the <code>audit_trail</code> has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.</p>
+<p><strong>Note:</strong> Do not delete the contents of the log folder.</p>
+<div class="figure"><span id="fig:snakemake-folder"></span>
+<img src="figures/output_folder_example.png" alt="Example of an output folder. 1 shows the audit_trail folder, 2 shows output folders per step or tool, 3 shows the log folder."  />
+<p class="caption">
+FIGURE 1.8: Example of an output folder. 1 shows the audit_trail folder, 2 shows output folders per step or tool, 3 shows the log folder.
+</p>
+</div>
 
 </div>
 </div>

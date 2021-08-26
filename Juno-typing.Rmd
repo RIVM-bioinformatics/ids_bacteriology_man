@@ -46,6 +46,7 @@ The Juno-typing pipeline will then perform the following steps:
     - _Salmonella_ serotyper by using the [SeqSero2](https://journals.asm.org/doi/10.1128/aem.01746-19?permanently=true&) tool and an _in silico_ adaptation of the PCR suggested by [Tennant et al. 2010](https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0000621) to differentiate monophasic from biphasic _S. typhimurium_.
     - _E. coli_ serotyper by using the [SerotypeFinder](https://bitbucket.org/genomicepidemiology/serotypefinder/src/master/) tool.
     - _S. pneumoniae_ serotyper by using the [Seroba](https://github.com/sanger-pathogens/seroba) tool.
+    - _Shigella_ serotyper by using the [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper) tool.
 
 ```{r, fig.align='center', echo = FALSE, eval=TRUE}
 
@@ -143,7 +144,7 @@ See the section [General Troubleshooting](#general-troubleshooting) for any prob
 
 ### Output 
 
-A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (`identify_species`, `mlst7` and `serotype`). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a `serotype/salmonella_serotype_multireport.csv`, `serotype/ecoli_serotype_multireport.csv` and `mlst7/mlst7_multireport.csv`. Although the results of `kmerfinder` are provided (in the subfolder `identify_species`), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of `kmerfinder` as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.  
+A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (`identify_species`, `mlst7` and `serotype`). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a .csv file collecting the results of all the samples together (`serotype/serotype_multireport.csv`, `serotype/serotype_multireport1.csv`, `serotype/serotype_multireport2.csv`, `serotype/serotype_multireport3.csv`, `mlst7/mlst7_multireport.csv`). Although the results of `kmerfinder` are provided (in the subfolder `identify_species`), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of `kmerfinder` as a species identification tool, you do it at your own risk and you should be able to interpret the results correctly.  
 
 *Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
 
@@ -172,5 +173,7 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The log and error files that can be found in the output folder
 * The path to your input directory
 * The path to where the pipeline is installed
+
+If the problem is related to Shigella or Shigatyper, please send an [e-mail](mailto:roxanne.wolthuis@rivm.nl) to Roxanne Wolthuis.
 
 **Note:** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
