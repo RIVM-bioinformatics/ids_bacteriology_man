@@ -11,34 +11,46 @@ body {
 text-align: justify}
 </style>
 
-<span style="color:red;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible. 
+The Juno pipelines are fully automated and require minimum installation and input. We tried to optimize the pipelines as best as possible, but sometimes your analysis might fail. Below is a troubleshooting guide that contains the most common reasons why it could be that your analysis is failing, including a step by step overview on how to fix them. 
+
+
+**Note:** This guide was written exclusively for users working at the RIVM, in specific the IDS department. If you are an external user it is necessary to adjust the parameters or scripts from the pipelines. Detailed information about the pipelines and parameters can be found in the repositories of each pipeline. All developed pipelines are available at the RIVM GitLab[link]. Please keep in mind that the main goal for our pipelines is to automate processes for the RIVM. This means we cannot give the personalized and fast-responding help that we give to users from the RIVM. If you have a question or need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.
 
 ## Failure when installing master environment  
 
-Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying `Solving environment...` might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing `Ctrl + C` and/or `Ctrl + Z` (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:  
+Settings within the “Wetenschappelijke Werkplek” can cause problems when installing one of the pipelines. Usually installation will take a few minutes, during installation a message will be printed to the command line: “Solving environment…”. If this message is shown by the command line for 30 minutes or more, abort the step by pressing `CTRL + Z` or `CTRL + C` until the pipeline exits installation. After exiting the installation you can change the necessary settings. Once the settings are changed it is possible to install the master environment again.
 
+command to change settings inside the "Wetenschappelijke Werkplek":
 ```{bash}
 conda config --set channel_priority false
 ```
 
-Then try to run the pipeline and install the master environment again. 
-
 ## Failure to make a sample sheet or to find input directory   
+If the pipeline sends error messages about the sample sheet, input files or input directory it means that there is something wrong with the given input. Below is a list of suggestions for troubleshooting this problem.
 
-There are few reasons why this could happen:
+-  Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.
 
-- Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.  
+- You mis-spelled something in your path or gave a path that leads to the wrong input directory If you work in the “Wetenschappelijke Werkplek” it is required to place a ("/") at the beginning of the fill path. For instance: `/mnt/scratch_dir/<your_folder>/<your_data>/`.
 
-- You mis-spelled something in your path or gave the wrong path. Especially while working in Linux, it is common to forget a slash ("/") at the beginning of a full path. For instance: `/mnt/scratch_dir/<my_folder>/<my_data>/`.  
+- The files might have the incorrect format and/or extension.
+Make sure that all the files in the input directory have the correct extension. An overview of the extensions that are allowed can be found in section: [1.1.1 Requirements and preparation](#general-instructions)
+  
 
-- Your files might have the incorrect format and/or extension. Normally for all the files, standard names are accepted (for instance, .fastq.gz or .fastq for raw reads and .fasta for fasta files). Please make sure that your files have the correct and "classical" extensions.   
-
-- Your input directory does nor contain the expected files, but they are instead in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.  
+- The files in your input directory are in sub-folders. Most pipelines expect all input files to be in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. 
 
 ## Other problems or failing rules  
+The Juno pipelines are still in development which means that sometimes a process can fail.
 
-The Juno pipelines are still in development which means that sometimes things fail. **Before contacting me** for help, please try these steps:  
+Before contacting for help, try these two steps:
 
-1. Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analysis is finished or it just doesn't go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.    
-2. Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.
-3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  
+1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
+
+2. Download the pipeline again and start from the beginning of the guide. Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) with the following content:
+
+* The log and error files that can be found in the output folder
+* The path to your input directory
+* The path to where the pipeline is installed
+
+**Note:** We cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.

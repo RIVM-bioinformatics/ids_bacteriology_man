@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura, Roxanne Wolthuis" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -319,13 +319,13 @@ text-align: justify}
 </li>
 <li>Enter the folder of the pipeline using:</li>
 </ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="juno-annotation.html#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-2"><a href="juno-annotation.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-annotation</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="juno-annotation.html#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="juno-annotation.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-annotation</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
 <p>If all your samples have the same genus and species, for instance, <em>Klebsiella pneumoniae</em>, you run it like this:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="juno-annotation.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--genus</span> Klebsiella <span class="at">--species</span> pneumoniae</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="juno-annotation.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--genus</span> Klebsiella <span class="at">--species</span> pneumoniae</span></code></pre></div>
 <ul>
 <li>Note that the genus and species should be ONE word. Do not put genus and species together!</li>
 </ul>
@@ -360,7 +360,7 @@ text-align: justify}
 <li>Note that the name of the columns should be EXACTLY the same than in this example, including the underscores and the capital letters.</li>
 </ul>
 <p>You would then call the pipeline like this:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="juno-annotation.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--metadata</span> path/to/metadata.csv</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="juno-annotation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--metadata</span> path/to/metadata.csv</span></code></pre></div>
 <p>Alternatively, if your input files have one of the following abbreviations somewhere in the data, the genus and species may be automatically guessed from the file name:</p>
 <table>
 <thead>
@@ -474,7 +474,7 @@ text-align: justify}
 </tbody>
 </table>
 <p>Then you would call the pipeline like this:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="juno-annotation.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--make-metadata</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="juno-annotation.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--make-metadata</span></span></code></pre></div>
 <p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
@@ -483,7 +483,7 @@ text-align: justify}
 <h3><span class="header-section-number">6.1.4</span> Output</h3>
 <p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (<code>circlator</code>, <code>filtered_contigs</code> and <code>prokka</code>). Please refer to the manuals of every tool to interpret the results. Your <strong>main result</strong> will be two genebank (.gbk) files per sample that contained your annotated genomes/plasmids. You can find them inside the subfolders <code>out/prokka</code>.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (from output)</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="juno-annotation.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="juno-annotation.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> start_annotation.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-for-this-pipeline-3" class="section level3" number="6.1.5">

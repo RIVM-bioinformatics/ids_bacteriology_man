@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura, Roxanne Wolthuis" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -309,17 +309,17 @@ text-align: justify}
 <li><p>Open a terminal. (Applications&gt;terminal).</p></li>
 <li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="juno-blast.html#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-2"><a href="juno-blast.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_blast</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="juno-blast.html#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="juno-blast.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_blast</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>If you already had a juno_blast environment before you need to delete the old one by using the command:</li>
 </ol>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="juno-blast.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_blast</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="juno-blast.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_blast</span></code></pre></div>
 <p>If you had never created a juno_blast environment before, you can skip this step and go to step 4 instead.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a new environment for running Juno_blast by using the command:</li>
 </ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="juno-blast.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="juno-blast.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
 <p>This step will take some time (few minutes).</p>
 <p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a>.</p>
 </div>
@@ -329,16 +329,16 @@ text-align: justify}
 <li><p>Open a terminal. (Applications&gt;terminal).</p></li>
 <li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="juno-blast.html#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-2"><a href="juno-blast.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_blast</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="juno-blast.html#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="juno-blast.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_blast</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Activate juno_blast environment</li>
 </ol>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="juno-blast.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate juno_blast</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="juno-blast.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate juno_blast</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Run the pipeline by providing an input directory:</li>
 </ol>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="juno-blast.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_blast <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="juno-blast.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_blast <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a>.</p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
@@ -347,7 +347,7 @@ text-align: justify}
 <h3><span class="header-section-number">7.1.5</span> Output</h3>
 <p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="juno-blast.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_blast <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="juno-blast.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_blast <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-for-this-pipeline-4" class="section level3" number="7.1.6">

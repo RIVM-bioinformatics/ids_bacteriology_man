@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura, Roxanne Wolthuis" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -307,14 +307,14 @@ text-align: justify}
 <li><p>Open the terminal.</p></li>
 <li><p>Enter the folder of the pipeline:</p></li>
 </ol>
-<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="triumph-project.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_project_report-master/</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="triumph-project.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_project_report-master/</span></code></pre></div>
 <ul>
 <li>Exact name of downloaded folder might be slightly different depending on the version that was downloaded.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="triumph-project.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> create_triumph_report.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb55-1"><a href="triumph-project.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> create_triumph_report.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
 <ul>
 <li>The input directory (in this case /mnt/scratch_dir/my_folder) should be a folder containing one subfolder per run you want to include in the project report. These subfolders should contain the results of running the <a href="triumph-run.html#triumph_run">Triumph run pipeline</a> using the <code>--metadata</code> option. Refer to the manual of that pipeline to see what that argument means.</li>
 </ul>
@@ -324,7 +324,7 @@ text-align: justify}
 <div id="output-8" class="section level3" number="11.1.4">
 <h3><span class="header-section-number">11.1.4</span> Output</h3>
 <p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. If you prefer to store your output in a different folder, you can use the <code>-o</code> argument to give another path.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="triumph-project.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb56-1"><a href="triumph-project.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>If you chose another site for the output, then you will find the same results there.</p>
 <p>In both cases, the output folder will contain the Triumph_Project_report.html file that is the actual report and a Triumph_Project_Report.log that contains messages, warnings and errors from R, where you can find more info if something goes wrong and the report could not be produced.</p>
 </div>

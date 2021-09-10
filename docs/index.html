@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura, Roxanne Wolthuis" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
 <p class="author"><em>Alejandra Hernandez-Segura, Roxanne Wolthuis</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-08-26</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-09-10</em></p>
 </div>
 <div id="introduction-and-general-instructions" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction and General Instructions</h1>
@@ -293,78 +293,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.1</span> General Instructions for all pipelines</h2>
 <div id="requirements-and-preparation" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Requirements and preparation</h3>
-<p>This handbook assumes that you are working at the “bioinformatica” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.</p>
-<ul>
-<li><p>Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (<code>/data/BioGrid/&lt;my_folder&gt;/&lt;my_data&gt;/</code>) or in the scratch_dir folder (<code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>). I strongly advice you to place it in the <code>scratch_dir</code> folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.</p></li>
-<li><p>Make sure that the folder that you use as input (it contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. <strong>IMPORTANT:</strong> Your folder name and the PATH to it (so all the folders and subfolders that you have to enter to reach your folder) should NOT CONTAIN SPACES!!!!</p></li>
-<li><p>Make sure that your files have the right format: if they are fastq files, they should have the extension (<code>.fastq</code>, <code>.fq</code>, <code>.fastq.gz</code> or <code>.fq.gz</code>). If they are fasta files, they should have the extension <code>.fasta</code>. Any other requirements in the input files will be specified in the section of that specific pipeline.</p></li>
-</ul>
+<p>This guide is written based on the “Wetenschappelijke werkplek” at the RIVM. It is possible to run the Juno pipelines on your laptop, but this requires additional steps that are not listed in this guide.</p>
+<p><strong>1. Placement of the data</strong><br />
+All data should be placed in one folder within the Biogrid folder (<code>/data/BioGrid/your_folder/your_data/</code>)or scratch_dir folder (<code>/mnt/scratch_dir/your_folder/your_data</code>). Sub folders are not allowed. It is advised to store your data in the scratch_dir folder, this will make the analysis faster. After analysis it is possible to copy the output to the Biogrid folder.</p>
+<p><strong>2. Naming restrictions on the folders</strong><br />
+In order to successfully run the Juno pipelines it is necessary to use the correct file names for all the folders in your input path. The input path is the path that leads to your input directory. For example <code>/mnt/scratch_dir/your_folder/your_data</code>. All folder names inside this path can only contain letters, numbers or underscores. Using spaces, different characters or special symbols inside your folder will cancel the analysis, because the Juno pipelines cannot recognize these kinds of folder names.</p>
+<p><strong>3. File format</strong><br />
+The files in the input need to have the right format. If you have .fastq files the extensions can be: <code>.fastq</code>, <code>.fq</code>, <code>.fastq.gz</code> or <code>.fq.gz</code>. If you have .fasta files the extension can be: <code>.fasta</code>. In some cases it is possible to use both .fasta and .fastq files as input.</p>
+<p><strong>4. Naming restrictions on the files</strong><br />
+Not only the folder names, but also the names of the input files have some restrictions. The file names can contain letters, numbers and underscores. If you are using .fastq files, the file name always has to end with _R1, _R2, _1 or _2. If you use these ends in other places in the file name the pipeline will crash. Below is a good and a bad example of file names. If you use both file formats as input it is important that the files have identical names(except for the part that indicates the read of the .fastq file(R1 and R2).</p>
+<p>Good file name:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">IBESS11_S13_L001_R1.fastq.gz</span></span></code></pre></div>
+<p>Bad file name:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">IBESS11_1_S13_L001_R1.fastq.gz</span></span></code></pre></div>
+<p>Example of file names by using both .fastq and .fasta as input:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">IBESS11_S13_L001_R1.fastq.gz</span></span>
+<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">IBESS11_S13_L001_R2.fastq.gz</span></span>
+<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">IBESS11_S13_L001.fasta</span></span></code></pre></div>
 </div>
 <div id="downloading-instructions" class="section level3" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> Downloading pipelines</h3>
-<p>All the bacteriology pipelines created by the IDS-bioinformatics group are stored in either <a href="https://github.com/RIVM-bioinformatics">GitHub</a> or the <a href="https://gitl01-int-p.rivm.nl/">internal GitLab</a> of the RIVM. Only people who belong to the RIVM and that are inside one of our servers/environments can access to the later one with their normal RIVM login details.</p>
-<p>If you are going to download a pipeline, please do so in the same partition that your data is (preferentially <code>scratch_dir</code>). Each pipeline handbook has the instructions on where to find the code (either GitHub or GitLab). You can download every pipeline through the website or through the command line:</p>
-<p><em>GitHub website</em></p>
-<ol style="list-style-type: decimal">
-<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
-</li>
-<li>Press the green button “Code” on the page and then click on “Download zip” (see <a href="#github-fig">Figure 1.1</a> for explanation).<br />
-</li>
-<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
-</li>
-<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure 1.2</a> for explanation).</li>
-</ol>
+<p>All Juno pipelines are stored in <a href="https://github.com/RIVM-bioinformatics">Github</a> or the <a href="https://gitl01-int-p.rivm.nl/">internal Gitlab</a> of the RIVM. The Juno pipelines inside GitHub are publicly accessible. The Juno pipelines in the internal Gitlab can only be accessed by users that are inside of the servers or environments of the RIVM. You can enter the internal Gitlab with your RIVM log in details.</p>
+<p><strong>Note:</strong> If you download one of the Juno pipelines make sure to download it into the same partition to where your data is stored, preferentially scratch_dir. The instruction on where to retrieve the Juno pipeline can be found on the documentation page of each of the pipelines.</p>
+<div id="download-through-githubgitlab-website" class="section level4" number="1.1.2.1">
+<h4><span class="header-section-number">1.1.2.1</span> Download through Github/Gitlab website</h4>
+<ul>
+<li>Go to the documentation page of the pipeline</li>
+<li>Click the Github or Gitlab link
+<ul>
+<li>For Github → Click the green “Code” button on the page and click on “Download zip”(<a href="#github-fig">Figure 1.1</a> step 2)</li>
+<li>For Gitlab → Click the white “Download” button click on “Download zip”(<a href="#gitlab-fig">Figure 1.3</a> step 2)</li>
+</ul></li>
+<li>The zip file will now be in your Downloads folder, move the zip file to BioGrid partition or the scratch_dir partition. The download should be placed in the same partition as where your data is stored</li>
+<li>Extract the files of the zip file. In the ‘Wetenschappelijke Werkplek’ this can be done by right clicking the downloaded zip file, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear (<a href="#extract-fig">Figure 1.2</a>).</li>
+</ul>
 <div class="figure"><span id="fig:github-fig"></span>
-<img src="figures/screenshot_download_github.png" alt="Pipelines can be downloaded directly from their GitHub website."  />
+<img src="figures/github_download_link.png" alt="Step 1 shows where to retrieve the Github clone link. Step 2 shows where to retrieve the .zip file."  />
 <p class="caption">
-FIGURE 1.1: Pipelines can be downloaded directly from their GitHub website.
+FIGURE 1.1: Step 1 shows where to retrieve the Github clone link. Step 2 shows where to retrieve the .zip file.
+</p>
+</div>
+<div class="figure"><span id="fig:gitlab-fig"></span>
+<img src="figures/gitlab_download_link.png" alt="Step 1 shows where to retrieve the Gitlab clone link. Step 2 shows where to retrieve the .zip file."  />
+<p class="caption">
+FIGURE 1.2: Step 1 shows where to retrieve the Gitlab clone link. Step 2 shows where to retrieve the .zip file.
 </p>
 </div>
 <div class="figure"><span id="fig:extract-fig"></span>
-<img src="figures/Screenshot_unzip.png" alt="Unzipping a repository in Linux."  />
+<img src="figures/download_extract.png" alt="Unzipping a repository in the Wetenschappelijke Werkplek."  />
 <p class="caption">
-FIGURE 1.2: Unzipping a repository in Linux.
+FIGURE 1.3: Unzipping a repository in the Wetenschappelijke Werkplek.
 </p>
 </div>
-<p><em>GitLab website</em></p>
-<ol style="list-style-type: decimal">
-<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
-</li>
-<li>Press the small white button with a cloud and a downwards arrow. In the drop-down menu, choose “Download zip” (see <a href="#gitlab-fig">Figure 1.3</a> for explanation).<br />
-</li>
-<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
-</li>
-<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure 1.2</a> above for explanation).</li>
-</ol>
-<div class="figure"><span id="fig:gitlab-fig"></span>
-<img src="figures/screenshot_download_gitlab.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
+</div>
+<div id="download-through-command-line" class="section level4" number="1.1.2.2">
+<h4><span class="header-section-number">1.1.2.2</span> Download through command line</h4>
+<ul>
+<li>In the “Wetenschappelijke Werkplek” go to Applications –&gt; System Tools –&gt; Open the Terminal(<a href="#terminal-fig">Figure 1.4</a>)</li>
+<li>In the terminal, use the cd command to navigate towards the location where you want to download the pipeline</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/your_folder/</span></code></pre></div>
+<ul>
+<li>Get the url of the pipeline
+<ul>
+<li>For Github → Click on the green “Code” button and copy the link (<a href="#github-fig">Figure 1.1</a> step 1)</li>
+<li>For Gitlab → Click on the blue “Clone” button and copy the link (<a href="#gitlab-fig">Figure 1.3</a> step 1)</li>
+</ul></li>
+<li>Use the git clone command to download the pipeline</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/link_to_clone.git</span></code></pre></div>
+<ul>
+<li>The pipeline will ask for your username and password, if you have access and the log in details are correctly entered the pipeline will be downloaded and unzipped in the folder you used.</li>
+</ul>
+<p><strong>Note:</strong> Every git url that is used to clone a repository always ends with .git</p>
+<div class="figure"><span id="fig:terminal-fig"></span>
+<img src="figures/schreenshot_terminal.png" alt="Opening a terminal inside the Wetenschappelijke Werkplek."  />
 <p class="caption">
-FIGURE 1.3: Pipelines can be downloaded directly from their GitLab website.
+FIGURE 1.4: Opening a terminal inside the Wetenschappelijke Werkplek.
 </p>
 </div>
-<p><em>Command-line</em></p>
-<p>Any member of the RIVM has a (RIVM-specific) GitLab account. You can log in with the same credentials that you use for accessing your workspaces. In the case of pipelines hosted on GitHub, you may need a free GitHub account.</p>
-<ol style="list-style-type: decimal">
-<li>Open the “terminal” (you could also open “terminator”) by going to the “Applications” menu of the linux environment.</li>
-</ol>
-<div class="figure"><span id="fig:commandline-fig"></span>
-<img src="figures/schreenshot_terminal.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
-<p class="caption">
-FIGURE 1.4: Pipelines can be downloaded directly from their GitLab website.
-</p>
 </div>
-<ol start="2" style="list-style-type: decimal">
-<li>Go to the location where you want to download the pipeline using the command ‘cd’. For instance:</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
-<p><strong>Note:</strong> mind the slash at the beginning of the path</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Download the pipeline using the <code>git clone</code> command</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>url_to_the_pipeline<span class="op">&gt;</span>.git</span></code></pre></div>
-<p><strong>Note</strong>: notice that I added “.git” to the URL of the pipeline.</p>
-<p>You will be asked to give your credentials (username + password) and then the (already unzipped) pipeline should have been downloaded in your current folder.</p>
 </div>
 <div id="what-to-expect" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> What to expect while running a Juno pipeline</h3>
