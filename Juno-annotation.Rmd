@@ -16,6 +16,10 @@ library(tidyr)
 
 ```
 
+```{r juno-annotation-logo, out.width="70%", fig.align = 'center', echo = FALSE, eval = TRUE}
+knitr::include_graphics("figures/juno_logo/juno_light/juno_annotation_lightbg.png")
+```
+
 This pipeline takes assemblies (.fasta) as input and performs gene annotation. It should be able to annotate bacterial genomes and bacterial plasmids. The pipeline follows these steps:
 
 1. Filtering contigs with more than 200bp. This step is necessary for downstream tools to run properly and, in general, small contigs are often filtered to reduce the noise of possible contamination. Besides, these small contigs often do not contain much valuable information.  
@@ -153,4 +157,4 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The path to your input directory
 * The path to where the pipeline is installed
 
-**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
+**Note:** I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem.

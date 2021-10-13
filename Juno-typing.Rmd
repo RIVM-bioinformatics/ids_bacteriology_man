@@ -22,6 +22,10 @@ parameters <- list("pipeline_name" = "Juno-typing")
 
 ```
 
+```{r juno-typing-logo, out.width="70%", fig.align = 'center', echo = FALSE, eval = TRUE}
+knitr::include_graphics("figures/juno_logo/juno_light/juno_typing_lightbg.png")
+```
+
 The goal of this pipeline is to perform bacterial typing (7-locus MLST and serotyping). It takes 2 types of files per sample as input:  
 
 1. Two '.fastq' files (paired-end sequencing) derived from short-read sequencing. They should be already filtered and trimmed (for instance, with the Juno-pipeline).  
@@ -169,4 +173,4 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The path to your input directory
 * The path to where the pipeline is installed
 
-**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
+**Note:** I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem.
