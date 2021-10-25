@@ -60,6 +60,13 @@ See the [General Instructions for all pipelines](#general-instructions) first.
 
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in this link: [Juno-assembly pipeline](https://github.com/AleSR13/Juno_pipeline).  
 
+After downloading the pipeline, it needs to be installed. To install the pipeline, first enter the folder where you downloaded the pipeline and run the installation script:
+
+```
+cd /mnt/scratch_dir/<my_folder>/Juno_pipeline
+bash install_juno_assembly.sh
+```
+
 
 ### Start the analysis. Basics
 
@@ -70,7 +77,14 @@ Please follow the [instructions to download pipelines](#downloading-instructions
 cd /mnt/scratch_dir/<my_folder>/Juno_pipeline
 ```
 
-3. Run the pipeline  
+MAKE SURE YOU HAVE RUN THE INSTALLATION INSTRUCTIONS BEFORE USING THE PIPELINE FOR THE FIRST TIME OR AFTER AN UPDATE!
+
+3. Activate the 'environment' that has the necessary software for the pipeline to work:
+```
+conda activate juno_assembly
+```
+
+4. Run the pipeline  
 
 If all your samples have the same genus, for instance, _Salmonella_, you run it like this:
 
@@ -96,6 +110,12 @@ Please read the section [What to expect while running a Juno pipeline](#what-to-
 See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
 
 **Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+5. Optionally, deactivate the juno_assembly environment.
+
+```
+conda deactivate
+```
 
 ### Output 
 

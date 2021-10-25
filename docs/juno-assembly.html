@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-10-13" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -329,6 +329,9 @@ text-align: justify}
 <h3><span class="header-section-number">3.1.2</span> Download the pipeline</h3>
 <p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
 <p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The Juno-assembly pipeline can be found in this link: <a href="https://github.com/AleSR13/Juno_pipeline">Juno-assembly pipeline</a>.</p>
+<p>After downloading the pipeline, it needs to be installed. To install the pipeline, first enter the folder where you downloaded the pipeline and run the installation script:</p>
+<pre><code>cd /mnt/scratch_dir/&lt;my_folder&gt;/Juno_pipeline
+bash install_juno_assembly.sh</code></pre>
 </div>
 <div id="start-the-analysis.-basics" class="section level3" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> Start the analysis. Basics</h3>
@@ -337,28 +340,37 @@ text-align: justify}
 </li>
 <li>Enter the folder of the pipeline using:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="juno-assembly.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_pipeline</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="juno-assembly.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_pipeline</span></code></pre></div>
+<p>MAKE SURE YOU HAVE RUN THE INSTALLATION INSTRUCTIONS BEFORE USING THE PIPELINE FOR THE FIRST TIME OR AFTER AN UPDATE!</p>
 <ol start="3" style="list-style-type: decimal">
+<li>Activate the ‘environment’ that has the necessary software for the pipeline to work:</li>
+</ol>
+<pre><code>conda activate juno_assembly</code></pre>
+<ol start="4" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
 <p>If all your samples have the same genus, for instance, <em>Salmonella</em>, you run it like this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="juno-assembly.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--genus</span> Salmonella</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="juno-assembly.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--genus</span> Salmonella</span></code></pre></div>
 <ul>
 <li>Note that the genus should be ONE word. Do not put any species names!</li>
 </ul>
 <p>If you want to provide a metadata file do this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="juno-assembly.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--metadata</span> <span class="op">&lt;</span>path_to_file<span class="op">&gt;</span>.csv</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="juno-assembly.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--metadata</span> <span class="op">&lt;</span>path_to_file<span class="op">&gt;</span>.csv</span></code></pre></div>
 <p>If you do not want to provide the genus yourself, you can simply do :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="juno-assembly.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="juno-assembly.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Optionally, deactivate the juno_assembly environment.</li>
+</ol>
+<pre><code>conda deactivate</code></pre>
 </div>
 <div id="output" class="section level3" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> Output</h3>
 <p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per result (<code>qc_raw_fastq</code>, <code>clean_fastq</code>, <code>qc_clean_fastq</code>, <code>de_novo_assembly</code>, <code>de_novo_assembly_filtered</code>, <code>qc_de_novo_assembly</code>, <code>identify_species</code>). Please refer to the manuals of every tool to interpret the results. .</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="juno-assembly.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="juno-assembly.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-for-this-pipeline" class="section level3" number="3.1.5">
@@ -369,7 +381,7 @@ text-align: justify}
 <p>If you get this message:</p>
 <pre><code>The genus &lt;your_provided_genus&gt; is not supported. </code></pre>
 <p>it means that although you provided the genus information, it is probably not supported by the tool <code>CheckM</code>. First check that you have no spelling mistakes in the genus name of your sample(s) or that you used the correct case (first letter capital and the rest on small letters). If you are sure that your spelling is correct, it may be that CheckM does not have the genus you supplied on its database. As the message says, if you are not sure on how to spell the genus name or which genus is accepted, please check the list of accepted genera by typing.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="juno-assembly.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--help-genera</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="juno-assembly.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_assembly.py <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--help-genera</span></span></code></pre></div>
 </div>
 <div id="other-problems-or-failing-rules-1" class="section level4" number="3.1.5.2">
 <h4><span class="header-section-number">3.1.5.2</span> Other problems or failing rules</h4>
