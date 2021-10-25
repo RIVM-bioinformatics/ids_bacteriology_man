@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-10-13" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,16 +328,16 @@ text-align: justify}
 <li><p>Open a terminal. (Applications&gt;terminal).</p></li>
 <li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="juno-typing.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="juno-typing.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>If you already had a juno_blast environment before you need to delete the old one by using the command:</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="juno-typing.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_typing</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="juno-typing.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_typing</span></code></pre></div>
 <p>If you had never created a juno_blast environment before, you can skip this step and go to step 4 instead.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a new environment for running Juno_blast by using the command:</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="juno-typing.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="juno-typing.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
 <p>This step will take some time (few minutes).</p>
 <p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a>.</p>
 </div>
@@ -347,16 +347,16 @@ text-align: justify}
 <li><p>Open a terminal. (Applications&gt;terminal).</p></li>
 <li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="juno-typing.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="juno-typing.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Activate juno_typing environment</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="juno-typing.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate juno_typing</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="juno-typing.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate juno_typing</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
 <p>This can be done in two ways. The first one is just providing an input directory:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="juno-typing.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="juno-typing.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
 <p>The second one is providing as well a metadata (csv) file. This file should contain at least one column with the ‘Sample’ name (name of the file but removing [_S##]_R1.fastq.gz), a column called ‘Genus’ and a column called ‘Species’. If a genus + species is provided for a sample, it will overwrite the species identification performed by this pipeline when choosing the scheme for MLST and the serotyper. Example metadata file:</p>
 <table>
 <thead>
@@ -383,7 +383,7 @@ text-align: justify}
 <h3><span class="header-section-number">4.1.5</span> Output</h3>
 <p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (<code>identify_species</code>, <code>mlst7</code> and <code>serotype</code>). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a <code>serotype/salmonella_serotype_multireport.csv</code>, <code>serotype/ecoli_serotype_multireport.csv</code> and <code>mlst7/mlst7_multireport.csv</code>. Although the results of <code>kmerfinder</code> are provided (in the subfolder <code>identify_species</code>), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of <code>kmerfinder</code> as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="juno-typing.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="juno-typing.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-for-this-pipeline-1" class="section level3" number="4.1.6">
