@@ -10,6 +10,7 @@ downloading-instructions
 what-to-expect
 general-output
 general-troubleshooting
+setting-up-conda-and-avoidingsolving-problems-when-installingactivating-a-pipeline-environment
 failure-when-installing-master-environment
 failure-to-make-a-sample-sheet-or-to-find-input-directory
 other-problems-or-failing-rules

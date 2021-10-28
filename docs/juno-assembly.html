@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-06-25" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,9 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I General troubleshooting</b></span></li>
 <li class="chapter" data-level="2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html"><i class="fa fa-check"></i><b>2</b> General Troubleshooting</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.1</b> Failure when installing master environment</a></li>
-<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.2</b> Failure to make a sample sheet or to find input directory</a></li>
-<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.3</b> Other problems or failing rules</a></li>
+<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#setting-up-conda-and-avoidingsolving-problems-when-installingactivating-a-pipeline-environment"><i class="fa fa-check"></i><b>2.1</b> Setting up conda and avoiding/solving problems when installing/activating a pipeline environment</a></li>
+<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.2</b> Failure when installing master environment</a></li>
+<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.3</b> Failure to make a sample sheet or to find input directory</a></li>
+<li class="chapter" data-level="2.4" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.4</b> Other problems or failing rules</a></li>
 </ul></li>
 <li class="part"><span><b>II Juno pipelines</b></span></li>
 <li class="chapter" data-level="3" data-path="juno-assembly.html"><a href="juno-assembly.html"><i class="fa fa-check"></i><b>3</b> Juno-assembly pipeline</a>
@@ -323,19 +324,19 @@ text-align: justify}
 </li>
 <li>Enter the folder of the pipeline using:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="juno-assembly.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_pipeline</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="juno-assembly.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_pipeline</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
 <p>If all your samples have the same genus, for instance, <em>Salmonella</em>, you run it like this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="juno-assembly.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--genus</span> Salmonella</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="juno-assembly.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--genus</span> Salmonella</span></code></pre></div>
 <ul>
 <li>Note that the genus should be ONE word. Do not put any species names!</li>
 </ul>
 <p>If your samples do not have all the same genus but they are present in the file <code>/data/BioGrid/NGSlab/BAC_in_house_NGS/In-house_NGS_selectie_2021.xlsx</code>, then do:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="juno-assembly.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="juno-assembly.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
 <p>If you do not manage to use any of these steps or you prefer to skip the step with CheckM (this step calculates genome completeness and gives a proxy of contamination) then do:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="juno-assembly.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--no-genus</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="juno-assembly.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--no-genus</span></span></code></pre></div>
 <p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
@@ -344,7 +345,7 @@ text-align: justify}
 <h3><span class="header-section-number">3.1.4</span> Output</h3>
 <p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per result (<code>qc_raw_fastq</code>, <code>clean_fastq</code>, <code>qc_clean_fastq</code>, <code>de_novo_assembly</code>, <code>de_novo_assembly_filtered</code>, <code>qc_de_novo_assembly</code>). Please refer to the manuals of every tool to interpret the results. .</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="juno-assembly.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="juno-assembly.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-for-this-pipeline" class="section level3" number="3.1.5">
@@ -361,7 +362,7 @@ text-align: justify}
   with a correct genus. If you are unsure what genera are accepted by the current
   version of the pipeline, please run the pipeline using the --help-genera command to see available genera.</code></pre>
 <p>it means that although you provided the genus information, it is probably not supported by the tool <code>CheckM</code>. First check that you have no spelling mistakes in the genus name of your sample(s) or that you used the correct case (first letter capital and the rest on small letters). If you are sure that your spelling is correct, it may be that CheckM does not have the genus you supplied on its database. As the message says, if you are not sure on how to spell the genus name or which genus is accepted, please check the list of accepted genera by typing.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="juno-assembly.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--help-genera</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="juno-assembly.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">--help-genera</span></span></code></pre></div>
 </div>
 <div id="other-problems-or-failing-rules-1" class="section level4" number="3.1.5.2">
 <h4><span class="header-section-number">3.1.5.2</span> Other problems or failing rules</h4>

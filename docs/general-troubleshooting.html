@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-06-25" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,9 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I General troubleshooting</b></span></li>
 <li class="chapter" data-level="2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html"><i class="fa fa-check"></i><b>2</b> General Troubleshooting</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.1</b> Failure when installing master environment</a></li>
-<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.2</b> Failure to make a sample sheet or to find input directory</a></li>
-<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.3</b> Other problems or failing rules</a></li>
+<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#setting-up-conda-and-avoidingsolving-problems-when-installingactivating-a-pipeline-environment"><i class="fa fa-check"></i><b>2.1</b> Setting up conda and avoiding/solving problems when installing/activating a pipeline environment</a></li>
+<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.2</b> Failure when installing master environment</a></li>
+<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.3</b> Failure to make a sample sheet or to find input directory</a></li>
+<li class="chapter" data-level="2.4" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.4</b> Other problems or failing rules</a></li>
 </ul></li>
 <li class="part"><span><b>II Juno pipelines</b></span></li>
 <li class="chapter" data-level="3" data-path="juno-assembly.html"><a href="juno-assembly.html"><i class="fa fa-check"></i><b>3</b> Juno-assembly pipeline</a>
@@ -274,14 +275,77 @@ body {
 text-align: justify}
 </style>
 <p><span style="color:red;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
-<div id="failure-when-installing-master-environment" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Failure when installing master environment</h2>
+<div id="setting-up-conda-and-avoidingsolving-problems-when-installingactivating-a-pipeline-environment" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Setting up conda and avoiding/solving problems when installing/activating a pipeline environment</h2>
+<p>If you are not used to <code>conda</code> environments yet, you may not have your <code>conda</code> software completely set-up. This can cause, among other things, that you get a message like this when you are trying to follow the instructions of one of our pipelines:</p>
+<pre><code>CommandNotFoundError: Your shell has not been properly configured to use &#39;conda activate&#39;.
+To initialize your shell, run
+
+    $ conda init &lt;SHELL_NAME&gt;</code></pre>
+<p>What you need to configure <code>conda</code> and fix this issue is:</p>
+<ol style="list-style-type: decimal">
+<li>Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).</li>
+</ol>
+<pre><code>cd /mnt/scratch_dir
+mkdir -p &lt;username&gt;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Then you can go inside the folder you just created and make extra folders where your <code>conda</code> environments will be stored:</li>
+</ol>
+<pre><code>cd /mnt/scratch_dir/&lt;username&gt;/
+mkdir -p conda
+mkdir -p conda/envs
+mkdir -p conda/pkgs</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>The next step is a bit more difficult. First you move back to your home directory, then you “initiate” <code>conda</code> and finally you give it the paths where you want it to make your environments (the folders you just made in scratchdir):</li>
+</ol>
+<pre><code>cd /home/&lt;username&gt;/
+conda init bash
+touch /home/&lt;username&gt;/.condarc</code></pre>
+<p>To add the paths you can do it from the command line using the <code>vim .condarc</code> editor if you are familiar with how <code>vim</code> works. If you don’t know how to do that, you can simply go to your home directory by going to the menu “Places” &gt; “Home” on the top left of your Linux desktop. You can see the some files/folders that you have on your desktop but the .condarc file might be hidden. To show it you can go to the menu (three parallel lines on the top right of the ‘Places’ window) and make sure to have marked the ‘Show Hidden Files’ option. You should now be able to see the .condarc file listed. Please open it by double-clicking the file name. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):</p>
+<pre><code>pkgs_dirs:
+  - /mnt/scratch_dir/&lt;username&gt;/conda/pkgs
+envs_dirs:
+  - /mnt/scratch_dir/&lt;username&gt;/conda/envs</code></pre>
+<p>Now you are ready to make your conda environments. If you already tried making some environments before following these configuration steps, you may get an error. Specifically, if you try to use <code>conda activate &lt;env_name&gt;</code> you may get this error message:</p>
+<pre><code>Could not find conda environment: &lt;env_name&gt;
+You can list all discoverable environments with `conda info --envs`.</code></pre>
+<p>Then you can try to re-install the pipeline environment following the pipeline instructions. If the problem persists, you probably already made a <code>conda</code> environment but in the wrong place. In that case we need to find the wrong one and delete it. For that please type:</p>
+<pre><code>conda env list</code></pre>
+<p>A list of your current environments will be displayed and will look something like this:</p>
+<pre><code># conda environments:
+#
+base                  *  /mnt/miniconda
+                         /home/&lt;username&gt;/.conda/envs/&lt;env_pipeline&gt;
+mamba                    /home/&lt;username&gt;/.conda/envs/mamba</code></pre>
+<p>DO NOT DO ANYTHING WITH THE <code>base</code> environment. However, you do need to delete the other environments that were made in the wrong folder (in this case the <code>/home/&lt;username&gt;/.conda</code> folder instead of the <code>/mnt/scratch_dir/&lt;username&gt;/conda</code> folder). You can do it by typing:</p>
+<pre><code>rm -rf /home/&lt;username&gt;/.conda</code></pre>
+<p><strong>Note: Replace <code>/home/&lt;username&gt;/.conda</code> by the conda folder where the environments were meade. MAKE SURE TO ONLY DELETE THE <code>.conda</code> FOLDER. YOU SHOULD NEVER DELETE YOUR WHOLE HOME DIRECTORY.</strong> Please ask a bioinformatician for help if you are unsure how to do this step.</p>
+<p>This step might take a while. After this step is done, you can try to install the pipeline again (making the new environments)according to the pipeline instructions. If everything went fine, the <code>conda activate &lt;pipeline_env&gt;</code> command should work fine. If you wonder how do you know whether this command worked or not, you can just look at your command line.</p>
+<p>Before activating an environment it should look like this:</p>
+<pre><code>(base) [hernanda@rivm-biohn-l05p rondzendingen]$</code></pre>
+<ul>
+<li>Look at the word <code>(base)</code> at the beginning of the line.</li>
+</ul>
+<p>After running the <code>conda activate &lt;pipeline_env&gt;</code> command it should look like this:</p>
+<pre><code>(&lt;pipeline_env&gt;) [hernanda@rivm-biohn-l05p rondzendingen]$ </code></pre>
+<ul>
+<li>The name of the environment you just activated should now appear at the beginning of the line <code>(&lt;pipeline_env&gt;)</code>.</li>
+</ul>
+<p>Also, when you do <code>conda env list</code> you should see the correct paths for your environments:</p>
+<pre><code># conda environments:
+#
+base                  *  /mnt/miniconda
+&lt;env_pipeline&gt;           /mnt/scratch_dir/&lt;username&gt;/.conda/envs/&lt;env_pipeline&gt;
+mamba                    /mnt/scratch_dir/&lt;username&gt;/.conda/envs/mamba</code></pre>
+</div>
+<div id="failure-when-installing-master-environment" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Failure when installing master environment</h2>
 <p>Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying <code>Solving environment...</code> might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing <code>Ctrl + C</code> and/or <code>Ctrl + Z</code> (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="general-troubleshooting.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority false</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="general-troubleshooting.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority false</span></code></pre></div>
 <p>Then try to run the pipeline and install the master environment again.</p>
 </div>
-<div id="failure-to-make-a-sample-sheet-or-to-find-input-directory" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Failure to make a sample sheet or to find input directory</h2>
+<div id="failure-to-make-a-sample-sheet-or-to-find-input-directory" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Failure to make a sample sheet or to find input directory</h2>
 <p>There are few reasons why this could happen:</p>
 <ul>
 <li><p>Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.</p></li>
@@ -290,8 +354,8 @@ text-align: justify}
 <li><p>Your input directory does nor contain the expected files, but they are instead in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.</p></li>
 </ul>
 </div>
-<div id="other-problems-or-failing-rules" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Other problems or failing rules</h2>
+<div id="other-problems-or-failing-rules" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Other problems or failing rules</h2>
 <p>The Juno pipelines are still in development which means that sometimes things fail. <strong>Before contacting me</strong> for help, please try these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analysis is finished or it just doesn’t go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.<br />

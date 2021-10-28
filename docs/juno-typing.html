@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-06-25" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -152,9 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I General troubleshooting</b></span></li>
 <li class="chapter" data-level="2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html"><i class="fa fa-check"></i><b>2</b> General Troubleshooting</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.1</b> Failure when installing master environment</a></li>
-<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.2</b> Failure to make a sample sheet or to find input directory</a></li>
-<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.3</b> Other problems or failing rules</a></li>
+<li class="chapter" data-level="2.1" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#setting-up-conda-and-avoidingsolving-problems-when-installingactivating-a-pipeline-environment"><i class="fa fa-check"></i><b>2.1</b> Setting up conda and avoiding/solving problems when installing/activating a pipeline environment</a></li>
+<li class="chapter" data-level="2.2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>2.2</b> Failure when installing master environment</a></li>
+<li class="chapter" data-level="2.3" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>2.3</b> Failure to make a sample sheet or to find input directory</a></li>
+<li class="chapter" data-level="2.4" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>2.4</b> Other problems or failing rules</a></li>
 </ul></li>
 <li class="part"><span><b>II Juno pipelines</b></span></li>
 <li class="chapter" data-level="3" data-path="juno-assembly.html"><a href="juno-assembly.html"><i class="fa fa-check"></i><b>3</b> Juno-assembly pipeline</a>
@@ -313,13 +314,13 @@ text-align: justify}
 <li><p>Open a terminal. (Applications&gt;terminal).</p></li>
 <li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="juno-typing.html#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="juno-typing.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="juno-typing.html#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="juno-typing.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno-typing</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
 <p>This can be done in two ways. The first one is just providing an input directory:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="juno-typing.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="juno-typing.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
 <p>The second one is providing as well a metadata (csv) file. This file should contain at least one column with the ‘Sample’ name (name of the file but removing [_S##]_R1.fastq.gz), a column called ‘Genus’ and a column called ‘Species’. If a genus + species is provided for a sample, it will overwrite the species identification performed by this pipeline when choosing the scheme for MLST and the serotyper. Example metadata file:</p>
 <table>
 <thead>
@@ -346,7 +347,7 @@ text-align: justify}
 <h3><span class="header-section-number">4.1.4</span> Output</h3>
 <p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per tool (<code>identify_species</code>, <code>mlst7</code> and <code>serotype</code>). Please refer to the manuals of every tool to interpret the results. Each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a <code>serotype/salmonella_serotype_multireport.csv</code>, <code>serotype/ecoli_serotype_multireport.csv</code> and <code>mlst7/mlst7_multireport.csv</code>. Although the results of <code>kmerfinder</code> are provided (in the subfolder <code>identify_species</code>), these have not been validated. They are used only to choose the right scheme for the MLST and the right serotyper (unless you provided metadata). If you would use the results of <code>kmerfinder</code> as a species identification tool, you do it under your own risk and you should be able to interpret correctly the results.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="juno-typing.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="juno-typing.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> juno-typing <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-for-this-pipeline-1" class="section level3" number="4.1.5">
