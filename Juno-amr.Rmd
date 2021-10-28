@@ -22,6 +22,10 @@ parameters <- list("pipeline_name" = "Juno-amr")
 
 ```
 
+```{r juno-amr-logo, out.width="70%", fig.align = 'center', echo = FALSE, eval = TRUE}
+knitr::include_graphics("figures/juno_logo/juno_light/juno_antimicrobial_lightbg.png")
+```
+
 The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results. 
 
 
@@ -45,7 +49,7 @@ Besides giving input it is also required to select a species. The `--species` pa
 
 The output of the pipeline will be collected in the folder ‘output’ within the working directory (the directory where the pipeline is active). If you want the output to be in a different location it is possible to do this with the `--output` parameter.  
 
-**Note** all samples in the directory should be the same species and the same file format.  
+**Note:** all samples in the directory should be the same species and the same file format.  
 
 ### Download the pipeline  
 
@@ -120,4 +124,4 @@ If the pipeline still fails after these two steps, please inform me about the pr
 * The path to your input directory
 * The path to where the pipeline is installed
 
-**Note** I cannot help you without this information, if information is missing there will be an delay in troubleshooting the problem.
+**Note:** I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem.

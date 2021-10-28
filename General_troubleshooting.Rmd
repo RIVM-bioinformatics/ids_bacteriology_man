@@ -136,7 +136,7 @@ There are few reasons why this could happen:
 
 - Your files might have the incorrect format and/or extension. Normally for all the files, standard names are accepted (for instance, .fastq.gz or .fastq for raw reads and .fasta for fasta files). Please make sure that your files have the correct and "classical" extensions.   
 
-- Your input directory does nor contain the expected files, but they are instead in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.  
+- Your input directory does contain the expected files, but they are placed in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.  
 
 ## Other problems or failing rules  
 

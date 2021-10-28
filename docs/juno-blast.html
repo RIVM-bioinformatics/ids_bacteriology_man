@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
-  <meta name="description" content="10 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <title>7 Juno_blast | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="7 Juno_blast | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:title" content="7 Juno_blast | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="twitter:title" content="7 Juno_blast | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="juno-deinterleave.html"/>
-<link rel="next" href="triumph-project.html"/>
+<link rel="prev" href="juno-annotation.html"/>
+<link rel="next" href="Myco-lofreq.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -281,260 +281,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="triumph_run" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Triumph: Run pipeline</h1>
+<div id="juno_blast" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Juno_blast</h1>
 <style>
 body {
 text-align: justify}
 </style>
-<p>This pipeline processes raw fastq files from microbiome data using the <a href="https://benjjneb.github.io/dada2/tutorial.html">Dada2</a> R-package. At the end, it also produces a report summary of the run.</p>
-<p>The pipeline has been tailor-made for the microbiome group at the RIVM, especifically for the Pienter project. It therefore expects the input that is normally generated there and might not be very flexible with sample names and metadata. I will try to explain what is expected from the input when necessary.</p>
-<div id="handbook-7" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Handbook</h2>
-<div id="requirements-and-preparation-8" class="section level3" number="10.1.1">
-<h3><span class="header-section-number">10.1.1</span> Requirements and preparation</h3>
+<p><img src="figures/juno_logo/juno_light/juno_blast_lightbg.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>The goal of this pipeline is to perform <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> in the input file(s) contained in the input directory. The input file should be a (multi) fasta file.</p>
+<div id="handbook-4" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Handbook</h2>
+<div id="requirements-and-preparation-5" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Requirements and preparation</h3>
 <p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
 <ul>
-<li><p>Make sure that your files have the right format: they must have a fastq extension (.fastq, .fq, .fastq.gz or .fq.gz) and have specific names. The names should be only numbers (they can be preceded by 1 letter). The numbers should give information about the run and the sample. For instance, in the file name L002-026_R1.fastq.gz, it means that you are processing the project “L”, the run # 2 and the sample “026”. Moreover, the suffix ’_R1’ or ’_R2’ designate forward or reverse reads. The MiSeq sequencer normally adds an extra suffix _0001 to the names of the fastq files L002-026_R1_0001.fastq.gz. These suffix is no problem for the pipeline to work.</p></li>
-<li><p>This pipeline needs a metadata (Excel file) should have a very specific format. For details about how to make the metadata file and what the codes mean, please consult with the microbiome team at the RIVM, especially <a href="mailto:susana.fuentes@rivm.nl">Susana Fuentes</a>. For the use of the pipeline, the main features that need to be added in this Excel file are:</p>
-<ul>
-<li>It should have the file extension .xlsx file (no .csv).</li>
-<li>It should have at least a sheet called “amplicon_assay”. The metadata file for the Triumph project includes many other sheets but this is the only one that is necessary. Leaving the sheet unnamed will not work even if the information inside the sheet is correctly formatted.<br />
-</li>
-<li>The amplicon_assay sheet should have at least three columns with the names: assay_sample, sample_indentifier and subject_identifier.</li>
-<li>The assay_sample column should contain the “root” of the sample names that are used to name the fastq files (see previous point). For instance, the assay_sample code for the file L002-026_R1_0001.fastq.gz is L002-026.<br />
-</li>
-<li>The sample_identifier column should contain the identity of the samples. Here specific codes are needed for the control samples. For instance, every non-control sample is named something like S12345678 where “S” denotes that it is a sample belonging to a patient and the numbers are a unique ID for that sample. In contrast, the control samples don’t have unique IDs. They are always named the same way in every run. The accepted codes for the control samples can be found in the Table 1.</li>
-<li>The subject_identifier column contains the same code than sample_identifier and it is used as a back-up. When the codes in sample_identifier are not found, they are looked for instead in the subject_identifier column.</li>
-</ul></li>
+<li>This pipeline requires one .fasta file per sample. Note that the input files MUST have the extension <code>.fasta</code>. An output file will be created inside the output directory with the sample name as prefix. That file should have your results for BLAST. Note that if your fasta file has more than one sequence, the output of all of them will be included in the result file.</li>
 </ul>
-<table>
-<caption><span id="tab:unnamed-chunk-53">TABLE 10.1: </span>Table 1. Accepted subject_identifier codes for metadata used in the Triumph project.</caption>
-<thead>
-<tr class="header">
-<th align="left">subject_identifier</th>
-<th align="left">subject_description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ZMCD</td>
-<td align="left">Zymo mock DNA</td>
-</tr>
-<tr class="even">
-<td align="left">ZMCB</td>
-<td align="left">Zymo mock Bacteria</td>
-</tr>
-<tr class="odd">
-<td align="left">AMCD</td>
-<td align="left">ATCC mock DNA</td>
-</tr>
-<tr class="even">
-<td align="left">UMD</td>
-<td align="left">UMCU low density mock DNA</td>
-</tr>
-<tr class="odd">
-<td align="left">MSS</td>
-<td align="left">Mixed (fecal/NP/OP…) sample control</td>
-</tr>
-<tr class="even">
-<td align="left">MSD</td>
-<td align="left">Mixed (fecal/NP/OP…) sample control DNA</td>
-</tr>
-<tr class="odd">
-<td align="left">BD</td>
-<td align="left">Blank from DNA extraction</td>
-</tr>
-<tr class="even">
-<td align="left">BP</td>
-<td align="left">Blank from PCR</td>
-</tr>
-<tr class="odd">
-<td align="left">LSIC</td>
-<td align="left">Library spike-in control</td>
-</tr>
-</tbody>
-</table>
 </div>
-<div id="download-the-pipeline-7" class="section level3" number="10.1.2">
-<h3><span class="header-section-number">10.1.2</span> Download the pipeline</h3>
+<div id="download-the-pipeline-4" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Download the pipeline</h3>
 <p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
-<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The triumph_microbiome_run pipeline can be found in <a href="https://gitl01-int-p.rivm.nl/hernanda/triumph_dada2_run_pipeline.git">this link</a>.</p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The Juno_blast pipeline can be found in <a href="https://github.com/RIVM-bioinformatics/Juno_blast">this link</a>.</p>
 </div>
-<div id="start-the-analysis" class="section level3" number="10.1.3">
-<h3><span class="header-section-number">10.1.3</span> Start the analysis</h3>
+<div id="install-conda-environment-1" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Install conda environment</h3>
+<p><strong>YOU NEED TO REINSTALL THE MASTER ENVIRONMENT EVERY TIME YOU UPDATE THE PIPELINE (everytime you download the code)</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>Open the terminal.</p></li>
-<li><p>Enter the folder of the pipeline:</p></li>
+<li><p>Open a terminal. (Applications&gt;terminal).</p></li>
+<li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="triumph-run.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_dada2_run_pipeline-master/</span></code></pre></div>
-<ul>
-<li>Exact name of downloaded folder might be slightly different depending on the version that was downloaded.</li>
-</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="juno-blast.html#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-2"><a href="juno-blast.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_blast</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Run the pipeline</li>
+<li>If you already had a juno_blast environment before you need to delete the old one by using the command:</li>
 </ol>
-<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="triumph-run.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">--metadata</span> /path/to/metadata.xlsx</span></code></pre></div>
-<p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="juno-blast.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_blast</span></code></pre></div>
+<p>If you had never created a juno_blast environment before, you can skip this step and go to step 4 instead.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a new environment for running Juno_blast by using the command:</li>
+</ol>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="juno-blast.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
+<p>This step will take some time (few minutes).</p>
+<p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a>.</p>
+</div>
+<div id="start-the-analysis.-basics-4" class="section level3" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Start the analysis. Basics</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open a terminal. (Applications&gt;terminal).</p></li>
+<li><p>Enter the folder of the pipeline using:</p></li>
+</ol>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="juno-blast.html#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-2"><a href="juno-blast.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_blast</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Activate juno_blast environment</li>
+</ol>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="juno-blast.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate juno_blast</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Run the pipeline by providing an input directory:</li>
+</ol>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="juno-blast.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_blast <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/</span></code></pre></div>
+<p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a>.</p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
-<div id="run-the-pipeline-changing-default-parameters" class="section level4" number="10.1.3.1">
-<h4><span class="header-section-number">10.1.3.1</span> Run the pipeline changing default parameters</h4>
-<p>Many of the parameters of the <code>dada2</code> package can be changed/used directly when calling the pipeline. If you want to do that, please refer to the help of the pipeline by using the command:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="triumph-run.html#cb62-1" aria-hidden="true" tabindex="-1"></a>bash triumph_run_pipeline.sh <span class="sc">-</span>h</span></code></pre></div>
-<p>It should print something like this:</p>
-<pre><code>Usage: bash triumph_run_pipeline.sh -i &lt;INPUT_DIR&gt; &lt;parameters&gt;
-
-Input:
-
-  -i, --input [DIR]   This is the folder containing the input (demultiplexed)
-                      fastq files. This should be a folder for one single 
-                      run (sub-folder name will be considered the run name! 
-                      so give it a meaningul one). Default is the current folder.
-
-  --metadata [xlsx file] (optional) This is an optional parameter in which you 
-                                    provide an xlsx file with the metadata. 
-                                    For the exact format of this file, you should 
-                                    refer to the microbiome group at the RIVM  
-                                    (Susana Fuentes). In summary, it should 
-                                    contain a sheet called &#39;amplicon_assay&#39;, with
-                                    an empty row at the top (it does not need to 
-                                    be empty, but that row will be ignored) and
-                                    then a table with at least two columns: 
-                                    assay_sample and sample_identifier. The 
-                                    assay_sample should have the names coinciding 
-                                    with the fastq files (so, like the sample 
-                                    sheet used for demultiplexing) and the 
-                                    sample_identifier should contain either the
-                                    sample code or one of the codes for 
-                                    recognizing control samples (ask the microbiome group).
-
-
-Main Output (automatically generated):
-  out/                              Contains detailed intermediate files.
-  out/log/                          Contains all log files.
-  out/run_reports/                  Folder containint the actual reports of the
-                                    run (html file) and the summary table of the 
-                                    run (used to generate that report) as a csv file.
-
-Parameters:
-  -o, --output         Output directory. Default is &#39;out/&#39;
-
-  --pienter-up        If this option is chosen, the default options for the 
-                      nasopharynx Triumph project will be used, which means 
-                      that truncLenF will be overwritten to 200 and the truncLenR 
-                      will be overwritten to 150.
-
-  -h, --help          Print this help document.
-
-  -sh, --snakemake-help Print the Snakemake this help document.
-
-  --clean (-y)        Removes output. (-y forces &#39;Yes&#39; on all prompts)
-
-  -u, --unlock        Removes the lock on the working directory. This happens when
-                      a run ends abruptly and prevents you from doing subsequent
-                      analyses.
-
-  -n, --dry_run       Shows the process but does not actually run the pipeline.
-
-Dada2 parameters that can be changed in this pipeline (if you decide to be able
-to directly modify another parameter when you call the pipeline, contact me 
-alejandra.hernandez.segura@rivm.nl) for more details:
-
-  --trunQ             Minimumn quality for truncating a read (part of dada2 
-                      filtering). Default: 2
-
-  --truncLenF         Truncating length for forward reads(part of dada2 
-                      filtering). Default: 220
-
-  --truncLenR         Truncating length for reverse reads(part of dada2 
-                      filtering). Default: 100
-
-  --maxN              Maximum number of N bases accepted per read (part of dada2 
-                      filtering). Default: 0. Note that the dada2 requires this 
-                      parameter to be 0.
-
-  --maxEE             Maximum Expected Errors (part of dada2 filtering). 
-                      Default: 2
-
-  --nomatchID               If this file is present, the reads will not be expected to
-                      match. The default is to expect filtered reads to have 
-                      matching IDs (part of dada2 filtering). Note that you should
-                      NOT put &#39;true&#39; or &#39;false&#39; after the flag. The flag itself 
-                      forces the condition to be FALSE
-
-  --nbases            Number of bases to use in order to learn the errors (part 
-                      of dada2 error learning). Default: 1e9
-
-  --minlen            Minimum length of the inferred SAVs. Any SAV shorter than 
-                      minlen will be discarded (part of dada2 inferring SAVs). 
-                      Default: 250
-
-  --maxlen            Maximum length of the inferred SAVs. Any SAV longer than 
-                      maxlen will be discarded (part of dada2 inferring SAVs). 
-                      Default: 256
-
-  --trainset                Path to trainset used to assign taxonomy to a phyloseq object. 
-                      Dada2 suggests a database in its tutorial. In the RIVM, we have
-                      a copy stored at: &#39;/mnt/db/triumph_taxonomy_db/silva_nr_v138_train_set.fa.gz&#39;
-                      and this path is the default.
-
-  --species_db        Path to database used to assign species name to a phyloseq 
-                      object. Dada2 suggests a database in its tutorial. In the RIVM, 
-                      we have a copy stored at: &#39;/mnt/db/triumph_taxonomy_db/silva_species_assignment_v138.fa.gz&#39;
-                      and this path is the default.
-
-  --no-randomize-errors, -nr If this flag is present, there will not be randomiza-
-                      tion while learning the errors (part of dada2 learn errors). 
-                      The default is to randomize. Note that you should
-                      NOT put &#39;true&#39; or &#39;false&#39; after the flag. The flag itself 
-                      forces the condition to be FALSE
-
-  --just-concatenate  If this flag is present, the pairs will be simply concatenated.
-                      (part of dada2 mergePairs). The default is set to FALSE. Note 
-                      that you should NOT put &#39;true&#39; or &#39;false&#39; after the flag. The 
-                      flag itself forces the condition to be FALSE.
-
-  --bimera_method     Choose a method to remove bimeras (according to dada2 
-                      removeBimeraDenovo). 
-
-  --minboot           The minimum bootstrap confidence for assigning a taxonomic level
-                      (part of dada2 assignTaxonomy). Default: 80
-
-  --no-tryrc          If TRUE, the reverse-complement of each sequences will be 
-                      used for classification if it is a better match to the 
-                      reference sequences than the forward sequence. The default is
-                      TRUE. Note that you should
-                      NOT put &#39;true&#39; or &#39;false&#39; after the flag. The flag itself 
-                      forces the condition to be FALSE
-
-  --species-allowed   This is the number of species that may be enlisted (part of 
-                      dada2 addSpecies). Default is 3.</code></pre>
 </div>
-<div id="running-when-metadata-is-not-available" class="section level4" number="10.1.3.2">
-<h4><span class="header-section-number">10.1.3.2</span> Running when metadata is not available</h4>
-<p>You can also run the pipeline without the metadata:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="triumph-run.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ </span></code></pre></div>
-<p>However, the report produced of such a run is not very informative and the code is not actively maintained. Therefore, the report might fail. The pipeline is not intended to be run without metadata so it will do its job but not efficiently.</p>
-</div>
-</div>
-<div id="output-7" class="section level3" number="10.1.4">
-<h3><span class="header-section-number">10.1.4</span> Output</h3>
-<p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. If you chose another site for the output, then you will find the same results there. This folder will contain all the results and logging files of your analysis. There will be one folder with all the <code>filtered_fastq files</code>, one with the <code>plots</code> and one with the <code>RDS_files</code> generated when using the <code>dada2</code> package (for instance, seqtab, merged files, etc.). These RDS files can be <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS">loaded into R</a> where you can explore them and further work with them. The last folder is the <code>run_reports</code> which will have the html report with statistics of the run and the “Project_SummaryTable.csv” with all the statistics in a table format. Please refer to the dada2 documentation to interpret your results.</p>
+<div id="output-4" class="section level3" number="7.1.5">
+<h3><span class="header-section-number">7.1.5</span> Output</h3>
+<p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="triumph-run.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
-<p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="juno-blast.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_blast <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_data<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
-<div id="troubleshooting-1" class="section level3" number="10.1.5">
-<h3><span class="header-section-number">10.1.5</span> Troubleshooting</h3>
+<div id="troubleshooting-for-this-pipeline-4" class="section level3" number="7.1.6">
+<h3><span class="header-section-number">7.1.6</span> Troubleshooting for this pipeline</h3>
 <p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
-<div id="other-problems-or-failing-rules-7" class="section level4" number="10.1.5.1">
-<h4><span class="header-section-number">10.1.5.1</span> Other problems or failing rules</h4>
-<p>The triumph_microbiome_run pipeline is still in development which means that sometimes the process can fail.</p>
+<div id="other-problems-or-failing-rules-5" class="section level4" number="7.1.6.1">
+<h4><span class="header-section-number">7.1.6.1</span> Other problems or failing rules</h4>
+<p>The Juno_blast pipeline is still in development which means that sometimes the process can fail.</p>
 <p>Before contacting for help, try these two steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
-<li><p><a href="https://gitl01-int-p.rivm.nl/hernanda/triumph_dada2_run_pipeline">Download</a> the pipeline again and start from the beginning of this <a href="triumph-run.html#triumph_run">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+<li><p><a href="https://github.com/RIVM-bioinformatics/Juno_blast">Download</a> the pipeline again and start from the beginning of this <a href="juno-blast.html#juno_blast">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
 </ol>
 <p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> with the following content:</p>
 <ul>
@@ -548,13 +374,17 @@ alejandra.hernandez.segura@rivm.nl) for more details:
 </div>
 </div>
 </div>
+
+
+
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="juno-deinterleave.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="triumph-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="juno-annotation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Myco-lofreq.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
