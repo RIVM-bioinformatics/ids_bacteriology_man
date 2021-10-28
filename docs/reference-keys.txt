@@ -8,12 +8,13 @@ fig:snakemake-error-fig
 tab:unnamed-chunk-53
 introduction-and-general-instructions
 general-instructions
+set-conda
 requirements-and-preparation
 downloading-instructions
 what-to-expect
 general-output
 general-troubleshooting
-set-conda
+problems-conda-activate
 failure-when-installing-master-environment
 failure-to-make-a-sample-sheet-or-to-find-input-directory
 other-problems-or-failing-rules

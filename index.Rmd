@@ -31,9 +31,51 @@ In this "book" you will find the handbooks of all the available pipelines for th
 
 ## General Instructions for all pipelines {#general-instructions}
 
+### Setting up conda {#set-conda}
+
+If you are not used to `conda` environments yet, you may not have your `conda` software completely set-up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.  
+
+To set up conda to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:  
+
+1. Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).
+
+```
+cd /mnt/scratch_dir
+mkdir -p <username>
+```
+
+2. Then you can go inside the folder you just created and make extra folders where your `conda` environments will be stored:
+
+```
+cd /mnt/scratch_dir/<username>/
+mkdir -p conda
+mkdir -p conda/envs
+mkdir -p conda/pkgs
+```
+
+3. The next step is a bit more difficult. First you move back to your home directory, then you "initiate" `conda` and finally you give it the paths where you want it to make your environments (the folders you just made in scratch_dir):
+
+```
+cd /home/<username>/
+conda init bash
+touch /home/<username>/.condarc
+```
+
+To add the paths you can do it from the command line using the `vim .condarc` editor if you are familiar with how `vim` works. If you don't know how to do that, you can simply go to your home directory by going to the menu "Places" > "Home" on the top left of your Linux desktop. You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the 'Places' window) and make sure to have marked the 'Show Hidden Files' option. You should now be able to see the .condarc file listed. Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):
+
+```
+pkgs_dirs:
+  - /mnt/scratch_dir/<username>/conda/pkgs
+envs_dirs:
+  - /mnt/scratch_dir/<username>/conda/envs
+channel_priority: disabled
+```
+
+Now you are ready to make your `conda` environments. 
+
 ### Requirements and preparation
 
-This handbook assumes that you are working at the “bioinformatica” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.  
+This handbook assumes that you are working at the “wettenschappelijke werkplek” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.  
 
 - Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (`/data/BioGrid/<my_folder>/<my_data>/`) or in the scratch_dir folder (`/mnt/scratch_dir/<my_folder>/<my_data>/`). I strongly advice you to place it in the `scratch_dir` folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.  
 

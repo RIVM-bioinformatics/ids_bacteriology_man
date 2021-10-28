@@ -68,6 +68,8 @@ See the [General Instructions for all pipelines](#general-instructions) first.
 
 **YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
 
+Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/RIVM-bioinformatics/Juno-typing).  
 
 
@@ -117,6 +119,8 @@ cd /mnt/scratch_dir/<my_folder>/Juno-typing
 ```{bash}
 conda activate juno_typing
 ```
+
+If you run in trouble please see the [troubleshooting section for conda activate](#problems-conda-activate).  
 
 4. Run the pipeline  
 

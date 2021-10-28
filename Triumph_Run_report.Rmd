@@ -71,6 +71,8 @@ knitr::kable(accepted_control_codes_triumph,
 
 **YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
 
+Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://gitl01-int-p.rivm.nl/hernanda/triumph_dada2_run_pipeline.git).  
 
 ### Start the analysis

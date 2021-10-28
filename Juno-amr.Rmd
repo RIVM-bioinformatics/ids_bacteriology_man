@@ -55,6 +55,8 @@ The output of the pipeline will be collected in the folder ‘output’ within t
 
 **YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
 
+Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group.  
 
 The `r parameters$pipeline_name` pipeline can be found [here](https://github.com/RIVM-bioinformatics/Juno-amr).  

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Setting up conda and avoiding/solving problems when installing/activating a pipeline environment | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="3 Setting up conda and avoiding/solving problems when installing/activating a pipeline environment | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Setting up conda and avoiding/solving problems when installing/activating a pipeline environment | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Setting up conda and avoiding/solving problems when installing/activating a pipeline environment | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  
+  
+  
+
+<meta name="author" content="Alejandra Hernandez-Segura" />
+
+
+<meta name="date" content="2021-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="general-troubleshooting.html"/>
+<link rel="next" href="juno-assembly.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="custom_style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a></li>  |
+<li class="toc-logo"><a href="./"><img src="figures/juno_logo/juno_light/juno_bgp_lightbg.png" width="100%"></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and General Instructions</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#general-instructions"><i class="fa fa-check"></i><b>1.1</b> General Instructions for all pipelines</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#requirements-and-preparation"><i class="fa fa-check"></i><b>1.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#downloading-instructions"><i class="fa fa-check"></i><b>1.1.2</b> Downloading pipelines</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1.3</b> What to expect while running a Juno pipeline</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#general-output"><i class="fa fa-check"></i><b>1.1.4</b> General output and log files for every pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I General troubleshooting</b></span></li>
+<li class="chapter" data-level="2" data-path="general-troubleshooting.html"><a href="general-troubleshooting.html"><i class="fa fa-check"></i><b>2</b> General Troubleshooting</a></li>
+<li class="chapter" data-level="3" data-path="set-conda.html"><a href="set-conda.html"><i class="fa fa-check"></i><b>3</b> Setting up conda and avoiding/solving problems when installing/activating a pipeline environment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="set-conda.html"><a href="set-conda.html#failure-when-installing-master-environment"><i class="fa fa-check"></i><b>3.1</b> Failure when installing master environment</a></li>
+<li class="chapter" data-level="3.2" data-path="set-conda.html"><a href="set-conda.html#failure-to-make-a-sample-sheet-or-to-find-input-directory"><i class="fa fa-check"></i><b>3.2</b> Failure to make a sample sheet or to find input directory</a></li>
+<li class="chapter" data-level="3.3" data-path="set-conda.html"><a href="set-conda.html#other-problems-or-failing-rules"><i class="fa fa-check"></i><b>3.3</b> Other problems or failing rules</a></li>
+</ul></li>
+<li class="part"><span><b>II Juno pipelines</b></span></li>
+<li class="chapter" data-level="4" data-path="juno-assembly.html"><a href="juno-assembly.html"><i class="fa fa-check"></i><b>4</b> Juno-assembly pipeline</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="juno-assembly.html"><a href="juno-assembly.html#handbook"><i class="fa fa-check"></i><b>4.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="juno-assembly.html"><a href="juno-assembly.html#requirements-and-preparation-1"><i class="fa fa-check"></i><b>4.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="juno-assembly.html"><a href="juno-assembly.html#download-the-pipeline"><i class="fa fa-check"></i><b>4.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="4.1.3" data-path="juno-assembly.html"><a href="juno-assembly.html#start-the-analysis.-basics"><i class="fa fa-check"></i><b>4.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="4.1.4" data-path="juno-assembly.html"><a href="juno-assembly.html#output"><i class="fa fa-check"></i><b>4.1.4</b> Output</a></li>
+<li class="chapter" data-level="4.1.5" data-path="juno-assembly.html"><a href="juno-assembly.html#troubleshooting-for-this-pipeline"><i class="fa fa-check"></i><b>4.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="juno-typing.html"><a href="juno-typing.html"><i class="fa fa-check"></i><b>5</b> Juno-typing</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="juno-typing.html"><a href="juno-typing.html#handbook-1"><i class="fa fa-check"></i><b>5.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="juno-typing.html"><a href="juno-typing.html#requirements-and-preparation-2"><i class="fa fa-check"></i><b>5.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="juno-typing.html"><a href="juno-typing.html#download-the-pipeline-1"><i class="fa fa-check"></i><b>5.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="5.1.3" data-path="juno-typing.html"><a href="juno-typing.html#install-conda-environment"><i class="fa fa-check"></i><b>5.1.3</b> Install conda environment</a></li>
+<li class="chapter" data-level="5.1.4" data-path="juno-typing.html"><a href="juno-typing.html#start-the-analysis.-basics-1"><i class="fa fa-check"></i><b>5.1.4</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="5.1.5" data-path="juno-typing.html"><a href="juno-typing.html#output-1"><i class="fa fa-check"></i><b>5.1.5</b> Output</a></li>
+<li class="chapter" data-level="5.1.6" data-path="juno-typing.html"><a href="juno-typing.html#troubleshooting-for-this-pipeline-1"><i class="fa fa-check"></i><b>5.1.6</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="juno-amr.html"><a href="juno-amr.html"><i class="fa fa-check"></i><b>6</b> Juno-amr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="juno-amr.html"><a href="juno-amr.html#handbook-2"><i class="fa fa-check"></i><b>6.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="juno-amr.html"><a href="juno-amr.html#requirements-and-preparation-3"><i class="fa fa-check"></i><b>6.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="juno-amr.html"><a href="juno-amr.html#download-the-pipeline-2"><i class="fa fa-check"></i><b>6.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="6.1.3" data-path="juno-amr.html"><a href="juno-amr.html#start-the-analysis.-basics-2"><i class="fa fa-check"></i><b>6.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="6.1.4" data-path="juno-amr.html"><a href="juno-amr.html#output-2"><i class="fa fa-check"></i><b>6.1.4</b> Output</a></li>
+<li class="chapter" data-level="6.1.5" data-path="juno-amr.html"><a href="juno-amr.html#troubleshooting-for-this-pipeline-2"><i class="fa fa-check"></i><b>6.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="juno-annotation.html"><a href="juno-annotation.html"><i class="fa fa-check"></i><b>7</b> Juno-annotation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="juno-annotation.html"><a href="juno-annotation.html#handbook-3"><i class="fa fa-check"></i><b>7.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="juno-annotation.html"><a href="juno-annotation.html#requirements-and-preparation-4"><i class="fa fa-check"></i><b>7.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="7.1.2" data-path="juno-annotation.html"><a href="juno-annotation.html#download-the-pipeline-3"><i class="fa fa-check"></i><b>7.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="7.1.3" data-path="juno-annotation.html"><a href="juno-annotation.html#start-the-analysis.-basics-3"><i class="fa fa-check"></i><b>7.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="7.1.4" data-path="juno-annotation.html"><a href="juno-annotation.html#output-3"><i class="fa fa-check"></i><b>7.1.4</b> Output</a></li>
+<li class="chapter" data-level="7.1.5" data-path="juno-annotation.html"><a href="juno-annotation.html#troubleshooting-for-this-pipeline-3"><i class="fa fa-check"></i><b>7.1.5</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="juno-blast.html"><a href="juno-blast.html"><i class="fa fa-check"></i><b>8</b> Juno_blast</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="juno-blast.html"><a href="juno-blast.html#handbook-4"><i class="fa fa-check"></i><b>8.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="juno-blast.html"><a href="juno-blast.html#requirements-and-preparation-5"><i class="fa fa-check"></i><b>8.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="8.1.2" data-path="juno-blast.html"><a href="juno-blast.html#download-the-pipeline-4"><i class="fa fa-check"></i><b>8.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="8.1.3" data-path="juno-blast.html"><a href="juno-blast.html#install-conda-environment-1"><i class="fa fa-check"></i><b>8.1.3</b> Install conda environment</a></li>
+<li class="chapter" data-level="8.1.4" data-path="juno-blast.html"><a href="juno-blast.html#start-the-analysis.-basics-4"><i class="fa fa-check"></i><b>8.1.4</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="8.1.5" data-path="juno-blast.html"><a href="juno-blast.html#output-4"><i class="fa fa-check"></i><b>8.1.5</b> Output</a></li>
+<li class="chapter" data-level="8.1.6" data-path="juno-blast.html"><a href="juno-blast.html#troubleshooting-for-this-pipeline-4"><i class="fa fa-check"></i><b>8.1.6</b> Troubleshooting for this pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Other scripts/pipelines</b></span></li>
+<li class="chapter" data-level="9" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html"><i class="fa fa-check"></i><b>9</b> Low frequency variants in <em>Mycobacterium</em> samples</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html#handbook-5"><i class="fa fa-check"></i><b>9.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html#requirements-and-preparation-6"><i class="fa fa-check"></i><b>9.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="9.1.2" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html#download-the-pipeline-5"><i class="fa fa-check"></i><b>9.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="9.1.3" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html#start-the-analysis.-basics-5"><i class="fa fa-check"></i><b>9.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="9.1.4" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html#output-5"><i class="fa fa-check"></i><b>9.1.4</b> Output</a></li>
+<li class="chapter" data-level="9.1.5" data-path="Myco-lofreq.html"><a href="Myco-lofreq.html#troubleshooting"><i class="fa fa-check"></i><b>9.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html"><i class="fa fa-check"></i><b>10</b> Juno-deinterleave</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#handbook-6"><i class="fa fa-check"></i><b>10.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#requirements-and-preparation-7"><i class="fa fa-check"></i><b>10.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#download-the-pipeline-6"><i class="fa fa-check"></i><b>10.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="10.1.3" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#start-the-analysis.-basics-6"><i class="fa fa-check"></i><b>10.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="10.1.4" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#output-6"><i class="fa fa-check"></i><b>10.1.4</b> Output</a></li>
+<li class="chapter" data-level="10.1.5" data-path="juno-deinterleave.html"><a href="juno-deinterleave.html#extra-options"><i class="fa fa-check"></i><b>10.1.5</b> Extra options</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Microbiome pipelines</b></span></li>
+<li class="chapter" data-level="11" data-path="triumph-run.html"><a href="triumph-run.html"><i class="fa fa-check"></i><b>11</b> Triumph: Run pipeline</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="triumph-run.html"><a href="triumph-run.html#handbook-7"><i class="fa fa-check"></i><b>11.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="triumph-run.html"><a href="triumph-run.html#requirements-and-preparation-8"><i class="fa fa-check"></i><b>11.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="11.1.2" data-path="triumph-run.html"><a href="triumph-run.html#download-the-pipeline-7"><i class="fa fa-check"></i><b>11.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="11.1.3" data-path="triumph-run.html"><a href="triumph-run.html#start-the-analysis"><i class="fa fa-check"></i><b>11.1.3</b> Start the analysis</a></li>
+<li class="chapter" data-level="11.1.4" data-path="triumph-run.html"><a href="triumph-run.html#output-7"><i class="fa fa-check"></i><b>11.1.4</b> Output</a></li>
+<li class="chapter" data-level="11.1.5" data-path="triumph-run.html"><a href="triumph-run.html#troubleshooting-1"><i class="fa fa-check"></i><b>11.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="triumph-project.html"><a href="triumph-project.html"><i class="fa fa-check"></i><b>12</b> Triumph: Project report</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="triumph-project.html"><a href="triumph-project.html#handbook-8"><i class="fa fa-check"></i><b>12.1</b> Handbook</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="triumph-project.html"><a href="triumph-project.html#requirements-and-preparation-9"><i class="fa fa-check"></i><b>12.1.1</b> Requirements and preparation</a></li>
+<li class="chapter" data-level="12.1.2" data-path="triumph-project.html"><a href="triumph-project.html#download-the-pipeline-8"><i class="fa fa-check"></i><b>12.1.2</b> Download the pipeline</a></li>
+<li class="chapter" data-level="12.1.3" data-path="triumph-project.html"><a href="triumph-project.html#start-the-analysis.-basics-7"><i class="fa fa-check"></i><b>12.1.3</b> Start the analysis. Basics</a></li>
+<li class="chapter" data-level="12.1.4" data-path="triumph-project.html"><a href="triumph-project.html#output-8"><i class="fa fa-check"></i><b>12.1.4</b> Output</a></li>
+<li class="chapter" data-level="12.1.5" data-path="triumph-project.html"><a href="triumph-project.html#troubleshooting-2"><i class="fa fa-check"></i><b>12.1.5</b> Troubleshooting</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li>IDS-bioinformatics team - Juno team</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="set-conda" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Setting up conda and avoiding/solving problems when installing/activating a pipeline environment</h1>
+<p>If you are not used to <code>conda</code> environments yet, you may not have your <code>conda</code> software completely set-up. This can cause, among other things, that you get a message like this when you are trying to follow the instructions of one of our pipelines:</p>
+<pre><code>CommandNotFoundError: Your shell has not been properly configured to use &#39;conda activate&#39;.
+To initialize your shell, run
+
+    $ conda init &lt;SHELL_NAME&gt;</code></pre>
+<p>What you need to configure <code>conda</code> and fix this issue is:</p>
+<ol style="list-style-type: decimal">
+<li>Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).</li>
+</ol>
+<pre><code>cd /mnt/scratch_dir
+mkdir -p &lt;username&gt;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Then you can go inside the folder you just created and make extra folders where your <code>conda</code> environments will be stored:</li>
+</ol>
+<pre><code>cd /mnt/scratch_dir/&lt;username&gt;/
+mkdir -p conda
+mkdir -p conda/envs
+mkdir -p conda/pkgs</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>The next step is a bit more difficult. First you move back to your home directory, then you “initiate” <code>conda</code> and finally you give it the paths where you want it to make your environments (the folders you just made in scratchdir):</li>
+</ol>
+<pre><code>cd /home/&lt;username&gt;/
+conda init bash
+touch /home/&lt;username&gt;/.condarc</code></pre>
+<p>To add the paths you can do it from the command line using the <code>vim .condarc</code> editor if you are familiar with how <code>vim</code> works. If you don’t know how to do that, you can simply go to your home directory by going to the menu “Places” &gt; “Home” on the top left of your Linux desktop. You can see the some files/folders that you have on your desktop but the .condarc file might be hidden. To show it you can go to the menu (three parallel lines on the top right of the ‘Places’ window) and make sure to have marked the ‘Show Hidden Files’ option. You should now be able to see the .condarc file listed. Please open it by double-clicking the file name. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):</p>
+<pre><code>pkgs_dirs:
+  - /mnt/scratch_dir/&lt;username&gt;/conda/pkgs
+envs_dirs:
+  - /mnt/scratch_dir/&lt;username&gt;/conda/envs
+channel_priority: disabled</code></pre>
+<p>Now you are ready to make your conda environments. If you already tried making some environments before following these configuration steps, you may get an error. Specifically, if you try to use <code>conda activate &lt;env_name&gt;</code> you may get this error message:</p>
+<pre><code>Could not find conda environment: &lt;env_name&gt;
+You can list all discoverable environments with `conda info --envs`.</code></pre>
+<p>Then you can try to re-install the pipeline environment following the pipeline instructions. If the problem persists, you probably already made a <code>conda</code> environment but in the wrong place. In that case we need to find the wrong one and delete it. For that please type:</p>
+<pre><code>conda env list</code></pre>
+<p>A list of your current environments will be displayed and will look something like this:</p>
+<pre><code># conda environments:
+#
+base                  *  /mnt/miniconda
+                         /home/&lt;username&gt;/.conda/envs/&lt;env_pipeline&gt;
+mamba                    /home/&lt;username&gt;/.conda/envs/mamba</code></pre>
+<p>DO NOT DO ANYTHING WITH THE <code>base</code> environment. However, you do need to delete the other environments that were made in the wrong folder (in this case the <code>/home/&lt;username&gt;/.conda</code> folder instead of the <code>/mnt/scratch_dir/&lt;username&gt;/conda</code> folder). You can do it by typing:</p>
+<pre><code>rm -rf /home/&lt;username&gt;/.conda</code></pre>
+<p><strong>Note: Replace <code>/home/&lt;username&gt;/.conda</code> by the conda folder where the environments were meade. MAKE SURE TO ONLY DELETE THE <code>.conda</code> FOLDER. YOU SHOULD NEVER DELETE YOUR WHOLE HOME DIRECTORY.</strong> Please ask a bioinformatician for help if you are unsure how to do this step.</p>
+<p>This step might take a while. After this step is done, you can try to install the pipeline again (making the new environments)according to the pipeline instructions. If everything went fine, the <code>conda activate &lt;pipeline_env&gt;</code> command should work fine. If you wonder how do you know whether this command worked or not, you can just look at your command line.</p>
+<p>Before activating an environment it should look like this:</p>
+<pre><code>(base) [hernanda@rivm-biohn-l05p rondzendingen]$</code></pre>
+<ul>
+<li>Look at the word <code>(base)</code> at the beginning of the line.</li>
+</ul>
+<p>After running the <code>conda activate &lt;pipeline_env&gt;</code> command it should look like this:</p>
+<pre><code>(&lt;pipeline_env&gt;) [hernanda@rivm-biohn-l05p rondzendingen]$ </code></pre>
+<ul>
+<li>The name of the environment you just activated should now appear at the beginning of the line <code>(&lt;pipeline_env&gt;)</code>.</li>
+</ul>
+<p>Also, when you do <code>conda env list</code> you should see the correct paths for your environments:</p>
+<pre><code># conda environments:
+#
+base                  *  /mnt/miniconda
+&lt;env_pipeline&gt;           /mnt/scratch_dir/&lt;username&gt;/.conda/envs/&lt;env_pipeline&gt;
+mamba                    /mnt/scratch_dir/&lt;username&gt;/.conda/envs/mamba</code></pre>
+<div id="failure-when-installing-master-environment" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Failure when installing master environment</h2>
+<p>Sometimes the installation does not work because of the settings of Linux. The installation always takes some minutes in which a message saying <code>Solving environment...</code> might appear on the screen. However, if this step takes too long (for instance 30 min or more) please abort the step by pressing <code>Ctrl + C</code> and/or <code>Ctrl + Z</code> (sometimes you need to press repeateadly). In such cases, please change the necessary settings with this command:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="set-conda.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority false</span></code></pre></div>
+<p>Then try to run the pipeline and install the master environment again.</p>
+</div>
+<div id="failure-to-make-a-sample-sheet-or-to-find-input-directory" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Failure to make a sample sheet or to find input directory</h2>
+<p>There are few reasons why this could happen:</p>
+<ul>
+<li><p>Your path (all the folders that lead to your input directory) contains spaces or unrecognized characters.</p></li>
+<li><p>You mis-spelled something in your path or gave the wrong path. Especially while working in Linux, it is common to forget a slash (“/”) at the beginning of a full path. For instance: <code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>.</p></li>
+<li><p>Your files might have the incorrect format and/or extension. Normally for all the files, standard names are accepted (for instance, .fastq.gz or .fastq for raw reads and .fasta for fasta files). Please make sure that your files have the correct and “classical” extensions.</p></li>
+<li><p>Your input directory does contain the expected files, but they are placed in sub-folders. Most pipelines expect all input files to be together in one folder instead of scattered in sub-folders. The only exception is when you use output from a previous pipeline (for instance, Juno-assembly) into another pipeline. Please collect all your samples together in one folder.</p></li>
+</ul>
+</div>
+<div id="other-problems-or-failing-rules" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Other problems or failing rules</h2>
+<p>The Juno pipelines are still in development which means that sometimes things fail. <strong>Before contacting me</strong> for help, please try these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analysis is finished or it just doesn’t go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.<br />
+</li>
+<li>Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.</li>
+<li>Collect your logging files and contact me. Please inform me about bugs/errors via <a href="mailto:alejandra.hernandez.segura@rivm.nl">e-mail</a> <strong>sending also your <code>log</code> files and the path where I can find your input directory and the pipeline</strong>. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.</li>
+</ol>
+
+</div>
+</div>
+
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="general-troubleshooting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="juno-assembly.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true,
+"info": true
+});
+});
+</script>
+
+</body>
+
+</html>

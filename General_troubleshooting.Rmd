@@ -13,9 +13,9 @@ text-align: justify}
 
 <span style="color:red;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible. 
 
-## Setting up conda and avoiding/solving problems when installing/activating a pipeline environment {#set-conda}
+## Solving problems when installing a pipeline or activating a pipeline environment {#problems-conda-activate}
 
-If you are not used to `conda` environments yet, you may not have your `conda` software completely set-up. This can cause, among other things, that you get a message like this when you are trying to follow the instructions of one of our pipelines:
+You should follow the [instructions to set up conda](#set-conda) before using any of our pipelines. If you did not do that, you may run into some issues and cryptic error messages. One of the most common error messages happens when you try to do `conda activate <pipeline_env>` where <pipeline_env>  is the name of the environment especific to the pipeline you are using. The error message will say something like this:
 
 ```
 CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
@@ -24,56 +24,20 @@ To initialize your shell, run
     $ conda init <SHELL_NAME>
 ```
 
-What you need to configure `conda` and fix this issue is:  
-
-1. Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).
-
-```
-cd /mnt/scratch_dir
-mkdir -p <username>
-```
-
-2. Then you can go inside the folder you just created and make extra folders where your `conda` environments will be stored:
-
-```
-cd /mnt/scratch_dir/<username>/
-mkdir -p conda
-mkdir -p conda/envs
-mkdir -p conda/pkgs
-```
-
-3. The next step is a bit more difficult. First you move back to your home directory, then you "initiate" `conda` and finally you give it the paths where you want it to make your environments (the folders you just made in scratchdir):
-
-```
-cd /home/<username>/
-conda init bash
-touch /home/<username>/.condarc
-```
-
-To add the paths you can do it from the command line using the `vim .condarc` editor if you are familiar with how `vim` works. If you don't know how to do that, you can simply go to your home directory by going to the menu "Places" > "Home" on the top left of your Linux desktop. You can see the some files/folders that you have on your desktop but the .condarc file might be hidden. To show it you can go to the menu (three parallel lines on the top right of the 'Places' window) and make sure to have marked the 'Show Hidden Files' option. You should now be able to see the .condarc file listed. Please open it by double-clicking the file name. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):
-
-```
-pkgs_dirs:
-  - /mnt/scratch_dir/<username>/conda/pkgs
-envs_dirs:
-  - /mnt/scratch_dir/<username>/conda/envs
-channel_priority: disabled
-```
-
-Now you are ready to make your conda environments. If you already tried making some environments before following these configuration steps, you may get an error. Specifically, if you try to use `conda activate <env_name>` you may get this error message:
+First you need to follow the [instructions to set up conda](#set-conda) and try installing the pipeline again. However, if you had already tried making some environments before following the conda configuration steps, your issue might not be solved. Specifically, when you try to use `conda activate <env_name>` you may get this error message now:
 
 ```
 Could not find conda environment: <env_name>
 You can list all discoverable environments with `conda info --envs`.
 ```
 
-Then you can try to re-install the pipeline environment following the pipeline instructions. If the problem persists, you probably already made a `conda` environment but in the wrong place. In that case we need to find the wrong one and delete it. For that please type:
+It is likely that you already made a `conda` environment but in the wrong place and `conda` cannot make the right one without you deleting the old (misplaced) one. In that case we need to find the wrong one and delete it. For that please type:
 
 ```
 conda env list
 ```
 
-A list of your current environments will be displayed and will look something like this:
+This command will show you a list of your current environments. The result in the command line will look something like this:
 
 ```
 # conda environments:
@@ -83,14 +47,18 @@ base                  *  /mnt/miniconda
 mamba                    /home/<username>/.conda/envs/mamba
 ```
 
-DO NOT DO ANYTHING WITH THE `base` environment. However, you do need to delete the other environments that were made in the wrong folder (in this case the `/home/<username>/.conda` folder instead of the `/mnt/scratch_dir/<username>/conda` folder). You can do it by typing:
+You probably can notice that the paths that are in the second column do not correspond to what you would expect as explained in the [instructions to set up conda](#set-conda). Instead, some of your environments were made in the `/home/<username>/.conda` folder and that is precisely the one we need to delete. 
+
+**Note:** DO NOT DO ANYTHING WITH THE `base` environment. That one is always placed in a different path.
+
+To delete the wrong environments just type:
 
 ```
 rm -rf /home/<username>/.conda
 ```
-**Note: Replace `/home/<username>/.conda` by the conda folder where the environments were meade. MAKE SURE TO ONLY DELETE THE `.conda` FOLDER. YOU SHOULD NEVER DELETE YOUR WHOLE HOME DIRECTORY.** Please ask a bioinformatician for help if you are unsure how to do this step.
+**Note: Replace `/home/<username>/.conda` by the conda folder where the environments were meade. MAKE SURE TO INCLUDE THE FULL PATH NAME UP TO THE `.conda` FOLDER, OTHERWISE YOU COULD BE DELETING ESSENTIAL FOLDERS IN YOUR DESKTOP.** Please ask a bioinformatician for help if you are unsure about how to do this step.
 
-This step might take a while. After this step is done, you can try to install the pipeline again (making the new environments)according to the pipeline instructions. If everything went fine, the `conda activate <pipeline_env>` command should work fine. If you wonder how do you know whether this command worked or not, you can just look at your command line.  
+This step might take a while because the folder usually contains many small files. However, after this step is done, you can try to install the pipeline again (making the new environments) according to the instructions of the pipeline you are using. If everything went fine, the `conda activate <pipeline_env>` command should work fine now. If you wonder how do you know whether this command worked or not, you can just look at your command line.  
 
 Before activating an environment it should look like this:
 
@@ -106,14 +74,14 @@ After running the `conda activate <pipeline_env>` command it should look like th
 ```
 * The name of the environment you just activated should now appear at the beginning of the line `(<pipeline_env>)`.  
 
-Also, when you do `conda env list` you should see the correct paths for your environments:
+Also, when you do `conda env list` you should see the correct paths (`/mnt/scratch_dir/<username>/conda`) for your environments:
 
 ```
 # conda environments:
 #
 base                  *  /mnt/miniconda
-<env_pipeline>           /mnt/scratch_dir/<username>/.conda/envs/<env_pipeline>
-mamba                    /mnt/scratch_dir/<username>/.conda/envs/mamba
+<env_pipeline>           /mnt/scratch_dir/<username>/conda/envs/<env_pipeline>
+mamba                    /mnt/scratch_dir/<username>/conda/envs/mamba
 ```
 
 ## Failure when installing master environment  

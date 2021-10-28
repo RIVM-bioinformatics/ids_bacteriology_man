@@ -36,6 +36,8 @@ See the [General Instructions for all pipelines](#general-instructions) first.
 
 **YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
 
+Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://gitl01-int-p.rivm.nl/hernanda/triumph_project_report).  
 
 ### Start the analysis. Basics
