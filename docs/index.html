@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-10-28" />
+<meta name="date" content="2021-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
 <p class="author"><em>Alejandra Hernandez-Segura</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-10-28</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-10-29</em></p>
 </div>
 <div id="introduction-and-general-instructions" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction and General Instructions</h1>
@@ -315,7 +315,21 @@ mkdir -p conda/pkgs</code></pre>
 <pre><code>cd /home/&lt;username&gt;/
 conda init bash
 touch /home/&lt;username&gt;/.condarc</code></pre>
-<p>To add the paths you can do it from the command line using the <code>vim .condarc</code> editor if you are familiar with how <code>vim</code> works. If you don’t know how to do that, you can simply go to your home directory by going to the menu “Places” &gt; “Home” on the top left of your Linux desktop. You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the ‘Places’ window) and make sure to have marked the ‘Show Hidden Files’ option. You should now be able to see the .condarc file listed. Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):</p>
+<p>To add the paths you can do it from the command line using the <code>vim .condarc</code> editor if you are familiar with how <code>vim</code> works. If you don’t know how to do that, you can simply go to your home directory by going to the menu “Places” &gt; “Home” on the top left of your Linux desktop.</p>
+<div class="figure">
+<img src="figures/find_home.png" alt="To find the home directory in RedHat Linux you need to go to the Menu 'Places' and then to 'Home'. There might be also a shortcut already on your desktop that you could follow as well."  />
+<p class="caption">
+(#fig:find_home_dir)To find the home directory in RedHat Linux you need to go to the Menu ‘Places’ and then to ‘Home’. There might be also a shortcut already on your desktop that you could follow as well.
+</p>
+</div>
+<p>You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the ‘Places’ window) and make sure to have marked the ‘Show Hidden Files’ option. You should now be able to see the .condarc file listed.</p>
+<div class="figure">
+<img src="figures/show_hidden_files.png" alt="To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)"  />
+<p class="caption">
+(#fig:show_condarc)To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)
+</p>
+</div>
+<p>Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):</p>
 <pre><code>pkgs_dirs:
   - /mnt/scratch_dir/&lt;username&gt;/conda/pkgs
 envs_dirs:

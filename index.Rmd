@@ -61,7 +61,19 @@ conda init bash
 touch /home/<username>/.condarc
 ```
 
-To add the paths you can do it from the command line using the `vim .condarc` editor if you are familiar with how `vim` works. If you don't know how to do that, you can simply go to your home directory by going to the menu "Places" > "Home" on the top left of your Linux desktop. You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the 'Places' window) and make sure to have marked the 'Show Hidden Files' option. You should now be able to see the .condarc file listed. Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):
+To add the paths you can do it from the command line using the `vim .condarc` editor if you are familiar with how `vim` works. If you don't know how to do that, you can simply go to your home directory by going to the menu "Places" > "Home" on the top left of your Linux desktop. 
+
+```{r find_home_dir, echo = FALSE, eval = TRUE, fig.cap = "To find the home directory in RedHat Linux you need to go to the Menu 'Places' and then to 'Home'. There might be also a shortcut already on your desktop that you could follow as well."}
+knitr::include_graphics('figures/find_home.png')
+```
+
+You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the 'Places' window) and make sure to have marked the 'Show Hidden Files' option. You should now be able to see the .condarc file listed. 
+
+```{r show_condarc, echo = FALSE, eval = TRUE, fig.cap = "To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)"}
+knitr::include_graphics('figures/show_hidden_files.png')
+```
+
+Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):
 
 ```
 pkgs_dirs:
