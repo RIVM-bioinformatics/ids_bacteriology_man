@@ -26,14 +26,23 @@ parameters <- list("pipeline_name" = "Juno-amr")
 knitr::include_graphics("figures/juno_logo/juno_light/juno_antimicrobial_lightbg.png")
 ```
 
-The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results. 
-
+The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate
+multiple Antiomicrobial Resistance related tools. The tools help identify: acquired
+antimicrobial resistance genes, chromosomal mutations mediating antimicrobial resistance,
+virulence factors, biocide, heat, acid, and metal resistance genes. The tool takes paired-end
+.fastq files or .fasta files as input. The input files can contain full or partial sequences. The
+output can be used in antimicrobial resistance analysis and is combined in summary files for
+a quick overview of the most important results.
 
 The tools that are being used in this pipeline are listed below:
 
 * **[ResFinder](https://bitbucket.org/genomicepidemiology/resfinder/src/master/)** is a tool that identifies acquired antimicrobial resistance genes based on databases. The tool is created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/).
 
 * **[PointFinder](https://bitbucket.org/genomicepidemiology/pointfinder/src/master/)** is a tool that searches for chromosomal point mutations that mediate resistance to select antimicrobial agents for some bacterial species. The tool is created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/).
+
+* **[VirulenceFinder](https://bitbucket.org/genomicepidemiology/virulencefinder/src/master/)** is a tool that identifies virulence genes in total or partial sequenced isolates of certain bacteria. The tool is created by [The Center For Genomic Epidemiology](https://www.genomicepidemiology.org/).
+
+* **[AMRFinderPlus](https://github.com/ncbi/amr)** is a tool that is used to identify acquired antimicrobial resistance genes and point mutations in protein or assembled nucleotide sequences. In addition to that the tool also identifies other classes of genes such as virulence factors, biocide, heat, acid, and metal resistance genes. The tools is created by [The National Center for Biotechnology Information](https://www.ncbi.nlm.nih.gov/)
 
 ## Handbook
 
@@ -72,6 +81,11 @@ cd /mnt/scratch_dir/<my_folder>/Juno-amr
 3. Run the pipeline  
 ```{}
 python3 juno-amr.py -s [species] -i [/mnt/scratch_dir/<my_folder>/fastq_or_fasta_file folder]
+```
+
+**Note:** To show a list of the available species for PointFinder use this command in the terminal.
+```{}
+python3 juno-amr.py -s -h
 ```
 
 Please read the section [What to expect while running a Juno pipeline](#what-to-expect).  
