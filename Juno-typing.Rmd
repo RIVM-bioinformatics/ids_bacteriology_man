@@ -85,15 +85,15 @@ Please follow the [instructions to download pipelines](#downloading-instructions
 cd /mnt/scratch_dir/<my_folder>/Juno-typing
 ```
 
-3. If you already had a juno_blast environment before you need to delete the old one by using the command:
+3. If you already had a juno_typing environment before you need to delete the old one by using the command:
 
 ```{bash}
 conda env remove -n juno_typing
 ```
 
-If you had never created a juno_blast environment before, you can skip this step and go to step 4 instead.
+If you had never created a juno_typing environment before, you can skip this step and go to step 4 instead.
 
-4. Create a new environment for running Juno_blast by using the command:
+4. Create a new environment for running Juno_typing by using the command:
 
 ```{bash}
 conda env create -f envs/master_env.yaml

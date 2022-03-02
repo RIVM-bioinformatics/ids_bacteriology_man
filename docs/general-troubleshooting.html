@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2022-03-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -312,6 +312,7 @@ mamba                    /home/&lt;username&gt;/.conda/envs/mamba</code></pre>
 <p>To delete the wrong environments just type:</p>
 <pre><code>rm -rf /home/&lt;username&gt;/.conda</code></pre>
 <p><strong>Note: Replace <code>/home/&lt;username&gt;/.conda</code> by the conda folder where the environments were meade. MAKE SURE TO INCLUDE THE FULL PATH NAME UP TO THE <code>.conda</code> FOLDER, OTHERWISE YOU COULD BE DELETING ESSENTIAL FOLDERS IN YOUR DESKTOP.</strong> Please ask a bioinformatician for help if you are unsure about how to do this step.</p>
+<p><strong>Note2: You must realize that this will delete ALL your previous conda environments (also the ones unrelated to the Juno pipelines.</strong></p>
 <p>This step might take a while because the folder usually contains many small files. However, after this step is done, you can try to install the pipeline again (making the new environments) according to the instructions of the pipeline you are using. If everything went fine, the <code>conda activate &lt;pipeline_env&gt;</code> command should work fine now. If you wonder how do you know whether this command worked or not, you can just look at your command line.</p>
 <p>Before activating an environment it should look like this:</p>
 <pre><code>(base) [hernanda@rivm-biohn-l05p rondzendingen]$</code></pre>

@@ -58,6 +58,8 @@ rm -rf /home/<username>/.conda
 ```
 **Note: Replace `/home/<username>/.conda` by the conda folder where the environments were meade. MAKE SURE TO INCLUDE THE FULL PATH NAME UP TO THE `.conda` FOLDER, OTHERWISE YOU COULD BE DELETING ESSENTIAL FOLDERS IN YOUR DESKTOP.** Please ask a bioinformatician for help if you are unsure about how to do this step.
 
+**Note2: You must realize that this will delete ALL your previous conda environments (also the ones unrelated to the Juno pipelines.**  
+
 This step might take a while because the folder usually contains many small files. However, after this step is done, you can try to install the pipeline again (making the new environments) according to the instructions of the pipeline you are using. If everything went fine, the `conda activate <pipeline_env>` command should work fine now. If you wonder how do you know whether this command worked or not, you can just look at your command line.  
 
 Before activating an environment it should look like this:
