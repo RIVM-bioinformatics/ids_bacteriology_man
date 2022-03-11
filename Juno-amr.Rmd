@@ -26,7 +26,7 @@ parameters <- list("pipeline_name" = "Juno-amr")
 knitr::include_graphics("figures/juno_logo/juno_light/juno_antimicrobial_lightbg.png")
 ```
 
-The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files or .fasta files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results. 
+The Juno Antimicrobial Resistance(Juno AMR) pipeline is a pipeline that is used to automate multiple tools that help identify acquired genes and find chromosomal mutations mediating antimicrobial resistance in DNA sequences of bacteria. The tool takes paired-end .fastq files as input. The input files can contain full or partial sequences. The output can be used in antimicrobial resistance analysis and is combined in four summary files for a quick overview of the most important results. 
 
 
 The tools that are being used in this pipeline are listed below:
@@ -41,9 +41,9 @@ The tools that are being used in this pipeline are listed below:
 
 See the [General Instructions for all pipelines](#general-instructions) first.  
 
-To run this pipeline the type of species and a folder with .fasta or paired .fastq files is required.  
+To run this pipeline the type of species and a folder with paired .fastq files is required.  
 
-Place all your samples in one folder, no subfolders, all file types should be the same format. Option is to choose between .fasta and .fastq, but those cannot be combined.  
+Place all your samples in one folder, no subfolders, all file types should be the same format. 
 
 Besides giving input it is also required to select a species. The `--species` parameter is required for PointFinder in order to find the chromosomal mutations. If you don’t know the species you can fill this parameter with ‘other’. This way the pipeline will run ResFinder without running PointFinder.  
 
@@ -73,7 +73,7 @@ cd /mnt/scratch_dir/<my_folder>/Juno-amr
 
 3. Run the pipeline  
 ```{}
-python3 juno-amr.py -s [species] -i [/mnt/scratch_dir/<my_folder>/fastq_or_fasta_file folder]
+python3 juno-amr.py -s [species] -i [/mnt/scratch_dir/<my_folder>/fastq_file folder]
 ```
 
 Please read the section [What to expect while running a Juno pipeline](#what-to-expect).  
