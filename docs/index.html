@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2022-03-02" />
+<meta name="date" content="2022-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,18 +285,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
 <p class="author"><em>Alejandra Hernandez-Segura</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2022-03-02</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2022-05-10</em></p>
 </div>
 <div id="introduction-and-general-instructions" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction and General Instructions</h1>
-<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact <a href="alejandra.hernandez.segura@rivm.nl">Alejandra Hernandez</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
+<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact <a href="mailto:roxanne.wolthuis@rivm.nl">Roxanne Wolthuis</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
 <p><span style="color:#d64541;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
 <div id="general-instructions" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> General Instructions for all pipelines</h2>
 <div id="set-conda" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Setting up conda</h3>
-<p>If you are not used to <code>conda</code> environments yet, you may not have your <code>conda</code> software completely set-up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.</p>
-<p>To set up conda to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:</p>
+<p>If you are not used to <code>conda</code> environments yet, you may not have your <code>conda</code> software completely set-up. At the RIVM <code>conda</code> is always pre-installed in our Linux environment (Wettenschappelijke werkplek) but not always set up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.</p>
+<p>To set up <code>conda</code> to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).</li>
 </ol>
@@ -342,7 +342,7 @@ channel_priority: disabled</code></pre>
 <p>This handbook assumes that you are working at the “wettenschappelijke werkplek” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.</p>
 <ul>
 <li><p>Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (<code>/data/BioGrid/&lt;my_folder&gt;/&lt;my_data&gt;/</code>) or in the scratch_dir folder (<code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>). I strongly advice you to place it in the <code>scratch_dir</code> folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.</p></li>
-<li><p>Make sure that the folder that you use as input (it contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. <strong>IMPORTANT:</strong> Your folder name and the PATH to it (so all the folders and subfolders that you have to enter to reach your folder) should NOT CONTAIN SPACES!!!!</p></li>
+<li><p>Make sure that the folder that you use as input (the one that contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. <strong>IMPORTANT:</strong> Your folder name and the names of every folder and subfolder in its PATH (so all the folders and subfolders that you have to enter to reach your input folder) should NOT CONTAIN SPACES!!!!</p></li>
 <li><p>Make sure that your files have the right format: if they are fastq files, they should have the extension (<code>.fastq</code>, <code>.fq</code>, <code>.fastq.gz</code> or <code>.fq.gz</code>). If they are fasta files, they should have the extension <code>.fasta</code>. Any other requirements in the input files will be specified in the section of that specific pipeline.</p></li>
 </ul>
 </div>
@@ -414,7 +414,7 @@ FIGURE 1.4: Pipelines can be downloaded directly from their GitLab website.
 </div>
 <div id="what-to-expect" class="section level3" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> What to expect while running a Juno pipeline</h3>
-<p>The Juno pipelines usually run automated. Minimum input of the user is required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database (<a href="#installation-fig">Figure 1.5</a> step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter (<a href="#installation-fig">Figure 1.5</a> step 2).</p>
+<p>The Juno pipelines usually run easily with minimum input of the user required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database (<a href="#installation-fig">Figure 1.5</a> step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter (<a href="#installation-fig">Figure 1.5</a> step 2).</p>
 <p>The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box (<a href="#installation-fig">Figure 1.5</a> step 3) or when it keeps printing lines inside the terminal. If the installation takes longer than 1 hour check the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>.</p>
 <div class="figure"><span id="fig:installation-fig"></span>
 <img src="figures/show_installation.png" alt="Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3)."  />
@@ -437,10 +437,11 @@ FIGURE 1.7: Screenshot of the Juno AMR pipeline in the terminal. The pipeline fa
 </p>
 </div>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max. With sequencing data, the storage space can get full quite fast.</p>
+<p><strong>Note2:</strong> In this manual, a couple of non-Juno pipelines are included. They work mostly in the same way but the differences are in the design and maintenance (the Juno pipelines are named like that and they are very actively maintained, the others less so).</p>
 </div>
 <div id="general-output" class="section level3" number="1.1.5">
 <h3><span class="header-section-number">1.1.5</span> General output and log files for every pipeline</h3>
-<p>Every pipeline (with few exceptions of the very short ones like the deinterleave one) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).</p>
+<p>Every pipeline (with few exceptions) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).</p>
 <ul>
 <li><p>The <code>log/</code> subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.</p></li>
 <li><p>The <code>log/cluster/</code> or <code>log/drmaa/</code> subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.</p></li>

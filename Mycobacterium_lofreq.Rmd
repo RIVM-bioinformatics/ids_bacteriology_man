@@ -3,7 +3,9 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Low frequency variants in _Mycobacterium_ samples {#Myco-lofreq}
+# Low frequency variants in _Mycobacterium_ samples {#Myco-lofreq}  
+
+**CURRENTLY NOT MAINTAINED OR SUPPORTED**
 
 <style>
 body {
@@ -101,18 +103,4 @@ Another very important output from the pipeline are the logging files and audit 
 
 #### Other problems or failing rules  
 
-The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail.
-
-Before contacting for help, try these two steps:
-
-1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
-
-2. [Download](https://github.com/AleSR13/Myco_lofreq) the pipeline again and start from the beginning of this [handbook](#Myco-lofreq). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
-
-If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) with the following content:
-
-* The log and error files that can be found in the output folder
-* The path to your input directory
-* The path to where the pipeline is installed
-
-**Note:** I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem. 
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail. This pipeline is not being maintained anymore so at the moment we cannot provide support for it.  

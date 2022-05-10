@@ -24,7 +24,7 @@ To initialize your shell, run
     $ conda init <SHELL_NAME>
 ```
 
-First you need to follow the [instructions to set up conda](#set-conda) and try installing the pipeline again. However, if you had already tried making some environments before following the conda configuration steps, your issue might not be solved. Specifically, when you try to use `conda activate <env_name>` you may get this error message now:
+First you need to **follow the [instructions to set up conda](#set-conda) and try installing the pipeline again**. However, if you had already tried making some environments before following the `conda` configuration steps, your issue might not be solved. Specifically, when you try to use `conda activate <env_name>` you may get this error message now:
 
 ```
 Could not find conda environment: <env_name>
@@ -114,4 +114,4 @@ The Juno pipelines are still in development which means that sometimes things fa
 
 1. Re-run the pipeline again and see if it goes further. If it does, please keep re-running the pipeline until your analysis is finished or it just doesn't go further. Even if you are able to finish your analysis, just send me an email afterwards (see step 3) so I can check what happened.    
 2. Download the pipeline again and start from the beginning of this handbook. Sometimes the issue has been resolved in newer versions of the pipeline.
-3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  
+3. Collect your logging files and contact me. Please inform me about bugs/errors via [e-mail](mailto:roxanne.wolthuis@rivm.nl) **sending also your `log` files and the path where I can find your input directory and the pipeline**. No screenshots are necessary. Note that if you do not send this information, I will not be able to help you and your and my work will be delayed.  

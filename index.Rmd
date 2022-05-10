@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # Introduction and General Instructions
 
-In this "book" you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact [Alejandra Hernandez](alejandra.hernandez.segura@rivm.nl) if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first). 
+In this "book" you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact [Roxanne Wolthuis](mailto:roxanne.wolthuis@rivm.nl) if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first). 
 
 <span style="color:#d64541;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.  
 
@@ -33,9 +33,9 @@ In this "book" you will find the handbooks of all the available pipelines for th
 
 ### Setting up conda {#set-conda}
 
-If you are not used to `conda` environments yet, you may not have your `conda` software completely set-up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.  
+If you are not used to `conda` environments yet, you may not have your `conda` software completely set-up. At the RIVM `conda` is always pre-installed in our Linux environment (Wettenschappelijke werkplek) but not always set up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.  
 
-To set up conda to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:  
+To set up `conda` to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:  
 
 1. Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).
 
@@ -91,7 +91,7 @@ This handbook assumes that you are working at the “wettenschappelijke werkplek
 
 - Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (`/data/BioGrid/<my_folder>/<my_data>/`) or in the scratch_dir folder (`/mnt/scratch_dir/<my_folder>/<my_data>/`). I strongly advice you to place it in the `scratch_dir` folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.  
 
-- Make sure that the folder that you use as input (it contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. **IMPORTANT:** Your folder name and the PATH to it (so all the folders and subfolders that you have to enter to reach your folder) should NOT CONTAIN SPACES!!!!  
+- Make sure that the folder that you use as input (the one that contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. **IMPORTANT:** Your folder name and the names of every folder and subfolder in its PATH (so all the folders and subfolders that you have to enter to reach your input folder) should NOT CONTAIN SPACES!!!!  
 
 - Make sure that your files have the right format: if they are fastq files, they should have the extension (`.fastq`, `.fq`, `.fastq.gz` or `.fq.gz`). If they are fasta files, they should have the extension `.fasta`. Any other requirements in the input files will be specified in the section of that specific pipeline.  
 
@@ -157,7 +157,7 @@ You will be asked to give your credentials (username + password) and then the (a
 
 ### What to expect while running a Juno pipeline {#what-to-expect}  
 
-The Juno pipelines usually run automated. Minimum input of the user is required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database ([Figure 1.5](#installation-fig) step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter ([Figure 1.5](#installation-fig) step 2).
+The Juno pipelines usually run easily with minimum input of the user required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database ([Figure 1.5](#installation-fig) step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter ([Figure 1.5](#installation-fig) step 2).
 
 The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box ([Figure 1.5](#installation-fig) step 3) or when it keeps printing lines inside the terminal. If the installation takes longer than 1 hour check the section [General Troubleshooting](#general-troubleshooting).
 
@@ -179,9 +179,11 @@ knitr::include_graphics("figures/screenshot_snakemake_error.png")
 
 **Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max. With sequencing data, the storage space can get full quite fast.
 
+**Note2:** In this manual, a couple of non-Juno pipelines are included. They work mostly in the same way but the differences are in the design and maintenance (the Juno pipelines are named like that and they are very actively maintained, the others less so).  
+
 ### General output and log files for every pipeline {#general-output}  
 
-Every pipeline (with few exceptions of the very short ones like the deinterleave one) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).  
+Every pipeline (with few exceptions) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).  
 
 - The `log/` subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.
 

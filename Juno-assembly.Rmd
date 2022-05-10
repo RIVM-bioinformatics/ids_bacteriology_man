@@ -58,7 +58,7 @@ See the [General Instructions for all pipelines](#general-instructions) first.
 
 **YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
 
-Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+**Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! **. MANY PEOPLE CONTACT US WITHOUT HAVING DONE THIS STEP FIRST, SO MAKE SURE YOU CLICK IN THE INSTRUCTIONS TO SET UP CONDA AND FOLLOW THEM. If you have updated from Juno1.0 to 2.0, you have to do it! 
 
 Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in this link: [Juno-assembly pipeline](https://github.com/AleSR13/Juno_pipeline).  
 
@@ -79,7 +79,7 @@ bash install_juno_assembly.sh
 cd /mnt/scratch_dir/<my_folder>/Juno_pipeline
 ```
 
-MAKE SURE YOU HAVE RUN THE INSTALLATION INSTRUCTIONS BEFORE USING THE PIPELINE FOR THE FIRST TIME OR AFTER AN UPDATE!
+**MAKE SURE YOU HAVE RUN THE INSTALLATION INSTRUCTIONS BEFORE USING THE PIPELINE FOR THE FIRST TIME OR AFTER AN UPDATE!**
 
 3. Activate the 'environment' that has the necessary software for the pipeline to work:
 ```

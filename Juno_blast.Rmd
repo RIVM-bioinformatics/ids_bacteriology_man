@@ -133,7 +133,7 @@ Before contacting for help, try these two steps:
 
 2. [Download](https://github.com/RIVM-bioinformatics/Juno_blast) the pipeline again and start from the beginning of this [handbook](#juno_blast). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
 
-If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:alejandra.hernandez.segura@rivm.nl) with the following content:
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:roxanne.wolthuis@rivm.nl) with the following content:
 
 * The log and error files that can be found in the output folder
 * The path to your input directory
