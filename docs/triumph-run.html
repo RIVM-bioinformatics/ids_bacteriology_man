@@ -311,7 +311,7 @@ text-align: justify}
 </ul></li>
 </ul>
 <table>
-<caption><span id="tab:unnamed-chunk-53">TABLE 10.1: </span>Table 1. Accepted subject_identifier codes for metadata used in the Triumph project.</caption>
+<caption><span id="tab:unnamed-chunk-54">TABLE 10.1: </span>Table 1. Accepted subject_identifier codes for metadata used in the Triumph project.</caption>
 <thead>
 <tr class="header">
 <th align="left">subject_identifier</th>
@@ -370,21 +370,21 @@ text-align: justify}
 <li><p>Open the terminal.</p></li>
 <li><p>Enter the folder of the pipeline:</p></li>
 </ol>
-<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="triumph-run.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_dada2_run_pipeline-master/</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="triumph-run.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_dada2_run_pipeline-master/</span></code></pre></div>
 <ul>
 <li>Exact name of downloaded folder might be slightly different depending on the version that was downloaded.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>Run the pipeline</li>
 </ol>
-<div class="sourceCode" id="cb62"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="triumph-run.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">--metadata</span> /path/to/metadata.xlsx</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="triumph-run.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">--metadata</span> /path/to/metadata.xlsx</span></code></pre></div>
 <p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
 <div id="run-the-pipeline-changing-default-parameters" class="section level4" number="10.1.3.1">
 <h4><span class="header-section-number">10.1.3.1</span> Run the pipeline changing default parameters</h4>
 <p>Many of the parameters of the <code>dada2</code> package can be changed/used directly when calling the pipeline. If you want to do that, please refer to the help of the pipeline by using the command:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="triumph-run.html#cb63-1" aria-hidden="true" tabindex="-1"></a>bash triumph_run_pipeline.sh <span class="sc">-</span>h</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="triumph-run.html#cb64-1" aria-hidden="true" tabindex="-1"></a>bash triumph_run_pipeline.sh <span class="sc">-</span>h</span></code></pre></div>
 <p>It should print something like this:</p>
 <pre><code>Usage: bash triumph_run_pipeline.sh -i &lt;INPUT_DIR&gt; &lt;parameters&gt;
 
@@ -517,7 +517,7 @@ alejandra.hernandez.segura@rivm.nl) for more details:
 <div id="running-when-metadata-is-not-available" class="section level4" number="10.1.3.2">
 <h4><span class="header-section-number">10.1.3.2</span> Running when metadata is not available</h4>
 <p>You can also run the pipeline without the metadata:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="triumph-run.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ </span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="triumph-run.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ </span></code></pre></div>
 <p>However, the report produced of such a run is not very informative and the code is not actively maintained. Therefore, the report might fail. The pipeline is not intended to be run without metadata so it will do its job but not efficiently.</p>
 </div>
 </div>
@@ -525,7 +525,7 @@ alejandra.hernandez.segura@rivm.nl) for more details:
 <h3><span class="header-section-number">10.1.4</span> Output</h3>
 <p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. If you chose another site for the output, then you will find the same results there. This folder will contain all the results and logging files of your analysis. There will be one folder with all the <code>filtered_fastq files</code>, one with the <code>plots</code> and one with the <code>RDS_files</code> generated when using the <code>dada2</code> package (for instance, seqtab, merged files, etc.). These RDS files can be <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS">loaded into R</a> where you can explore them and further work with them. The last folder is the <code>run_reports</code> which will have the html report with statistics of the run and the “Project_SummaryTable.csv” with all the statistics in a table format. Please refer to the dada2 documentation to interpret your results.</p>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="triumph-run.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="triumph-run.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
 <p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
 <div id="troubleshooting-1" class="section level3" number="10.1.5">

@@ -1,0 +1,162 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Juno_cgMLST {#juno_cgmlst}
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup_juno, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+```
+
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "Juno-cgMLST")
+
+```
+
+The goal of this pipeline is to perform cgMLST on bacterial genomes. As input, it requires an assembly for each sample you want to analyze in the form of a single ‘.fasta’ file. Importantly, this pipeline works directly on output generated from the [Juno-assembly](#juno-assembly) pipeline. 
+
+The Juno-cgMLST uses [ChewBBACA](https://github.com/B-UMMI/chewBBACA/) to find the cgMLST profile of the given genomes. Besides, the result table with the allele numbers is translated to a table with (sha1) hashes so that they can be shared and compared even if each result used a different database. **Note:** We highly encourage to use the hashes for the analysis instead of the allele numbers. This will make your data more reproducible in case there was an update in the database that assigns allele numbers or to share it with other colleagues.  
+
+## Handbook
+
+### Requirements and preparation
+
+See the [General Instructions for all pipelines](#general-instructions) first.  
+
+- This pipeline needs one .fasta file (the assembly) per sample as input. ALL THE INPUT FILES SHOULD BE IN THE SAME FOLDER, NOT IN SUBFOLDERS. The only exception is if you use the `Juno-assembly` pipeline to pre-process your data. In that case, the pipeline will recognize the subfolders where the assemblies should be.
+
+
+### Download the pipeline  
+
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/RIVM-bioinformatics/Juno_cgmlst).  
+
+
+### Install conda environment
+
+**YOU NEED TO REINSTALL THE MASTER ENVIRONMENT EVERY TIME YOU UPDATE THE PIPELINE (everytime you download the code)**
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+cd /mnt/scratch_dir/<my_folder>/Juno_cgmlst
+```
+
+3. If you already had a juno_typing environment before you need to delete the old one by using the command:
+
+```{bash}
+conda env remove -n juno_cgmlst
+```
+
+If you had never created a juno_typing environment before, you can skip this step and go to step 4 instead.
+
+4. Create a new environment for running Juno_typing by using the command:
+
+```{bash}
+conda env create -f envs/master_env.yaml
+```
+
+This step will take some time (few minutes).  
+
+**Note:** If this step would take more than 1 hour, please kill the process (using `Ctrl + C` or `Ctrl + Z`) and refer to the section [General Troubleshooting](#general-troubleshooting). The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by [email](mailto:alejandra.hernandez.segura@rivm.nl).  
+
+
+### Start the analysis. Basics
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+cd /mnt/scratch_dir/<my_folder>/Juno_cgmlst
+```
+
+3. Activate juno_cgmlst environment
+
+```{bash}
+conda activate juno_cgmlst
+```
+
+If you run in trouble please see the [troubleshooting section for conda activate](#problems-conda-activate).  
+
+4. Run the pipeline  
+
+This can be done in three ways. The first one is just providing an input directory with the results of the juno_assembly pipeline:  
+
+```{bash}
+python juno-cgmlst -i /mnt/scratch_dir/<my_folder>/<results_juno_assembly>/
+```
+
+The second one is providing an input directory as well as a metadata (csv) file. This file should contain at least one column with the 'sample' name (name of the file but removing [_S##]_R1.fastq.gz) and a column called 'genus'.  If a genus is provided for a sample, it will overwrite the species identification performed by this pipeline when choosing the scheme for MLST and the serotyper. Example metadata file:
+
+| __sample__ | __genus__ | __species__ |
+| :---: | :--- | :--- |
+| sample1 | Salmonella | enterica |
+
+*Note:* The fastq files corresponding to this sample would probably be something like `sample1_S1_R1_0001.fastq.gz` and `sample2_S1_R1_0001.fastq.gz` and the fasta file `sample1.fasta`.
+
+```{r}
+python juno_cgmlst.py -i my_input_files --metadata path/to/my/metadata.csv
+```
+
+The last way is to tell the pipeline which genus the samples have. Note that only ONE genus can be given for ALL the samples, so it will be assumed that they all belong to the same one. 
+
+```{r}
+python juno_cgmlst.py -i my_input_files --genus salmonella
+```
+
+If you give both, a metadata file and a `--genus`, the `--genus` will take precedence and overwrite the metadata file.
+
+Please read the section [What to expect while running a Juno pipeline](#what-to-expect)
+
+See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+### Output 
+
+A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. Please refer to the [manual of ChewBBACA](https://github.com/B-UMMI/chewBBACA/#ii-allele-call-using-a-cgwgmlst-schema) to interpret the results.   
+
+*Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
+
+```
+python juno_cgmlst.py -i juno_cgmlst.py -i my_input_files --metadata path/to/my/metadata.csv -o /mnt/scratch_dir/<my_folder>/<my_results>/
+```
+
+Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files [here](#general-output). 
+
+### Troubleshooting for this pipeline
+
+**Please read first the [General Troubleshooting](#general-troubleshooting) section!**
+
+#### Other problems or failing rules  
+
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail.
+
+Before contacting for help, try these two steps:
+
+1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
+
+2. [Download](https://github.com/RIVM-bioinformatics/Juno-typing) the pipeline again and start from the beginning of this [handbook](#juno_cgmlst). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:roxanne.wolthuis@rivm.nl) with the following content:
+
+* The log and error files that can be found in the output folder
+* The path to your input directory
+* The path to where the pipeline is installed
+
+**Note:** I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem.
