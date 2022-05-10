@@ -10,7 +10,7 @@ body {
 text-align: justify}
 </style>
 
-```{r setup_juno, include=FALSE}
+```{r setup_juno_cgmlst, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       eval = FALSE)
 ```

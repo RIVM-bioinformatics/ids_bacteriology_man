@@ -10,7 +10,7 @@ body {
 text-align: justify}
 </style>
 
-```{r setup_juno, include=FALSE}
+```{r setup_juno_typing, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       eval = FALSE)
 ```
@@ -140,7 +140,7 @@ The last way is to tell the pipeline which species the samples have. Note that o
 python juno_typing.py -i my_input_files --species salmonella enterica
 ```
 
-If you give both, a metadata file and a `--genus`, the `--genus` will take precedence and overwrite the metadata file.
+If you give both, a metadata file and a `--species`, the `--species` will take precedence and overwrite the metadata file.
 
 *Note:* The fastq files corresponding to this sample would probably be something like `sample1_S1_R1_0001.fastq.gz` and `sample2_S1_R1_0001.fastq.gz` and the fasta file `sample1.fasta`.
 
