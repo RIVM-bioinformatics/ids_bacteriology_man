@@ -125,6 +125,13 @@ Please read the section [What to expect while running a Juno pipeline](#what-to-
 
 See the section [General Troubleshooting](#general-troubleshooting) for any problems you may encounter. 
 
+**Note for large datasets:** If your dataset is large (more than 30 samples), t is necessary to give the pipeline extra time to process samples. This means that it needs to run with the `-w` or `--time-limit` argument. The default is 60 (minutes) but for large datasets (more than 30 samples) it should be increased accordingly Example:
+
+```
+python juno_cgmlst.py -i my_large_input_dir -o my_results_dir --db_dir my_db_dir --metadata path/to/my/metadata.csv --time-limit 120
+```
+
+
 **Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
 
 ### Output 
