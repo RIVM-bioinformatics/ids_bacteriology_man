@@ -72,7 +72,7 @@ conda env create -f envs/master_env.yaml
 
 This step will take some time (few minutes).  
 
-**Note:** If this step would take more than 1 hour, please kill the process (using `Ctrl + C` or `Ctrl + Z`) and refer to the section [General Troubleshooting](#general-troubleshooting). The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by [email](mailto:alejandra.hernandez.segura@rivm.nl).  
+**Note:** If this step would take more than 1 hour, please kill the process (using `Ctrl + C` or `Ctrl + Z`) and refer to the section [General Troubleshooting](#general-troubleshooting). The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by [email](mailto:roxanne.wolthuis@rivm.nl).  
 
 
 ### Start the analysis. Basics
@@ -158,7 +158,7 @@ Before contacting for help, try these two steps:
 
 1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
 
-2. [Download](https://github.com/RIVM-bioinformatics/Juno-typing) the pipeline again and start from the beginning of this [handbook](#juno_cgmlst). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+2. [Download](https://github.com/RIVM-bioinformatics/Juno_cgmlst) the pipeline again and start from the beginning of this [handbook](#juno_cgmlst). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
 
 If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:roxanne.wolthuis@rivm.nl) with the following content:
 

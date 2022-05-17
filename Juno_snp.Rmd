@@ -1,0 +1,140 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Juno_SNP {#juno_snp}
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup_juno_cgmlst, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE)
+```
+
+```{r echo = FALSE, eval = TRUE}
+
+# Parameters
+parameters <- list("pipeline_name" = "Juno_SNP")
+
+```
+
+The goal of this pipeline is to perform SNP analysis on bacterial genomes. As input, it requires clean fastq files (forward or R1 and reverse or R2, filtered and trimmed) for each sample you want to analyze with the '.fastq', '.fq', '.fastq.gz' or '.fq.gz' extensions. It also needs an assembly (.fasta file) per sample.  Importantly, this pipeline works directly on output generated from the [Juno-assembly](#juno-assembly) pipeline. 
+
+You can provide your own reference genome or the tool can choose one from RefSeq. The pipeline follows the following steps:
+  1. Find best reference genome: This step is only done if no reference genome was provided. It uses the [referenceseeker](https://github.com/oschwengers/referenceseeker) tool to find the reference genome in the RefSeq database that is closest to your genome. The distance to reference genomes is calculated with a combination of [Mash](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0997-x) distances and ANI (average nucleotide identity). 
+  2. SNP analysis: It uses the tool [Snippy](https://github.com/tseemann/snippy) to calculate the SNP differences with the reference genome for ever sample.
+  3. Calculating SNP core: It puts together the results of the SNP analysis of all samples into one VCF file.
+  4. Draw tree: It makes a phylogenetic tree of the samples ran. The default is to use the UPGMA (Unweighted pair group method with Arithmetic mean) algorithm for the tree but you can also use NJ (neighbor joining) if preferred. 
+
+## Handbook
+
+### Requirements and preparation
+
+See the [General Instructions for all pipelines](#general-instructions) first.  
+
+- This pipeline needs two pre-processed (filtered and trimmed) .fastq files (forward and reverse) and an assembly (.fasta file) per sample as input. ALL THE INPUT FILES SHOULD BE IN THE SAME FOLDER, NOT IN SUBFOLDERS. The only exception is if you use the `Juno-assembly` pipeline to pre-process your data. In that case, the pipeline will recognize the subfolders where the clean fastq and fasta files should be.
+
+### Download the pipeline  
+
+**YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT**
+
+Make sure to have followed the [instructions to set up conda](#set-conda) before installing any of our pipelines! 
+
+Please follow the [instructions to download pipelines](#downloading-instructions) from the Juno team of the IDS-bioinformatics group. The `r parameters$pipeline_name` pipeline can be found in [this link](https://github.com/RIVM-bioinformatics/Juno_snp).  
+
+
+### Install conda environment
+
+**YOU NEED TO REINSTALL THE MASTER ENVIRONMENT EVERY TIME YOU UPDATE THE PIPELINE (everytime you download the code)**
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+cd /mnt/scratch_dir/<my_folder>/Juno_snp
+```
+
+3. If you already had a juno_snp environment before you need to delete the old one by using the command:
+
+```{bash}
+conda env remove -n juno_snp
+```
+
+If you had never created a juno_snp environment before, you can skip this step and go to step 4 instead.
+
+4. Create a new environment for running Juno_SNP by using the command:
+
+```{bash}
+conda env create -f envs/master_env.yaml
+```
+
+This step will take some time (few minutes).  
+
+**Note:** If this step would take more than 1 hour, please kill the process (using `Ctrl + C` or `Ctrl + Z`) and refer to the section [General Troubleshooting](#general-troubleshooting). The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by [email](mailto:roxanne.wolthuis@rivm.nl).  
+
+### Start the analysis. Basics
+
+1. Open a terminal. (Applications>terminal).  
+
+2. Enter the folder of the pipeline using:  
+
+```{bash}
+cd /mnt/scratch_dir/<my_folder>/Juno_snp
+```
+
+3. Activate juno_snp environment
+
+```{bash}
+conda activate juno_snp
+```
+
+If you run in trouble please see the [troubleshooting section for conda activate](#problems-conda-activate).  
+
+4. Run the pipeline  
+
+You can run the pipeline just giving your input directory
+
+```{bash}
+python juno_snp.py -i [path/to/input_directory] 
+```
+
+**Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.
+
+### Output 
+
+A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. Please refer to the [manual of ChewBBACA](https://github.com/B-UMMI/chewBBACA/#ii-allele-call-using-a-cgwgmlst-schema) to interpret the results.   
+
+*Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output).
+
+```
+python juno_snp.py -i my_input_files -o my_results
+```
+
+Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files [here](#general-output). 
+
+### Troubleshooting for this pipeline
+
+**Please read first the [General Troubleshooting](#general-troubleshooting) section!**
+
+#### Other problems or failing rules  
+
+The `r parameters$pipeline_name` pipeline is still in development which means that sometimes the process can fail.
+
+Before contacting for help, try these two steps:
+
+1. Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.
+
+2. [Download](https://github.com/RIVM-bioinformatics/Juno_snp) the pipeline again and start from the beginning of this [handbook](#juno_snp). Sometimes there is an issue that has been resolved in newer versions of the pipeline.
+
+If the pipeline still fails after these two steps, please inform me about the problem. Send an [e-mail](mailto:roxanne.wolthuis@rivm.nl) with the following content:
+
+* The log and error files that can be found in the output folder
+* The path to your input directory
+* The path to where the pipeline is installed
+
+**Note:** I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem.

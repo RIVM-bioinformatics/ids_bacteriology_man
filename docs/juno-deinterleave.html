@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -301,8 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 body {
 text-align: justify}
 </style>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="juno-deinterleave.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb64-2"><a href="juno-deinterleave.html#cb64-2" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;pipeline_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;Deinterleave&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="juno-deinterleave.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb65-2"><a href="juno-deinterleave.html#cb65-2" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;pipeline_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;Deinterleave&quot;</span>)</span></code></pre></div>
 <div id="handbook-7" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Handbook</h2>
 <div id="requirements-and-preparation-8" class="section level3" number="10.1.1">
@@ -321,13 +321,13 @@ text-align: justify}
 </li>
 <li>Enter the folder of the pipeline:</li>
 </ol>
-<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="juno-deinterleave.html#cb65-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-2"><a href="juno-deinterleave.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/deinterleave</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="juno-deinterleave.html#cb66-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-2"><a href="juno-deinterleave.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/deinterleave</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Run the deinterleave script</li>
 </ol>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="juno-deinterleave.html#cb66-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-2"><a href="juno-deinterleave.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="juno-deinterleave.html#cb67-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-2"><a href="juno-deinterleave.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz</span></code></pre></div>
 </div>
 <div id="output-7" class="section level3" number="10.1.4">
 <h3><span class="header-section-number">10.1.4</span> Output</h3>
@@ -341,25 +341,25 @@ text-align: justify}
 </ul></li>
 </ul>
 <p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (from output)</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="juno-deinterleave.html#cb67-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-2"><a href="juno-deinterleave.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">-o</span> /mnt/scratch_dir/my_results</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb68-1"><a href="juno-deinterleave.html#cb68-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-2"><a href="juno-deinterleave.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">-o</span> /mnt/scratch_dir/my_results</span></code></pre></div>
 </div>
 <div id="extra-options" class="section level3" number="10.1.5">
 <h3><span class="header-section-number">10.1.5</span> Extra options</h3>
 <p><em>Choose name of deinterleaved files</em></p>
 <p>You can also use the names you want for the output files. For that you can do:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb68-1"><a href="juno-deinterleave.html#cb68-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-2"><a href="juno-deinterleave.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">--output_r1</span> my_deinterleaved_file_R1.fastq <span class="at">--output_r2</span> my_deinterleaved_file_R2.fastq</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="juno-deinterleave.html#cb69-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-2"><a href="juno-deinterleave.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">--output_r1</span> my_deinterleaved_file_R1.fastq <span class="at">--output_r2</span> my_deinterleaved_file_R2.fastq</span></code></pre></div>
 <p>Note that I did not use paths there. Your output directory should be set with the option <code>-o</code></p>
 <p><em>Compress output</em></p>
 <p>You may want to have the deinterleaved files compressed. Note that the compression might take a bit long. For that you can do:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="juno-deinterleave.html#cb69-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-2"><a href="juno-deinterleave.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">--compress</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb70-1"><a href="juno-deinterleave.html#cb70-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-2"><a href="juno-deinterleave.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">--compress</span></span></code></pre></div>
 <p>That will make sure that your two interleaved files are gzipped (and have the extension .fastq.gz).</p>
 <p><em>Combine options</em></p>
 <p>It is possible to combine more than one of this options. For example:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb70-1"><a href="juno-deinterleave.html#cb70-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-2"><a href="juno-deinterleave.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">-o</span> /mnt/scratch_dir/my_results <span class="at">--compress</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb71-1"><a href="juno-deinterleave.html#cb71-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-2"><a href="juno-deinterleave.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> deinterleave.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_interleaved_file<span class="op">&gt;</span>.fastq.gz <span class="at">-o</span> /mnt/scratch_dir/my_results <span class="at">--compress</span></span></code></pre></div>
 
 </div>
 </div>

@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandra Hernandez-Segura" />
 
 
-<meta name="date" content="2022-05-10" />
+<meta name="date" content="2022-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -335,7 +335,7 @@ text-align: justify}
 </ol>
 <div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="juno-cgmlst.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
 <p>This step will take some time (few minutes).</p>
-<p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:alejandra.hernandez.segura@rivm.nl">email</a>.</p>
+<p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:roxanne.wolthuis@rivm.nl">email</a>.</p>
 </div>
 <div id="start-the-analysis.-basics-3" class="section level3" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Start the analysis. Basics</h3>
@@ -378,6 +378,8 @@ text-align: justify}
 <p>If you give both, a metadata file and a <code>--genus</code>, the <code>--genus</code> will take precedence and overwrite the metadata file.</p>
 <p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
 <p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
+<p><strong>Note for large datasets:</strong> If your dataset is large (more than 30 samples), t is necessary to give the pipeline extra time to process samples. This means that it needs to run with the <code>-w</code> or <code>--time-limit</code> argument. The default is 60 (minutes) but for large datasets (more than 30 samples) it should be increased accordingly Example:</p>
+<pre><code>python juno_cgmlst.py -i my_large_input_dir -o my_results_dir --db_dir my_db_dir --metadata path/to/my/metadata.csv --time-limit 120</code></pre>
 <p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
 </div>
 <div id="output-3" class="section level3" number="6.1.5">
@@ -396,7 +398,7 @@ text-align: justify}
 <p>Before contacting for help, try these two steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
-<li><p><a href="https://github.com/RIVM-bioinformatics/Juno-typing">Download</a> the pipeline again and start from the beginning of this <a href="juno-cgmlst.html#juno_cgmlst">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+<li><p><a href="https://github.com/RIVM-bioinformatics/Juno_cgmlst">Download</a> the pipeline again and start from the beginning of this <a href="juno-cgmlst.html#juno_cgmlst">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
 </ol>
 <p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:roxanne.wolthuis@rivm.nl">e-mail</a> with the following content:</p>
 <ul>
