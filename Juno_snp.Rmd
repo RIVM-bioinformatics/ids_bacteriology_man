@@ -10,7 +10,7 @@ body {
 text-align: justify}
 </style>
 
-```{r setup_juno_cgmlst, include=FALSE}
+```{r setup_juno_snp, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       eval = FALSE)
 ```
@@ -97,10 +97,16 @@ If you run in trouble please see the [troubleshooting section for conda activate
 
 4. Run the pipeline  
 
-You can run the pipeline just giving your input directory
+You can run the pipeline just giving your input directory. The pipeline will automatically search for an appropriate reference genome in RefSeq that is as close as possible to the samples in your dataset.  
 
 ```{bash}
 python juno_snp.py -i [path/to/input_directory] 
+```
+
+If you have a reference genome that you would like to use instead of letting the pipeline choose it for you, you can give it to the pipeline
+
+```
+python juno_snp.py -i [path/to/input_directory] --reference [path/to/reference.fasta]
 ```
 
 **Note:** Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.

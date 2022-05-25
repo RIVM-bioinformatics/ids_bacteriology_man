@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
-  <meta name="description" content="Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <title>12 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="12 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:title" content="12 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="twitter:title" content="12 Triumph: Run pipeline | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="general-troubleshooting.html"/>
+<link rel="prev" href="juno-deinterleave.html"/>
+<link rel="next" href="triumph_project.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -305,187 +305,270 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
-<p class="author"><em>Alejandra Hernandez-Segura</em></p>
-<p class="date"><em>2022-05-25</em></p>
-</div>
-<div id="introduction-and-general-instructions" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction and General Instructions<a href="index.html#introduction-and-general-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact <a href="mailto:roxanne.wolthuis@rivm.nl">Roxanne Wolthuis</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
-<p><span style="color:#d64541;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
-<div id="general-instructions" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> General Instructions for all pipelines<a href="index.html#general-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="set-conda" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Setting up conda<a href="index.html#set-conda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If you are not used to <code>conda</code> environments yet, you may not have your <code>conda</code> software completely set-up. At the RIVM <code>conda</code> is always pre-installed in our Linux environment (Wettenschappelijke werkplek) but not always set up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.</p>
-<p>To set up <code>conda</code> to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:</p>
-<ol style="list-style-type: decimal">
-<li>Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).</li>
-</ol>
-<pre><code>cd /mnt/scratch_dir
-mkdir -p &lt;username&gt;</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Then you can go inside the folder you just created and make extra folders where your <code>conda</code> environments will be stored:</li>
-</ol>
-<pre><code>cd /mnt/scratch_dir/&lt;username&gt;/
-mkdir -p conda
-mkdir -p conda/envs
-mkdir -p conda/pkgs</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>The next step is a bit more difficult. First you move back to your home directory, then you “initiate” <code>conda</code> and finally you give it the paths where you want it to make your environments (the folders you just made in scratch_dir):</li>
-</ol>
-<pre><code>cd /home/&lt;username&gt;/
-conda init bash
-touch /home/&lt;username&gt;/.condarc</code></pre>
-<p>To add the paths you can do it from the command line using the <code>vim .condarc</code> editor if you are familiar with how <code>vim</code> works. If you don’t know how to do that, you can simply go to your home directory by going to the menu “Places” &gt; “Home” on the top left of your Linux desktop.</p>
-<div class="figure">
-<img src="figures/find_home.png" alt="To find the home directory in RedHat Linux you need to go to the Menu 'Places' and then to 'Home'. There might be also a shortcut already on your desktop that you could follow as well."  />
-<p class="caption">
-(#fig:find_home_dir)To find the home directory in RedHat Linux you need to go to the Menu ‘Places’ and then to ‘Home’. There might be also a shortcut already on your desktop that you could follow as well.
-</p>
-</div>
-<p>You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the ‘Places’ window) and make sure to have marked the ‘Show Hidden Files’ option. You should now be able to see the .condarc file listed.</p>
-<div class="figure">
-<img src="figures/show_hidden_files.png" alt="To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)"  />
-<p class="caption">
-(#fig:show_condarc)To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)
-</p>
-</div>
-<p>Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):</p>
-<pre><code>pkgs_dirs:
-  - /mnt/scratch_dir/&lt;username&gt;/conda/pkgs
-envs_dirs:
-  - /mnt/scratch_dir/&lt;username&gt;/conda/envs
-channel_priority: disabled</code></pre>
-<p>Now you are ready to make your <code>conda</code> environments.</p>
-</div>
-<div id="requirements-and-preparation" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Requirements and preparation<a href="index.html#requirements-and-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This handbook assumes that you are working at the “wettenschappelijke werkplek” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.</p>
+<div id="triumph_run" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Triumph: Run pipeline<a href="triumph_run.html#triumph_run" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>CURRENTLY NOT MAINTAINED OR SUPPORTED</strong></p>
+<style>
+body {
+text-align: justify}
+</style>
+<p>This pipeline processes raw fastq files from microbiome data using the <a href="https://benjjneb.github.io/dada2/tutorial.html">Dada2</a> R-package. At the end, it also produces a report summary of the run.</p>
+<p>The pipeline has been tailor-made for the microbiome group at the RIVM, especifically for the Pienter project. It therefore expects the input that is normally generated there and might not be very flexible with sample names and metadata. I will try to explain what is expected from the input when necessary.</p>
+<div id="handbook-9" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Handbook<a href="triumph_run.html#handbook-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="requirements-and-preparation-10" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Requirements and preparation<a href="triumph_run.html#requirements-and-preparation-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
 <ul>
-<li><p>Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (<code>/data/BioGrid/&lt;my_folder&gt;/&lt;my_data&gt;/</code>) or in the scratch_dir folder (<code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>). I strongly advice you to place it in the <code>scratch_dir</code> folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.</p></li>
-<li><p>Make sure that the folder that you use as input (the one that contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. <strong>IMPORTANT:</strong> Your folder name and the names of every folder and subfolder in its PATH (so all the folders and subfolders that you have to enter to reach your input folder) should NOT CONTAIN SPACES!!!!</p></li>
-<li><p>Make sure that your files have the right format: if they are fastq files, they should have the extension (<code>.fastq</code>, <code>.fq</code>, <code>.fastq.gz</code> or <code>.fq.gz</code>). If they are fasta files, they should have the extension <code>.fasta</code>. Any other requirements in the input files will be specified in the section of that specific pipeline.</p></li>
-</ul>
-</div>
-<div id="downloading-instructions" class="section level3 hasAnchor" number="1.1.3">
-<h3><span class="header-section-number">1.1.3</span> Downloading pipelines<a href="index.html#downloading-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>All the bacteriology pipelines created by the IDS-bioinformatics group are stored in either <a href="https://github.com/RIVM-bioinformatics">GitHub</a> or the <a href="https://gitl01-int-p.rivm.nl/">internal GitLab</a> of the RIVM. Only people who belong to the RIVM and that are inside one of our servers/environments can access to the later one with their normal RIVM login details.</p>
-<p>If you are going to download a pipeline, please do so in the same partition that your data is (preferentially <code>scratch_dir</code>). Each pipeline handbook has the instructions on where to find the code (either GitHub or GitLab). You can download every pipeline through the website or through the command line:</p>
-<p><em>GitHub website</em></p>
-<ol style="list-style-type: decimal">
-<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
-</li>
-<li>Press the green button “Code” on the page and then click on “Download zip” (see <a href="#github-fig">Figure 1.1</a> for explanation).<br />
-</li>
-<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
-</li>
-<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure 1.2</a> for explanation).</li>
-</ol>
-<div class="figure"><span style="display:block;" id="fig:github-fig"></span>
-<img src="figures/screenshot_download_github.png" alt="Pipelines can be downloaded directly from their GitHub website."  />
-<p class="caption">
-FIGURE 1.1: Pipelines can be downloaded directly from their GitHub website.
-</p>
-</div>
-<div class="figure"><span style="display:block;" id="fig:extract-fig"></span>
-<img src="figures/Screenshot_unzip.png" alt="Unzipping a repository in Linux."  />
-<p class="caption">
-FIGURE 1.2: Unzipping a repository in Linux.
-</p>
-</div>
-<p><em>GitLab website</em></p>
-<ol style="list-style-type: decimal">
-<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
-</li>
-<li>Press the small white button with a cloud and a downwards arrow. In the drop-down menu, choose “Download zip” (see <a href="#gitlab-fig">Figure 1.3</a> for explanation).<br />
-</li>
-<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
-</li>
-<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure 1.2</a> above for explanation).</li>
-</ol>
-<div class="figure"><span style="display:block;" id="fig:gitlab-fig"></span>
-<img src="figures/screenshot_download_gitlab.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
-<p class="caption">
-FIGURE 1.3: Pipelines can be downloaded directly from their GitLab website.
-</p>
-</div>
-<p><em>Command-line</em></p>
-<p>Any member of the RIVM has a (RIVM-specific) GitLab account. You can log in with the same credentials that you use for accessing your workspaces. In the case of pipelines hosted on GitHub, you may need a free GitHub account.</p>
-<ol style="list-style-type: decimal">
-<li>Open the “terminal” (you could also open “terminator”) by going to the “Applications” menu of the linux environment.</li>
-</ol>
-<div class="figure"><span style="display:block;" id="fig:commandline-fig"></span>
-<img src="figures/schreenshot_terminal.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
-<p class="caption">
-FIGURE 1.4: Pipelines can be downloaded directly from their GitLab website.
-</p>
-</div>
-<ol start="2" style="list-style-type: decimal">
-<li>Go to the location where you want to download the pipeline using the command ‘cd’. For instance:</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
-<p><strong>Note:</strong> mind the slash at the beginning of the path</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Download the pipeline using the <code>git clone</code> command</li>
-</ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>url_to_the_pipeline<span class="op">&gt;</span>.git</span></code></pre></div>
-<p><strong>Note</strong>: notice that I added “.git” to the URL of the pipeline.</p>
-<p>You will be asked to give your credentials (username + password) and then the (already unzipped) pipeline should have been downloaded in your current folder.</p>
-</div>
-<div id="what-to-expect" class="section level3 hasAnchor" number="1.1.4">
-<h3><span class="header-section-number">1.1.4</span> What to expect while running a Juno pipeline<a href="index.html#what-to-expect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The Juno pipelines usually run easily with minimum input of the user required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database (<a href="#installation-fig">Figure 1.5</a> step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter (<a href="#installation-fig">Figure 1.5</a> step 2).</p>
-<p>The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box (<a href="#installation-fig">Figure 1.5</a> step 3) or when it keeps printing lines inside the terminal. If the installation takes longer than 1 hour check the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>.</p>
-<div class="figure"><span style="display:block;" id="fig:installation-fig"></span>
-<img src="figures/show_installation.png" alt="Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3)."  />
-<p class="caption">
-FIGURE 1.5: Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3).
-</p>
-</div>
-<p>After installation the Juno pipeline will start running. Now the terminal shows <span style="color:#f4d03f;background:#2e3131;padding:5px">yellow</span> and/or <span style="color:#00b16a;background:#2e3131;padding:5px">green</span> messages. These messages indicate that the pipeline is being executed (<a href="#snakemake-complete-run-fig">Figure 1.6</a>). At the start of the yellow messages the number of steps is shown (<a href="#snakemake-complete-run-fig">Figure 1.6</a> step 1). The amount of steps indicate the progress of the pipeline in %. Once the pipeline is finished there will be a message printed that all the steps are performed (<a href="#snakemake-complete-run-fig">Figure 1.6</a> step 2).</p>
-<div class="figure"><span style="display:block;" id="fig:snakemake-complete-run-fig"></span>
-<img src="figures/snakemake_complete_run.png" alt="Screenshot of the Juno AMR pipeline in the terminal. The pipeline is executing all required jobs to create the requested results. The terminal shows a list of all the jobs that will be executed(step 1). Furthermore there is green and yellow text that shows the steps of the pipeline. At the bottom of the terminal there is a line that shows the pipeline is finished(step 2)."  />
-<p class="caption">
-FIGURE 1.6: Screenshot of the Juno AMR pipeline in the terminal. The pipeline is executing all required jobs to create the requested results. The terminal shows a list of all the jobs that will be executed(step 1). Furthermore there is green and yellow text that shows the steps of the pipeline. At the bottom of the terminal there is a line that shows the pipeline is finished(step 2).
-</p>
-</div>
-<p>If a step fails, you will likely see <span style="color:#d64541;background:#2e3131;padding:5px">red</span> text appearing on the screen (<a href="#snakemake-complete-run-fig">Figure 1.7</a>). The pipeline might proceed the other steps. If the pipeline fails check the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for more help or any other problems you may encounter.</p>
-<div class="figure"><span style="display:block;" id="fig:snakemake-error-fig"></span>
-<img src="figures/screenshot_snakemake_error.png" alt="Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message."  />
-<p class="caption">
-FIGURE 1.7: Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message.
-</p>
-</div>
-<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max. With sequencing data, the storage space can get full quite fast.</p>
-<p><strong>Note2:</strong> In this manual, a couple of non-Juno pipelines are included. They work mostly in the same way but the differences are in the design and maintenance (the Juno pipelines are named like that and they are very actively maintained, the others less so).</p>
-</div>
-<div id="general-output" class="section level3 hasAnchor" number="1.1.5">
-<h3><span class="header-section-number">1.1.5</span> General output and log files for every pipeline<a href="index.html#general-output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Every pipeline (with few exceptions) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).</p>
+<li><p>Make sure that your files have the right format: they must have a fastq extension (.fastq, .fq, .fastq.gz or .fq.gz) and have specific names. The names should be only numbers (they can be preceded by 1 letter). The numbers should give information about the run and the sample. For instance, in the file name L002-026_R1.fastq.gz, it means that you are processing the project “L”, the run # 2 and the sample “026”. Moreover, the suffix ’_R1’ or ’_R2’ designate forward or reverse reads. The MiSeq sequencer normally adds an extra suffix _0001 to the names of the fastq files L002-026_R1_0001.fastq.gz. These suffix is no problem for the pipeline to work.</p></li>
+<li><p>This pipeline needs a metadata (Excel file) should have a very specific format. For details about how to make the metadata file and what the codes mean, please consult with the microbiome team at the RIVM, especially <a href="mailto:susana.fuentes@rivm.nl">Susana Fuentes</a>. For the use of the pipeline, the main features that need to be added in this Excel file are:</p>
 <ul>
-<li><p>The <code>log/</code> subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.</p></li>
-<li><p>The <code>log/cluster/</code> or <code>log/drmaa/</code> subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.</p></li>
-<li><p>The <code>audit_trail</code> or <code>results</code> subfolders are also located inside the output directory. They contain contain 4 very important files for trace-ability of your samples. The <code>log_conda.txt file</code> contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The <code>log_config.txt</code> file is even more informative. It enlists all the parameters used to run the pipeline. In case months later you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The <code>log_git.txt</code> has information about the repository or the code that was downloaded. It tells you exactly how it was downloaded so you can reproduce it at a later time point. Finally, the <code>snakemake_report.html</code> has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went.</p></li>
+<li>It should have the file extension .xlsx file (no .csv).</li>
+<li>It should have at least a sheet called “amplicon_assay”. The metadata file for the Triumph project includes many other sheets but this is the only one that is necessary. Leaving the sheet unnamed will not work even if the information inside the sheet is correctly formatted.<br />
+</li>
+<li>The amplicon_assay sheet should have at least three columns with the names: assay_sample, sample_indentifier and subject_identifier.</li>
+<li>The assay_sample column should contain the “root” of the sample names that are used to name the fastq files (see previous point). For instance, the assay_sample code for the file L002-026_R1_0001.fastq.gz is L002-026.<br />
+</li>
+<li>The sample_identifier column should contain the identity of the samples. Here specific codes are needed for the control samples. For instance, every non-control sample is named something like S12345678 where “S” denotes that it is a sample belonging to a patient and the numbers are a unique ID for that sample. In contrast, the control samples don’t have unique IDs. They are always named the same way in every run. The accepted codes for the control samples can be found in the Table 1.</li>
+<li>The subject_identifier column contains the same code than sample_identifier and it is used as a back-up. When the codes in sample_identifier are not found, they are looked for instead in the subject_identifier column.</li>
+</ul></li>
 </ul>
-<p>Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a problem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the <code>audit_trail</code> has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-70">TABLE 12.1: </span>Table 1. Accepted subject_identifier codes for metadata used in the Triumph project.</caption>
+<thead>
+<tr class="header">
+<th align="left">subject_identifier</th>
+<th align="left">subject_description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ZMCD</td>
+<td align="left">Zymo mock DNA</td>
+</tr>
+<tr class="even">
+<td align="left">ZMCB</td>
+<td align="left">Zymo mock Bacteria</td>
+</tr>
+<tr class="odd">
+<td align="left">AMCD</td>
+<td align="left">ATCC mock DNA</td>
+</tr>
+<tr class="even">
+<td align="left">UMD</td>
+<td align="left">UMCU low density mock DNA</td>
+</tr>
+<tr class="odd">
+<td align="left">MSS</td>
+<td align="left">Mixed (fecal/NP/OP…) sample control</td>
+</tr>
+<tr class="even">
+<td align="left">MSD</td>
+<td align="left">Mixed (fecal/NP/OP…) sample control DNA</td>
+</tr>
+<tr class="odd">
+<td align="left">BD</td>
+<td align="left">Blank from DNA extraction</td>
+</tr>
+<tr class="even">
+<td align="left">BP</td>
+<td align="left">Blank from PCR</td>
+</tr>
+<tr class="odd">
+<td align="left">LSIC</td>
+<td align="left">Library spike-in control</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="download-the-pipeline-9" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Download the pipeline<a href="triumph_run.html#download-the-pipeline-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
+<p>Make sure to have followed the <a href="index.html#set-conda">instructions to set up conda</a> before installing any of our pipelines!</p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The triumph_microbiome_run pipeline can be found in <a href="https://gitl01-int-p.rivm.nl/hernanda/triumph_dada2_run_pipeline.git">this link</a>.</p>
+</div>
+<div id="start-the-analysis" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> Start the analysis<a href="triumph_run.html#start-the-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Open the terminal.</p></li>
+<li><p>Enter the folder of the pipeline:</p></li>
+</ol>
+<div class="sourceCode" id="cb80"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb80-1"><a href="triumph_run.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/triumph_dada2_run_pipeline-master/</span></code></pre></div>
+<ul>
+<li>Exact name of downloaded folder might be slightly different depending on the version that was downloaded.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Run the pipeline</li>
+</ol>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb81-1"><a href="triumph_run.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">--metadata</span> /path/to/metadata.xlsx</span></code></pre></div>
+<p>Please read the section <a href="index.html#what-to-expect">What to expect while running a Juno pipeline</a></p>
+<p>See the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for any problems you may encounter.</p>
+<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
+<div id="run-the-pipeline-changing-default-parameters" class="section level4 hasAnchor" number="12.1.3.1">
+<h4><span class="header-section-number">12.1.3.1</span> Run the pipeline changing default parameters<a href="triumph_run.html#run-the-pipeline-changing-default-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Many of the parameters of the <code>dada2</code> package can be changed/used directly when calling the pipeline. If you want to do that, please refer to the help of the pipeline by using the command:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="triumph_run.html#cb82-1" aria-hidden="true" tabindex="-1"></a>bash triumph_run_pipeline.sh <span class="sc">-</span>h</span></code></pre></div>
+<p>It should print something like this:</p>
+<pre><code>Usage: bash triumph_run_pipeline.sh -i &lt;INPUT_DIR&gt; &lt;parameters&gt;
+
+Input:
+
+  -i, --input [DIR]   This is the folder containing the input (demultiplexed)
+                      fastq files. This should be a folder for one single 
+                      run (sub-folder name will be considered the run name! 
+                      so give it a meaningul one). Default is the current folder.
+
+  --metadata [xlsx file] (optional) This is an optional parameter in which you 
+                                    provide an xlsx file with the metadata. 
+                                    For the exact format of this file, you should 
+                                    refer to the microbiome group at the RIVM  
+                                    (Susana Fuentes). In summary, it should 
+                                    contain a sheet called &#39;amplicon_assay&#39;, with
+                                    an empty row at the top (it does not need to 
+                                    be empty, but that row will be ignored) and
+                                    then a table with at least two columns: 
+                                    assay_sample and sample_identifier. The 
+                                    assay_sample should have the names coinciding 
+                                    with the fastq files (so, like the sample 
+                                    sheet used for demultiplexing) and the 
+                                    sample_identifier should contain either the
+                                    sample code or one of the codes for 
+                                    recognizing control samples (ask the microbiome group).
+
+
+Main Output (automatically generated):
+  out/                              Contains detailed intermediate files.
+  out/log/                          Contains all log files.
+  out/run_reports/                  Folder containint the actual reports of the
+                                    run (html file) and the summary table of the 
+                                    run (used to generate that report) as a csv file.
+
+Parameters:
+  -o, --output         Output directory. Default is &#39;out/&#39;
+
+  --pienter-up        If this option is chosen, the default options for the 
+                      nasopharynx Triumph project will be used, which means 
+                      that truncLenF will be overwritten to 200 and the truncLenR 
+                      will be overwritten to 150.
+
+  -h, --help          Print this help document.
+
+  -sh, --snakemake-help Print the Snakemake this help document.
+
+  --clean (-y)        Removes output. (-y forces &#39;Yes&#39; on all prompts)
+
+  -u, --unlock        Removes the lock on the working directory. This happens when
+                      a run ends abruptly and prevents you from doing subsequent
+                      analyses.
+
+  -n, --dry_run       Shows the process but does not actually run the pipeline.
+
+Dada2 parameters that can be changed in this pipeline (if you decide to be able
+to directly modify another parameter when you call the pipeline, contact me 
+alejandra.hernandez.segura@rivm.nl) for more details:
+
+  --trunQ             Minimumn quality for truncating a read (part of dada2 
+                      filtering). Default: 2
+
+  --truncLenF         Truncating length for forward reads(part of dada2 
+                      filtering). Default: 220
+
+  --truncLenR         Truncating length for reverse reads(part of dada2 
+                      filtering). Default: 100
+
+  --maxN              Maximum number of N bases accepted per read (part of dada2 
+                      filtering). Default: 0. Note that the dada2 requires this 
+                      parameter to be 0.
+
+  --maxEE             Maximum Expected Errors (part of dada2 filtering). 
+                      Default: 2
+
+  --nomatchID               If this file is present, the reads will not be expected to
+                      match. The default is to expect filtered reads to have 
+                      matching IDs (part of dada2 filtering). Note that you should
+                      NOT put &#39;true&#39; or &#39;false&#39; after the flag. The flag itself 
+                      forces the condition to be FALSE
+
+  --nbases            Number of bases to use in order to learn the errors (part 
+                      of dada2 error learning). Default: 1e9
+
+  --minlen            Minimum length of the inferred SAVs. Any SAV shorter than 
+                      minlen will be discarded (part of dada2 inferring SAVs). 
+                      Default: 250
+
+  --maxlen            Maximum length of the inferred SAVs. Any SAV longer than 
+                      maxlen will be discarded (part of dada2 inferring SAVs). 
+                      Default: 256
+
+  --trainset                Path to trainset used to assign taxonomy to a phyloseq object. 
+                      Dada2 suggests a database in its tutorial. In the RIVM, we have
+                      a copy stored at: &#39;/mnt/db/triumph_taxonomy_db/silva_nr_v138_train_set.fa.gz&#39;
+                      and this path is the default.
+
+  --species_db        Path to database used to assign species name to a phyloseq 
+                      object. Dada2 suggests a database in its tutorial. In the RIVM, 
+                      we have a copy stored at: &#39;/mnt/db/triumph_taxonomy_db/silva_species_assignment_v138.fa.gz&#39;
+                      and this path is the default.
+
+  --no-randomize-errors, -nr If this flag is present, there will not be randomiza-
+                      tion while learning the errors (part of dada2 learn errors). 
+                      The default is to randomize. Note that you should
+                      NOT put &#39;true&#39; or &#39;false&#39; after the flag. The flag itself 
+                      forces the condition to be FALSE
+
+  --just-concatenate  If this flag is present, the pairs will be simply concatenated.
+                      (part of dada2 mergePairs). The default is set to FALSE. Note 
+                      that you should NOT put &#39;true&#39; or &#39;false&#39; after the flag. The 
+                      flag itself forces the condition to be FALSE.
+
+  --bimera_method     Choose a method to remove bimeras (according to dada2 
+                      removeBimeraDenovo). 
+
+  --minboot           The minimum bootstrap confidence for assigning a taxonomic level
+                      (part of dada2 assignTaxonomy). Default: 80
+
+  --no-tryrc          If TRUE, the reverse-complement of each sequences will be 
+                      used for classification if it is a better match to the 
+                      reference sequences than the forward sequence. The default is
+                      TRUE. Note that you should
+                      NOT put &#39;true&#39; or &#39;false&#39; after the flag. The flag itself 
+                      forces the condition to be FALSE
+
+  --species-allowed   This is the number of species that may be enlisted (part of 
+                      dada2 addSpecies). Default is 3.</code></pre>
+</div>
+<div id="running-when-metadata-is-not-available" class="section level4 hasAnchor" number="12.1.3.2">
+<h4><span class="header-section-number">12.1.3.2</span> Running when metadata is not available<a href="triumph_run.html#running-when-metadata-is-not-available" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You can also run the pipeline without the metadata:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb84-1"><a href="triumph_run.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ </span></code></pre></div>
+<p>However, the report produced of such a run is not very informative and the code is not actively maintained. Therefore, the report might fail. The pipeline is not intended to be run without metadata so it will do its job but not efficiently.</p>
+</div>
+</div>
+<div id="output-9" class="section level3 hasAnchor" number="12.1.4">
+<h3><span class="header-section-number">12.1.4</span> Output<a href="triumph_run.html#output-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A folder called <code>out/</code>, inside the folder of the pipeline, will be created. If you chose another site for the output, then you will find the same results there. This folder will contain all the results and logging files of your analysis. There will be one folder with all the <code>filtered_fastq files</code>, one with the <code>plots</code> and one with the <code>RDS_files</code> generated when using the <code>dada2</code> package (for instance, seqtab, merged files, etc.). These RDS files can be <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readRDS">loaded into R</a> where you can explore them and further work with them. The last folder is the <code>run_reports</code> which will have the html report with statistics of the run and the “Project_SummaryTable.csv” with all the statistics in a table format. Please refer to the dada2 documentation to interpret your results.</p>
+<p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output)</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb85-1"><a href="triumph_run.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> triumph_run_pipeline.sh <span class="at">-i</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_last_run<span class="op">&gt;</span>/ <span class="at">-o</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/<span class="op">&lt;</span>my_results<span class="op">&gt;</span>/</span></code></pre></div>
+<p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later timepoint and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
+</div>
+<div id="troubleshooting-1" class="section level3 hasAnchor" number="12.1.5">
+<h3><span class="header-section-number">12.1.5</span> Troubleshooting<a href="triumph_run.html#troubleshooting-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
+<div id="other-problems-or-failing-rules-9" class="section level4 hasAnchor" number="12.1.5.1">
+<h4><span class="header-section-number">12.1.5.1</span> Other problems or failing rules<a href="triumph_run.html#other-problems-or-failing-rules-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The triumph_microbiome_run pipeline is currently not maintained or supported.</p>
 
 </div>
 </div>
 </div>
-
-
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="general-troubleshooting.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="juno-deinterleave.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="triumph_project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

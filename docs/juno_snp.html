@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
-  <meta name="description" content="Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <title>7 Juno_SNP | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</title>
+  <meta name="description" content="7 Juno_SNP | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta property="og:title" content="7 Juno_SNP | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
+  <meta name="twitter:title" content="7 Juno_SNP | Bioinformatics Pipelines for Bacteriology (IDS, RIVM)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="general-troubleshooting.html"/>
+<link rel="prev" href="juno_cgmlst.html"/>
+<link rel="next" href="juno-annotation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -305,187 +305,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Bioinformatics Pipelines for Bacteriology (IDS, RIVM)</h1>
-<p class="author"><em>Alejandra Hernandez-Segura</em></p>
-<p class="date"><em>2022-05-25</em></p>
-</div>
-<div id="introduction-and-general-instructions" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction and General Instructions<a href="index.html#introduction-and-general-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this “book” you will find the handbooks of all the available pipelines for the Bacteriology and Parasitology Department of the IDS (RIVM). This handbook is in continuous development, so please keep that in mind and contact <a href="mailto:roxanne.wolthuis@rivm.nl">Roxanne Wolthuis</a> if you wish to add/change something or if you need help with troubleshooting (please read the troubleshooting section for each pipeline first).</p>
-<p><span style="color:#d64541;">Important Note!!</span> This handbook was written exclusively for people working at the RIVM (especially people at IDS). Some of the parameters or the way to run the pipeline would need to be changed for external people. Refer to the README section on the GitHub page of the corresponding pipeline. The pipelines that are enlisted as available through the internal GitLab from the RIVM are not accessible for external people. This might change in the future but for now that is the case. Equally, although the team would love to help external people to use our pipelines, we cannot give the personalized and fast-responding help that we give to people at the RIVM. If you do need help please write an Issue in the corresponding GitHub repository and we will try to help as soon as possible.</p>
-<div id="general-instructions" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> General Instructions for all pipelines<a href="index.html#general-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="set-conda" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Setting up conda<a href="index.html#set-conda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If you are not used to <code>conda</code> environments yet, you may not have your <code>conda</code> software completely set-up. At the RIVM <code>conda</code> is always pre-installed in our Linux environment (Wettenschappelijke werkplek) but not always set up. You need to go through this step once and hopefully never again. If you do not do this, you may have problems installing/running some of our pipelines.</p>
-<p>To set up <code>conda</code> to work properly in the Wettenschappelijke werkplek at the RIVM you need to follow these steps:</p>
-<ol style="list-style-type: decimal">
-<li>Go to the scratch_dir partition and make a folder with your RIVM user name. Replace <username> by your actual username (the RIVM one).</li>
-</ol>
-<pre><code>cd /mnt/scratch_dir
-mkdir -p &lt;username&gt;</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Then you can go inside the folder you just created and make extra folders where your <code>conda</code> environments will be stored:</li>
-</ol>
-<pre><code>cd /mnt/scratch_dir/&lt;username&gt;/
-mkdir -p conda
-mkdir -p conda/envs
-mkdir -p conda/pkgs</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>The next step is a bit more difficult. First you move back to your home directory, then you “initiate” <code>conda</code> and finally you give it the paths where you want it to make your environments (the folders you just made in scratch_dir):</li>
-</ol>
-<pre><code>cd /home/&lt;username&gt;/
-conda init bash
-touch /home/&lt;username&gt;/.condarc</code></pre>
-<p>To add the paths you can do it from the command line using the <code>vim .condarc</code> editor if you are familiar with how <code>vim</code> works. If you don’t know how to do that, you can simply go to your home directory by going to the menu “Places” &gt; “Home” on the top left of your Linux desktop.</p>
-<div class="figure">
-<img src="figures/find_home.png" alt="To find the home directory in RedHat Linux you need to go to the Menu 'Places' and then to 'Home'. There might be also a shortcut already on your desktop that you could follow as well."  />
-<p class="caption">
-(#fig:find_home_dir)To find the home directory in RedHat Linux you need to go to the Menu ‘Places’ and then to ‘Home’. There might be also a shortcut already on your desktop that you could follow as well.
-</p>
-</div>
-<p>You can see some of the files/folders that you have on your desktop. The file that you want is called .condarc and it might not be visible yet. If you cannot see it, then you need to allow hidden files to be displayed. For that you can go to the menu (three parallel lines on the top right of the ‘Places’ window) and make sure to have marked the ‘Show Hidden Files’ option. You should now be able to see the .condarc file listed.</p>
-<div class="figure">
-<img src="figures/show_hidden_files.png" alt="To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)"  />
-<p class="caption">
-(#fig:show_condarc)To find the .condarc file you first need to go to the menu of Places (1), then check the box to Show Hidden Files (2) and finally look for the .condarc file (3)
-</p>
-</div>
-<p>Please open it by double-clicking the file name. A text editor should have opened. Finally, add or replace the following text with the correct paths (replace <username> with your RIVM user name, meaning the folders you just made in scratch_dir):</p>
-<pre><code>pkgs_dirs:
-  - /mnt/scratch_dir/&lt;username&gt;/conda/pkgs
-envs_dirs:
-  - /mnt/scratch_dir/&lt;username&gt;/conda/envs
-channel_priority: disabled</code></pre>
-<p>Now you are ready to make your <code>conda</code> environments.</p>
-</div>
-<div id="requirements-and-preparation" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Requirements and preparation<a href="index.html#requirements-and-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This handbook assumes that you are working at the “wettenschappelijke werkplek” environment at the RIVM. It is possible to run the pipeline in other settings and even on your laptop but you need extra steps that will not be enlisted here.</p>
+<div id="juno_snp" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Juno_SNP<a href="juno_snp.html#juno_snp" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<style>
+body {
+text-align: justify}
+</style>
+<p>The goal of this pipeline is to perform SNP analysis on bacterial genomes. As input, it requires clean fastq files (forward or R1 and reverse or R2, filtered and trimmed) for each sample you want to analyze with the ‘.fastq’, ‘.fq’, ‘.fastq.gz’ or ‘.fq.gz’ extensions. It also needs an assembly (.fasta file) per sample. Importantly, this pipeline works directly on output generated from the <a href="juno-assembly.html#juno-assembly">Juno-assembly</a> pipeline.</p>
+<p>You can provide your own reference genome or the tool can choose one from RefSeq. The pipeline follows the following steps:
+1. Find best reference genome: This step is only done if no reference genome was provided. It uses the <a href="https://github.com/oschwengers/referenceseeker">referenceseeker</a> tool to find the reference genome in the RefSeq database that is closest to your genome. The distance to reference genomes is calculated with a combination of <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0997-x">Mash</a> distances and ANI (average nucleotide identity).
+2. SNP analysis: It uses the tool <a href="https://github.com/tseemann/snippy">Snippy</a> to calculate the SNP differences with the reference genome for ever sample.
+3. Calculating SNP core: It puts together the results of the SNP analysis of all samples into one VCF file.
+4. Draw tree: It makes a phylogenetic tree of the samples ran. The default is to use the UPGMA (Unweighted pair group method with Arithmetic mean) algorithm for the tree but you can also use NJ (neighbor joining) if preferred.</p>
+<div id="handbook-4" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Handbook<a href="juno_snp.html#handbook-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="requirements-and-preparation-5" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Requirements and preparation<a href="juno_snp.html#requirements-and-preparation-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>See the <a href="index.html#general-instructions">General Instructions for all pipelines</a> first.</p>
 <ul>
-<li><p>Placing of the data: Your data should all be placed in one single folder (no subfolders) in the BioGrid (<code>/data/BioGrid/&lt;my_folder&gt;/&lt;my_data&gt;/</code>) or in the scratch_dir folder (<code>/mnt/scratch_dir/&lt;my_folder&gt;/&lt;my_data&gt;/</code>). I strongly advice you to place it in the <code>scratch_dir</code> folder and to only copy it later to the BioGrid after the analysis. The run will be faster and therefore you will block the cluster less time for everyone else.</p></li>
-<li><p>Make sure that the folder that you use as input (the one that contains your input data) has the right name. This means: the folder that contains your data can have any name you want provided that you only use letters, numbers or underscores. If your folder name contains different characters, it may not be recognized by the pipeline. <strong>IMPORTANT:</strong> Your folder name and the names of every folder and subfolder in its PATH (so all the folders and subfolders that you have to enter to reach your input folder) should NOT CONTAIN SPACES!!!!</p></li>
-<li><p>Make sure that your files have the right format: if they are fastq files, they should have the extension (<code>.fastq</code>, <code>.fq</code>, <code>.fastq.gz</code> or <code>.fq.gz</code>). If they are fasta files, they should have the extension <code>.fasta</code>. Any other requirements in the input files will be specified in the section of that specific pipeline.</p></li>
+<li>This pipeline needs two pre-processed (filtered and trimmed) .fastq files (forward and reverse) and an assembly (.fasta file) per sample as input. ALL THE INPUT FILES SHOULD BE IN THE SAME FOLDER, NOT IN SUBFOLDERS. The only exception is if you use the <code>Juno-assembly</code> pipeline to pre-process your data. In that case, the pipeline will recognize the subfolders where the clean fastq and fasta files should be.</li>
 </ul>
 </div>
-<div id="downloading-instructions" class="section level3 hasAnchor" number="1.1.3">
-<h3><span class="header-section-number">1.1.3</span> Downloading pipelines<a href="index.html#downloading-instructions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>All the bacteriology pipelines created by the IDS-bioinformatics group are stored in either <a href="https://github.com/RIVM-bioinformatics">GitHub</a> or the <a href="https://gitl01-int-p.rivm.nl/">internal GitLab</a> of the RIVM. Only people who belong to the RIVM and that are inside one of our servers/environments can access to the later one with their normal RIVM login details.</p>
-<p>If you are going to download a pipeline, please do so in the same partition that your data is (preferentially <code>scratch_dir</code>). Each pipeline handbook has the instructions on where to find the code (either GitHub or GitLab). You can download every pipeline through the website or through the command line:</p>
-<p><em>GitHub website</em></p>
+<div id="download-the-pipeline-4" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Download the pipeline<a href="juno_snp.html#download-the-pipeline-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>YOU NEED TO DOWNLOAD THE PIPELINE ONCE OR EVERY TIME YOU WANT TO UPDATE IT</strong></p>
+<p>Make sure to have followed the <a href="index.html#set-conda">instructions to set up conda</a> before installing any of our pipelines!</p>
+<p>Please follow the <a href="index.html#downloading-instructions">instructions to download pipelines</a> from the Juno team of the IDS-bioinformatics group. The Juno_SNP pipeline can be found in <a href="https://github.com/RIVM-bioinformatics/Juno_snp">this link</a>.</p>
+</div>
+<div id="install-conda-environment-2" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Install conda environment<a href="juno_snp.html#install-conda-environment-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>YOU NEED TO REINSTALL THE MASTER ENVIRONMENT EVERY TIME YOU UPDATE THE PIPELINE (everytime you download the code)</strong></p>
 <ol style="list-style-type: decimal">
-<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
-</li>
-<li>Press the green button “Code” on the page and then click on “Download zip” (see <a href="#github-fig">Figure 1.1</a> for explanation).<br />
-</li>
-<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
-</li>
-<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure 1.2</a> for explanation).</li>
+<li><p>Open a terminal. (Applications&gt;terminal).</p></li>
+<li><p>Enter the folder of the pipeline using:</p></li>
 </ol>
-<div class="figure"><span style="display:block;" id="fig:github-fig"></span>
-<img src="figures/screenshot_download_github.png" alt="Pipelines can be downloaded directly from their GitHub website."  />
-<p class="caption">
-FIGURE 1.1: Pipelines can be downloaded directly from their GitHub website.
-</p>
-</div>
-<div class="figure"><span style="display:block;" id="fig:extract-fig"></span>
-<img src="figures/Screenshot_unzip.png" alt="Unzipping a repository in Linux."  />
-<p class="caption">
-FIGURE 1.2: Unzipping a repository in Linux.
-</p>
-</div>
-<p><em>GitLab website</em></p>
-<ol style="list-style-type: decimal">
-<li>Go to the website for the pipeline (check the section of the specific pipeline).<br />
-</li>
-<li>Press the small white button with a cloud and a downwards arrow. In the drop-down menu, choose “Download zip” (see <a href="#gitlab-fig">Figure 1.3</a> for explanation).<br />
-</li>
-<li>A zip file (<pipeline_name>-master.zip) will have likely be downloaded on your “Downloads” folder. Please move this zip file to the <code>BioGrid</code> or the <code>scratch_dir</code> partitions, depending on where your data is.<br />
-</li>
-<li>Extract the files of the zip file. In Linux this is normally done by pressing the left button of the mouse, then “Open with Archive Manager” and then press “Extract” on the two windows that will consecutively appear. You could then delete the zip file (see <a href="#extract-fig">Figure 1.2</a> above for explanation).</li>
-</ol>
-<div class="figure"><span style="display:block;" id="fig:gitlab-fig"></span>
-<img src="figures/screenshot_download_gitlab.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
-<p class="caption">
-FIGURE 1.3: Pipelines can be downloaded directly from their GitLab website.
-</p>
-</div>
-<p><em>Command-line</em></p>
-<p>Any member of the RIVM has a (RIVM-specific) GitLab account. You can log in with the same credentials that you use for accessing your workspaces. In the case of pipelines hosted on GitHub, you may need a free GitHub account.</p>
-<ol style="list-style-type: decimal">
-<li>Open the “terminal” (you could also open “terminator”) by going to the “Applications” menu of the linux environment.</li>
-</ol>
-<div class="figure"><span style="display:block;" id="fig:commandline-fig"></span>
-<img src="figures/schreenshot_terminal.png" alt="Pipelines can be downloaded directly from their GitLab website."  />
-<p class="caption">
-FIGURE 1.4: Pipelines can be downloaded directly from their GitLab website.
-</p>
-</div>
-<ol start="2" style="list-style-type: decimal">
-<li>Go to the location where you want to download the pipeline using the command ‘cd’. For instance:</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/</span></code></pre></div>
-<p><strong>Note:</strong> mind the slash at the beginning of the path</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="juno_snp.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_snp</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Download the pipeline using the <code>git clone</code> command</li>
+<li>If you already had a juno_snp environment before you need to delete the old one by using the command:</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>url_to_the_pipeline<span class="op">&gt;</span>.git</span></code></pre></div>
-<p><strong>Note</strong>: notice that I added “.git” to the URL of the pipeline.</p>
-<p>You will be asked to give your credentials (username + password) and then the (already unzipped) pipeline should have been downloaded in your current folder.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="juno_snp.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> juno_snp</span></code></pre></div>
+<p>If you had never created a juno_snp environment before, you can skip this step and go to step 4 instead.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a new environment for running Juno_SNP by using the command:</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="juno_snp.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> envs/master_env.yaml</span></code></pre></div>
+<p>This step will take some time (few minutes).</p>
+<p><strong>Note:</strong> If this step would take more than 1 hour, please kill the process (using <code>Ctrl + C</code> or <code>Ctrl + Z</code>) and refer to the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>. The first issue written there (Failure when installing master environment) often solves the problem. If, however, the problem persists, please contact me by <a href="mailto:roxanne.wolthuis@rivm.nl">email</a>.</p>
 </div>
-<div id="what-to-expect" class="section level3 hasAnchor" number="1.1.4">
-<h3><span class="header-section-number">1.1.4</span> What to expect while running a Juno pipeline<a href="index.html#what-to-expect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The Juno pipelines usually run easily with minimum input of the user required. Detailed information on the required input can be found in the section for the specific pipeline. Sometimes a pipeline can ask for input from the user to agree on installing software or a database (<a href="#installation-fig">Figure 1.5</a> step 1), if you get asked to give permission, please do so in order to run the pipeline. This is most often in the form of pressing y followed by enter (<a href="#installation-fig">Figure 1.5</a> step 2).</p>
-<p>The first time a Juno pipeline is executed, the preparation might take longer than expected. This is due to the installation of the basic software that is required for the pipeline to run. Be patient! You can recognize that the pipeline is still preparing when it shows a blinking box (<a href="#installation-fig">Figure 1.5</a> step 3) or when it keeps printing lines inside the terminal. If the installation takes longer than 1 hour check the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a>.</p>
-<div class="figure"><span style="display:block;" id="fig:installation-fig"></span>
-<img src="figures/show_installation.png" alt="Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3)."  />
-<p class="caption">
-FIGURE 1.5: Screenshot of the Juno-typing pipeline in the terminal. The pipeline asks to create an environment(step 1). User input is required. To proceed the pipeline press y followed by enter. If executed correctly the pipeline will now show that it is creating the environment(step 2). The blinking box at the bottom indicates that the pipeline is still installing/updating(step 3).
-</p>
+<div id="start-the-analysis.-basics-4" class="section level3 hasAnchor" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Start the analysis. Basics<a href="juno_snp.html#start-the-analysis.-basics-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Open a terminal. (Applications&gt;terminal).</p></li>
+<li><p>Enter the folder of the pipeline using:</p></li>
+</ol>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="juno_snp.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /mnt/scratch_dir/<span class="op">&lt;</span>my_folder<span class="op">&gt;</span>/Juno_snp</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Activate juno_snp environment</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="juno_snp.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate juno_snp</span></code></pre></div>
+<p>If you run in trouble please see the <a href="general-troubleshooting.html#problems-conda-activate">troubleshooting section for conda activate</a>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Run the pipeline</li>
+</ol>
+<p>You can run the pipeline just giving your input directory. The pipeline will automatically search for an appropriate reference genome in RefSeq that is as close as possible to the samples in your dataset.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="juno_snp.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> juno_snp.py <span class="at">-i</span> [path/to/input_directory] </span></code></pre></div>
+<p>If you have a reference genome that you would like to use instead of letting the pipeline choose it for you, you can give it to the pipeline</p>
+<pre><code>python juno_snp.py -i [path/to/input_directory] --reference [path/to/reference.fasta]</code></pre>
+<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max and with sequencing data, this can get full quite fast.</p>
 </div>
-<p>After installation the Juno pipeline will start running. Now the terminal shows <span style="color:#f4d03f;background:#2e3131;padding:5px">yellow</span> and/or <span style="color:#00b16a;background:#2e3131;padding:5px">green</span> messages. These messages indicate that the pipeline is being executed (<a href="#snakemake-complete-run-fig">Figure 1.6</a>). At the start of the yellow messages the number of steps is shown (<a href="#snakemake-complete-run-fig">Figure 1.6</a> step 1). The amount of steps indicate the progress of the pipeline in %. Once the pipeline is finished there will be a message printed that all the steps are performed (<a href="#snakemake-complete-run-fig">Figure 1.6</a> step 2).</p>
-<div class="figure"><span style="display:block;" id="fig:snakemake-complete-run-fig"></span>
-<img src="figures/snakemake_complete_run.png" alt="Screenshot of the Juno AMR pipeline in the terminal. The pipeline is executing all required jobs to create the requested results. The terminal shows a list of all the jobs that will be executed(step 1). Furthermore there is green and yellow text that shows the steps of the pipeline. At the bottom of the terminal there is a line that shows the pipeline is finished(step 2)."  />
-<p class="caption">
-FIGURE 1.6: Screenshot of the Juno AMR pipeline in the terminal. The pipeline is executing all required jobs to create the requested results. The terminal shows a list of all the jobs that will be executed(step 1). Furthermore there is green and yellow text that shows the steps of the pipeline. At the bottom of the terminal there is a line that shows the pipeline is finished(step 2).
-</p>
+<div id="output-4" class="section level3 hasAnchor" number="7.1.5">
+<h3><span class="header-section-number">7.1.5</span> Output<a href="juno_snp.html#output-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A folder called <code>output/</code>, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. Please refer to the <a href="https://github.com/B-UMMI/chewBBACA/#ii-allele-call-using-a-cgwgmlst-schema">manual of ChewBBACA</a> to interpret the results.</p>
+<p><em>Note:</em> If you want your output to be stored in a folder with a different name or location, you can use the option <code>-o</code> (‘o’ from output).</p>
+<pre><code>python juno_snp.py -i my_input_files -o my_results</code></pre>
+<p>Another very important output from the pipeline are the logging files and audit trail that contain information of the software versions used, the parameters used, the error messages, etc. They could be important for you if you want to publish or reproduce the analysis at a later time point and also to get help from the bioinformatics team if you were to run into trouble with the pipeline. Please read about these files <a href="index.html#general-output">here</a>.</p>
 </div>
-<p>If a step fails, you will likely see <span style="color:#d64541;background:#2e3131;padding:5px">red</span> text appearing on the screen (<a href="#snakemake-complete-run-fig">Figure 1.7</a>). The pipeline might proceed the other steps. If the pipeline fails check the section <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> for more help or any other problems you may encounter.</p>
-<div class="figure"><span style="display:block;" id="fig:snakemake-error-fig"></span>
-<img src="figures/screenshot_snakemake_error.png" alt="Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message."  />
-<p class="caption">
-FIGURE 1.7: Screenshot of the Juno AMR pipeline in the terminal. The pipeline failed on one of the steps. The red text shows an error message.
-</p>
-</div>
-<p><strong>Note:</strong> Do not keep all your data (including results) on the scratch_dir partition. You are allowed to keep 400GB max. With sequencing data, the storage space can get full quite fast.</p>
-<p><strong>Note2:</strong> In this manual, a couple of non-Juno pipelines are included. They work mostly in the same way but the differences are in the design and maintenance (the Juno pipelines are named like that and they are very actively maintained, the others less so).</p>
-</div>
-<div id="general-output" class="section level3 hasAnchor" number="1.1.5">
-<h3><span class="header-section-number">1.1.5</span> General output and log files for every pipeline<a href="index.html#general-output" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Every pipeline (with few exceptions) generates some extra output that is not essential for your analysis but that it is required for debugging/troubleshooting. Especially, if you are contacting someone at the IDS-bioinformatics team, we expect you to have these files at hand or to also send the location where they can be found (make sure that we have right to access that location or move them to a shared folder where they can be accessed).</p>
+<div id="troubleshooting-for-this-pipeline-4" class="section level3 hasAnchor" number="7.1.6">
+<h3><span class="header-section-number">7.1.6</span> Troubleshooting for this pipeline<a href="juno_snp.html#troubleshooting-for-this-pipeline-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Please read first the <a href="general-troubleshooting.html#general-troubleshooting">General Troubleshooting</a> section!</strong></p>
+<div id="other-problems-or-failing-rules-5" class="section level4 hasAnchor" number="7.1.6.1">
+<h4><span class="header-section-number">7.1.6.1</span> Other problems or failing rules<a href="juno_snp.html#other-problems-or-failing-rules-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The Juno_SNP pipeline is still in development which means that sometimes the process can fail.</p>
+<p>Before contacting for help, try these two steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Re-run the pipeline again and see if the process continues. If it does, please keep re-running the pipeline until your analysis is finished or there is no longer progress. In this case, send an email after the pipeline is finished so I can troubleshoot the problem.</p></li>
+<li><p><a href="https://github.com/RIVM-bioinformatics/Juno_snp">Download</a> the pipeline again and start from the beginning of this <a href="juno_snp.html#juno_snp">handbook</a>. Sometimes there is an issue that has been resolved in newer versions of the pipeline.</p></li>
+</ol>
+<p>If the pipeline still fails after these two steps, please inform me about the problem. Send an <a href="mailto:roxanne.wolthuis@rivm.nl">e-mail</a> with the following content:</p>
 <ul>
-<li><p>The <code>log/</code> subfolder is located inside your output directory. It contains one file per every step performed by the pipeline for each sample. There you can find error messages or some information of what happened during each step. The messages are not always easy to interpret, but they often have clues on why a job/analysis failed. Sometimes the log files for each tool (and sample) are empty because either, there were no problems or messages generated on the run or because the problem lies before the job/analysis was even started. You can look at them of course, but it is ok if you do not understand the messages. However, for us as bioinformaticians it is essential to have access to these files when something goes wrong inside one of the scripts/tools used.</p></li>
-<li><p>The <code>log/cluster/</code> or <code>log/drmaa/</code> subfolder is also inside the output directory and inside the log subdirectory. Here you can find other type of logging files of any job performed by the pipeline. This is even more technical logging but it can be veru useful to debug system errors, problems with memory, etc.</p></li>
-<li><p>The <code>audit_trail</code> or <code>results</code> subfolders are also located inside the output directory. They contain contain 4 very important files for trace-ability of your samples. The <code>log_conda.txt file</code> contains information about the software that was necessary and that was contained in your environment. This means basically the software that would be needed to reproduce the same circumstances in which the pipeline was run and how it can be reproduced. The <code>log_config.txt</code> file is even more informative. It enlists all the parameters used to run the pipeline. In case months later you forgot how you got the results you did or you just want to know some details about the analyses, they are all stored there. The <code>log_git.txt</code> has information about the repository or the code that was downloaded. It tells you exactly how it was downloaded so you can reproduce it at a later time point. Finally, the <code>snakemake_report.html</code> has a nice overview of the different steps that were performed with your samples, when were they performed, which output was produced and which software was used, as well as some statistics on how the run went.</p></li>
+<li>The log and error files that can be found in the output folder</li>
+<li>The path to your input directory</li>
+<li>The path to where the pipeline is installed</li>
 </ul>
-<p>Even though you would not look at this output regularly, it is useful for us as bioinformaticians to be able to help you if a problem would arise. However, <span style="font-weight:bold;">they are also useful for you!</span> Especially the <code>audit_trail</code> has the information you would need to put in a publication (software versions, parameters, etc.). <span style="font-weight:bold;">Please do not delete them</span> and know they are important.</p>
+<p><strong>Note:</strong> I cannot help you without this information, if information is missing there will be a delay in troubleshooting the problem.</p>
 
 </div>
 </div>
 </div>
-
-
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="general-troubleshooting.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="juno_cgmlst.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="juno-annotation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
