@@ -46,6 +46,7 @@ The Juno-typing pipeline will then perform the following steps:
     - _S. pneumoniae_ serotyper by using the [Seroba](https://github.com/sanger-pathogens/seroba) tool.  
     - _Shigella_ serotyper by using the [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper) tool.  
 
+4. Predict rRNA sequences using Barrnapp and extract 16S sequences.
 
 <span style="color:red;">Disclaimer!!</span> Importantly, you can provide a species while calling the pipeline and this will be considered as the species for ALL samples. Alternatively, you can provide a metadata file (explained below) with a different species per sample. The species is used to choose MLST scheme and serotyper. If you are using the results of the Juno-assembly as input and you do not provide another metadata file, the results of the species identification step in Juno-assembly will be used! Note that that step might not always be correct so you have to check that the serotyping and the MLST schema were properly chosen.   
 
@@ -152,7 +153,7 @@ See the section [General Troubleshooting](#general-troubleshooting) for any prob
 
 ### Output 
 
-A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per step (`mlst7` and `serotype`). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a `serotype/serotype_multireport.csv` and `mlst7/mlst7_multireport.csv`. 
+A folder called `output/`, inside the folder of the pipeline, will be created. This folder will contain all the results and logging files of your analysis. There will be one folder per step (`identify species`, `mlst7`, `serotype`, and `16s`). Please refer to the manuals of every tool to interpret the results. In each one of these folders, there should be a sub-folder per sample and, for the case of mlst7 and serotype, also a csv file collecting the results of all the samples together: a `serotype/serotype_multireport.csv` and `mlst7/mlst7_multireport.csv`. 
 
 *Note:* If you want your output to be stored in a folder with a different name or location, you can use the option `-o` ('o' from output) 
 
